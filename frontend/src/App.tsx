@@ -1,10 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/NavBar';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom"
+import LoginPage from './pages/LoginPage';
+import Homepage from './pages/Homepage';
+import Profile from './pages/Profile';
 
 function App() {
   return (
-    <div className="App">It's displaying here, but I don't know how to get it to display login</div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='./pages/LoginPage' element={<LoginPage />} />
+          <Route path='./pages/Homepage' element={<Homepage />} />
+          <Route path='./pages/Profile' element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 
