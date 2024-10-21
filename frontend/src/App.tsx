@@ -4,8 +4,7 @@ import Navbar from './components/NavBar';
 import {
   BrowserRouter,
   Routes,
-  Route,
-  //Link,
+  Route
 } from "react-router-dom"
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
@@ -16,9 +15,9 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/LoginPage' element={<LoginPage />} />
-          <Route path='/Homepage' element={<Homepage />} />
-          <Route path='/Profile' element={<Profile />} />
+          <Route path='/pages/LoginPage/LoginPage' element={<LoginPage />} />
+          <Route path='/pages/Homepage/Homepage' element={<Homepage />} />
+          <Route path='/pages/Profile' element={<Profile />}/>
         </Routes>
       </BrowserRouter>
   );
