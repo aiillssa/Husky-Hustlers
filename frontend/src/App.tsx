@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-//import Navbar from './components/NavBar';
+import Navbar from './components/NavBar';
 import {
   BrowserRouter,
   Routes,
@@ -14,10 +14,11 @@ import Profile from './pages/Profile';
 function App() {
   return (
       <BrowserRouter>
+        <Navbar />
         <Routes>
-          <Route path='/pages/LoginPage' element={<LoginPage />} />
-          <Route path='/pages/Homepage' element={<Homepage />} />
-          <Route path='/pages/Profile' element={<Profile />} />
+          <Route path='/LoginPage' element={<LoginPage />} />
+          <Route path='/Homepage' element={<Homepage />} />
+          <Route path='/Profile' element={<Profile />} />
         </Routes>
       </BrowserRouter>
   );

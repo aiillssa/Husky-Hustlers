@@ -1,27 +1,33 @@
 import React, { useState } from "react"
-import "./navbar.css"
+// import "./navbar.css"   NavBtn,
 import { Link } from "react-router-dom"
+import {
+  Nav,
+  Bars,
+  NavMenu,
+  NavBtnLink,
+} from "./NavbarElements";
 
 const Navbar = () => {
   const [Mobile, setMobile] = useState(false)
   return (
     <>
-      <nav className='navbar'>
-        <h3 className='logo'>Logo</h3>
-        
-        <ul className={"nav-links"}>
-          <Link to='./pages/LoginPage' className='login'>
-            <li>LoginPage</li>
-          </Link>
-          <Link to='./pages/Homepage' className='homepage'>
-            <li>Homepage</li>
-          </Link>
-          <Link to='./pages/Profile' className='profile'>
-            <li>Profile</li>
-          </Link>
-        </ul>
-      </nav>
+        <Nav>
+            <Bars />
+
+            <NavMenu>
+                <NavBtnLink to='/pages/LoginPage/LoginPage' className='login'>
+                    Login
+                </NavBtnLink>
+                <NavBtnLink to='/pages/Homepage/Homepage' className='homepage'>
+                    Homepage
+                </NavBtnLink>
+                <NavBtnLink to='/pages/Profile' className='profile'>
+                    Profile
+                </NavBtnLink>
+            </NavMenu>
+        </Nav>
     </>
-  )
+);
 }
 export default Navbar
