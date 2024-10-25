@@ -17,7 +17,7 @@ React google authentication library:
 `npm i @react-oauth/google`
 
 Library for making HTTP requests to Google:
-'npm install axios'
+`npm install axios`
 
 to run:
-'npm run start'
+`npm run start`
