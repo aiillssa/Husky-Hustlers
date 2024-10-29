@@ -5,6 +5,8 @@ import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
 import Profile from './pages/Profile';
+import BusinessPage from './pages/BusinessPages/BusinessPage';
+import AddBusinessPage from './pages/BusinessPages/AddBusinessPage';
 
 type AppState = {
   signedIn: boolean;
@@ -29,7 +31,10 @@ export class App extends Component<{}, AppState> {
             <Routes>
               <Route path="/pages/Profile" element={<Profile />} />
               <Route path="/pages/Homepage" element={<Homepage />} />
+              <Route path="/pages/BusinessPages" element={<BusinessPage />} />
+              <Route path="/pages/BusinessPages" element={<AddBusinessPage />} />
             </Routes>
+            <Homepage />
           </BrowserRouter>
         ) : (
           <LoginPage setSignedIn={this.setSignedIn} /> // Pass setSignedIn to LoginPage
