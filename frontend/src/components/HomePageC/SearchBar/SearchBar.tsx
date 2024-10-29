@@ -1,13 +1,14 @@
 import { memo } from 'react';
 import type { FC } from 'react';
+import React, {useState} from 'react';
 
 import resets from '../../_resets.module.css';
-import { IconButton_StyleStandardStateE } from '../IconButton_StyleStandardStateE/IconButton_StyleStandardStateE';
+import { IconButton } from '../IconButton/IconButton';
 import { Menu } from '../Menu/Menu';
 import { Search } from '../Search/Search';
 import { Icon } from './Icon';
 import { Icon2 } from './Icon2';
-import classes from './SearchBar_StateEnabledShowAvat.module.css';
+import classes from './SearchBar.module.css';
 
 interface Props {
   className?: string;
@@ -16,11 +17,14 @@ interface Props {
   };
 }
 /* @figmaId 11:334 */
-export const SearchBar_StateEnabledShowAvat: FC<Props> = memo(function SearchBar_StateEnabledShowAvat(props = {}) {
+export const SearchBar: FC<Props> = memo(function SearchBar(props = {}) {
+  const [input, setInput] = useState("");
+
+
   return (
     <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       <div className={classes.stateLayer}>
-        <IconButton_StyleStandardStateE
+        <IconButton
           swap={{
             icon: (
               <Menu
@@ -32,10 +36,10 @@ export const SearchBar_StateEnabledShowAvat: FC<Props> = memo(function SearchBar
           }}
         />
         <div className={classes.content}>
-          <div className={classes.supportingText}>Hinted search text</div>
+          <input placeholder="Type to search..." />
         </div>
         <div className={classes.trailingElements}>
-          <IconButton_StyleStandardStateE
+          <IconButton
             swap={{
               icon: (
                 <Search
@@ -51,3 +55,5 @@ export const SearchBar_StateEnabledShowAvat: FC<Props> = memo(function SearchBar
     </div>
   );
 });
+
+export default SearchBar

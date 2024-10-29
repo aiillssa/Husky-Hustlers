@@ -3,8 +3,8 @@ import type { FC } from 'react';
 
 import resets from '../_resets.module.css';
 import classes from './BegingingLogIn.module.css';
-import { Button_VariantPrimaryStateDefa } from './Button_VariantPrimaryStateDefa/Button_VariantPrimaryStateDefa';
-import { InputField_StateDefaultValueTy } from './InputField_StateDefaultValueTy/InputField_StateDefaultValueTy';
+import Button from './Button/Button';
+import { InputField } from './InputField/InputField';
 import { TextLink } from './TextLink/TextLink';
 
 interface Props {
@@ -18,13 +18,13 @@ export const BegingingLogIn: FC<Props> = memo(function BegingingLogIn(props = {}
       <div className={classes.loginComponent}>
         <div className={classes.frame1}>
           <div className={classes.formLogIn}>
-            <InputField_StateDefaultValueTy
+            <InputField
               className={classes.username2}
               text={{
                 label: <div className={classes.username}>Username or UW Email</div>,
               }}
             />
-            <InputField_StateDefaultValueTy
+            <InputField
               className={classes.password2}
               text={{
                 label: <div className={classes.password}>Password</div>,
@@ -37,7 +37,7 @@ export const BegingingLogIn: FC<Props> = memo(function BegingingLogIn(props = {}
               }}
             />
             <div className={classes.buttonGroup}>
-              <Button_VariantPrimaryStateDefa
+              <Button
                 className={classes.button2}
                 text={{
                   button: <div className={classes.button}>Log In</div>,
