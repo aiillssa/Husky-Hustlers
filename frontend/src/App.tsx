@@ -5,8 +5,8 @@ import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
 import Profile from './pages/Profile';
-import BusinessPage from './pages/BusinessPages/BusinessPage';
-import AddBusinessPage from './pages/BusinessPages/AddBusinessPage';
+import BusinessPage from './pages/MyBusinessPage/BusinessPage';
+import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
 
 type AppState = {
   signedIn: boolean;

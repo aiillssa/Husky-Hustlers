@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function AddBusinessPage() {
   return (
     <div>
-      <h1>AddBusinessPage</h1>
+      <h1>Add Business Page</h1>
     </div>
   );
 }
