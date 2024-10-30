@@ -4,9 +4,10 @@ import { googleLogout, useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/
 import axios from "axios";
 import classes from "./LoginPage.module.css";
 import resets from "../../components/_resets.module.css";
+import { addUser } from "../../utils/api";
 
 interface Props {
-  setSignedIn: (value: boolean) => void; // Accepts setSignedIn as a prop from App.tsx
+  setSignedIn: (value: boolean) => void;
 }
 
 interface User {
@@ -42,12 +43,21 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
             },
           }
         )
-        .then((res) => {
+        .then(async (res) => {
           const userProfile: Profile = res.data;
           if (userProfile.hd === "uw.edu") {
             setProfile(userProfile);
             setErrorMessage(null);
-            setSignedIn(true); // Update signedIn state in App.tsx
+            setSignedIn(true);
+
+            // Call addUser to send profile info to backend
+            try {
+              const resp = await addUser(userProfile.name, userProfile.email);
+              console.log(resp);
+              console.log("User added successfully");
+            } catch (error) {
+              console.error("Error adding user:", error);
+            }
           } else {
             setProfile(null);
             setErrorMessage("Access denied. Please use a UW email account.");
@@ -61,7 +71,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
     googleLogout();
     setProfile(null);
     setErrorMessage(null);
-    setSignedIn(false); // Reset signedIn on logout
+    setSignedIn(false);
   };
 
   return (
