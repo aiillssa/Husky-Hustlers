@@ -1,16 +1,233 @@
 .root {
-  width: 100vw; /* Ensures it spans the full viewport width */
-  height: 100vh; /* Optional: Ensures it spans the full viewport height */
-  background-size: cover; /* Ensures the background covers the container without overflowing */
-  background-repeat: repeat; /* Ensure background repeats when scrolling */
-  margin: 0; /* Reset default margins */
-  padding: 0; /* Reset default padding */
-   background-image: conic-gradient(
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background-image: conic-gradient(
     from 28.833127979982663deg at 1016.4999327661706px 640.9999876078982px,
     #eabacbff 17%,
     #a97fc6ff 74%
   );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  overflow: hidden;
 }
+
+/*Value input box */
+.username2.username2 {
+  z-index: 0;
+  width: initial;
+  align-self: stretch;
+}
+.username {
+  color: #1e1e1e;
+  font-size: 16px;
+  line-height: 140%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  height: min-content;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.textLink {
+  color: #1e1e1e;
+  font-size: 16px;
+  line-height: 140%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-decoration: underline;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.button2.button2 {
+  width: 355px;
+  flex: 1;
+}
+.button {
+  color: #f5f5f5;
+  font-size: 16px;
+  line-height: 100%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+.caption {
+  color: #000;
+  font-size: 72px;
+  line-height: 120%;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  letter-spacing: -0.03em;
+  position: absolute;
+  left: 172px;
+  top: 256px;
+  width: 498px;
+  height: 553px;
+  flex-direction: column;
+}
+.loginComponent {
+  position: absolute;
+  left: 782px;
+  top: 246px;
+  width: 485px;
+  height: 533px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 50px 39px;
+  border-radius: 59px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+.frame1 {
+  position: absolute;
+  left: 39px;
+  top: 153px;
+  width: 405px;
+  height: 288px;
+  flex-direction: column;
+  align-items: center;
+}
+.formLogIn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 407px;
+  height: min-content;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  padding: 24px;
+  outline: solid 1px #d9d9d9;
+  outline-offset: -1px;
+  border-radius: 8px;
+  background-color: #e6e6e6;
+}
+.buttonGroup {
+  z-index: 0;
+  position: relative;
+  height: 40px;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: center;
+}
+/*Hello Welcome Log in page title position */
+.title {
+  position: absolute;
+  left: 39px;
+  top: 50px;
+  width: 407px;
+  height: 85px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 11px 0 0;
+}
+/*Hello Welcome text */
+.helloWelcome {
+  color: #000;
+  font-size: 48px;
+  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 35px;
+  top: 0;
+  width: min-content;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-direction: column;
+}
+/*Login page text */
+.logInPage {
+  color: #000;
+  font-size: 20px;
+  font-weight: 100;
+  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 147px;
+  top: 55px;
+  width: min-content;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.image2 {
+  transform-origin: top left;
+  position: absolute;
+  left: 635px;
+  top: 246.005px;
+  width: 186.7042px;
+  height: 156.5863px;
+  border-radius: 4px;
+  background-image:/* webpackIgnore: true */ url('assets/image22.png'),
+    /* webpackIgnore: true */ url('assets/image2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain, contain;
+  transform: matrix(0.834, -0.5517, 0.5517, 0.834, 0, 0);
+}
+.uWLogo {
+  position: absolute;
+  left: 17px;
+  top: 822px;
+  width: 143px;
+  height: 202px;
+  background-image:/* webpackIgnore: true */ url('assets/uWLogo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.navBar {
+  position: absolute;
+  left: 172px;
+  top: 36px;
+  width: 1096px;
+  height: min-content;
+  justify-content: space-between;
+  align-items: center;
+  gap: 634px;
+  overflow: hidden;
+}
+.huskyHustler {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.logInSignUpFirstToSeeAllStuden {
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
 
 /* text */
 h2 {
