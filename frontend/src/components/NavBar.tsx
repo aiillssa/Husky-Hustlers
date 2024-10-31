@@ -12,7 +12,7 @@ const Navbar = () => {
         <Link to='/pages/Profile' className='nav-button'>
             Profile
         </Link>
-        <Link to='/pages/BusinessPages' className='nav-button'>
+        <Link to='/pages/BusinessPage' className='nav-button'>
             My Business
         </Link>
     </nav>
