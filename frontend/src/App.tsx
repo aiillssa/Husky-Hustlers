@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
@@ -32,9 +32,10 @@ export class App extends Component<{}, AppState> {
               <Route path="/pages/Profile" element={<Profile />} />
               <Route path="/pages/Homepage" element={<Homepage />} />
               <Route path="/pages/BusinessPages" element={<BusinessPage />} />
-              <Route path="/pages/BusinessPages" element={<AddBusinessPage />} />
+              <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
+              {/* Redirect to Homepage after login */}
+              <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
-            <Homepage />
           </BrowserRouter>
         ) : (
           <LoginPage setSignedIn={this.setSignedIn} /> // Pass setSignedIn to LoginPage
