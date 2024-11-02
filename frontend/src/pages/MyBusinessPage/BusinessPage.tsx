@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import resets from "../../components/_resets.module.css";
-// Test comment
-
 
 type BusinessPageState = {
   hasBusiness: boolean; // need to get this value from server

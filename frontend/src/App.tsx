@@ -31,7 +31,7 @@ export class App extends Component<{}, AppState> {
             <Routes>
               <Route path="/pages/Profile" element={<Profile />} />
               <Route path="/pages/Homepage" element={<Homepage />} />
-              <Route path="/pages/BusinessPages" element={<BusinessPage />} />
+              <Route path="/pages/BusinessPage" element={<BusinessPage />} />
               <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
               {/* Redirect to Homepage after login */}
               <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
