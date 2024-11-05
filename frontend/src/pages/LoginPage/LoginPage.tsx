@@ -54,16 +54,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
           <div className={classes.frame1}>
             <div className={classes.formLogIn}>
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-              {profile ? (
-                <div>
-                  <img src={profile.picture} alt="user" />
-                  <h3>User Logged in</h3>
-                  <p>Name: {profile.name}</p>
-                  <p>Email Address: {profile.email}</p>
-                  <button onClick={logOut}>Log out</button>
-                </div>
-              ) : (
-                <div>
+              <div>
                   <button
                     className={classes.login_button}
                     onClick={() => login()}
@@ -72,13 +63,8 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
                   </button>
                   <button onClick={() => logOut()}>log out</button>
                 </div>
-              )}
             </div>
           </div>
-        </div>
-        <div className={classes.title}>
-          <div className={classes.helloWelcome}>Hello, Welcome!</div>
-          <div className={classes.logInPage}>Log-In Page</div>
         </div>
       </div>
     </div>
