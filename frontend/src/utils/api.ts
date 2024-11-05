@@ -21,6 +21,7 @@ export const addUser = async (name: string, email: string): Promise<void> => {
   }
 };
 
+// Logs the user in to their account through google
 export const googleBackendLogin = async (code: string): Promise<void> => {
   try {
     // Send code to the backend to get appJwt
@@ -40,5 +41,48 @@ export const googleBackendLogin = async (code: string): Promise<void> => {
    
   }
 }
+
+// List of all current shops
+export const getAllShops = async (): Promise<void> => {
+  try {
+    // Send GET request to /shops endpoint
+    const response = await axios.get("http://localhost:8088/shops");
+
+    // Extract shops array from the response
+    const shops = response.data;
+
+    console.log("Shops:", shops);
+  } catch (error) {
+    console.error("Failed to fetch shops:", error);
+  }
+};
+
+export const createShop = async (
+  shopName: string,
+  shopDescription: string,
+  ownerName: string,
+  contactInformation: string,
+  userIdUsers: string,
+  categories: string
+): Promise<void> => {
+  try {
+    const response = await axios.post("http://localhost:8088/shops", {
+      shopName,
+      shopDescription,
+      ownerName,
+      contactInformation,
+      userIdUsers, 
+      categories: [categories],
+    });
+
+    console.log("Shop created successfully:", response.data);
+  } catch (error: any) {
+    console.error("Failed to create shop:", error.response ? error.response.data : error.message);
+  }
+};
+
+
+
+
 
 export {};
