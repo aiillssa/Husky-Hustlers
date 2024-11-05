@@ -18,6 +18,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
       googleBackendLogin(code);
+      setSignedIn(true);
     },
     flow: "auth-code",
     onError: (error) => {
@@ -50,8 +51,6 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
           <div className={classes.logInPage}>Log-In Page</div>
         </div>
       </div>
-
-
     </div>
   );
 };
