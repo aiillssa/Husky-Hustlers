@@ -97,10 +97,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
                   <button onClick={logOut}>Log out</button>
                 </div>
               ) : (
-                <button
-                  className={classes.login_button}
-                  onClick={() => login()}
-                >
+                <button onClick={() => login()}>
                   Sign in with Google 🚀
                 </button>
               )}

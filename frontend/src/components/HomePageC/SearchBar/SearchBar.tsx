@@ -22,7 +22,7 @@ export const SearchBar: FC<Props> = memo(function SearchBar(props = {}) {
 
 
   return (
-    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
+    <div className={`${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       <div className={classes.stateLayer}>
         <IconButton
           swap={{
