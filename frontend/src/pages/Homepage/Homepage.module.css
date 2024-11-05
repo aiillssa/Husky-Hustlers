@@ -1,13 +1,31 @@
 /*Webpage body */
 .root {
+  position: relative;
   width: 100vw; /* Ensures it spans the full viewport width */
   height: 100vh; /* Optional: Ensures it spans the full viewport height */
-  background-image: linear-gradient(213deg, #eabacbff 30%, #a97fc6ff 100%); /* Background color of homepage */
+  background-color: white; /* Background color of homepage */
   background-size: cover; /* Ensures the background covers the container without overflowing */
-  background-repeat: repeat; /* Ensure background repeats when scrolling */
   overflow-x: hidden; /* Prevents any horizontal scrolling if overflow still occurs */
   margin: 0; /* Reset default margins */
   padding: 0; /* Reset default padding */
+}
+
+/* Search Bar on home page*/
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Center horizontally if necessary */
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
 }
 
 /*The UW Logo on the bottom left*/
@@ -25,22 +43,21 @@
 
 /* Formats the cards on the home page so that it a 3 by 3. */
 .cardGrid {
-  position: absolute;
-  left: 172px;
-  top: 226px;
-  width: 1095px;
+  width: 70%x;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: min-content;
   flex-wrap: wrap;
-  align-items: flex-start;
-  align-content: flex-start;
   gap: 32px 42px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 /* Rectangle card outline*/
-.card, .card2, .card3, .card4, .card5, .card6, .card7, .card8, .card9 {
-  
+.card {
   width: 337px;
-  height: 297px;
+  height: auto;
   flex-direction: column;
   align-items: flex-start;
   gap: 19px;
@@ -50,8 +67,7 @@
 }
 
 /* Positions for Name, BusinessName, and Keyword description */
-.cardHeading, .cardHeading2, .cardHeading3, .cardHeading4, .cardHeading5, .cardHeading6, .cardHeading7, .cardHeading8, .cardHeading9 {
-  width: 228px;
+.cardHeading {
   height: min-content;
   flex-direction: column;
 }
@@ -135,14 +151,6 @@
   flex-direction: column;
 }
 
-/* Search Bar on home page*/
-.searchBar.searchBar {
-  left: 275px;
-  top: 144px;
-  width: 720px;
-  height: 59px;
-}
-
 /* The round rectangles that are the category types */
 .rectangle1.rectangle1 {
   background-color: #97aaff8a;
@@ -170,4 +178,10 @@
 }
 .rectangle9.rectangle9 {
   background-color: #97aaff8a;
+}
+.rectangle10.rectangle10 {
+  background-color: pink;
+}
+.rectangle12.rectangle12 {
+  background-color: purple;
 }

@@ -1,9 +1,6 @@
 .root {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 360px;
-    height: 56px;
+    width: 720px;
+    height: 63px;
     border-radius: 28px;
     background-color: white;
     overflow: hidden;
@@ -11,9 +8,6 @@
 
 /* Input font size and background*/
 .content input {
-    position: absolute;
-    left: 10;
-    top: 0;
     width: 600px;
     height: 100%;
     font-size: 24px;
@@ -34,9 +28,13 @@
     height: 100%;
   }
   .stateLayer {
+    display: flex;
+    align-items: start;
+    flex-direction: row;
     flex: 1;
     align-self: stretch;
-    align-items: center;
+    align-items: start;
+    flex-wrap: nowrap;
     gap: 4px;
     padding: 4px;
   }
@@ -44,6 +42,7 @@
     flex: 1;
     align-self: stretch;
     align-items: center;
+    border: none;
   }
 
   .trailingElements {

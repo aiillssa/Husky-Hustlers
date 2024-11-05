@@ -36,19 +36,36 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   };
 
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
-      <div className={classes.caption}>A platform that fosters student businesses and UW community!</div>
-      <div className={classes.loginComponent}>
-        <div className={classes.frame1}>
-          <div className={classes.formLogIn}>
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            <button onClick={() => login()}>Sign in with Google 🚀</button>
-            <button onClick={() => logOut()}>log out</button>
-          </div>
+    <div className={`${classes.root}`}>
+      <div className={classes.navBar}>
+        <div className={classes.huskyHustler}>Husky Hustler</div>
+        <div className={classes.logInSignUpFirstToSeeAllStuden}>
+          Log In / Sign Up First to See All Student Business
         </div>
-        <div className={classes.title}>
-          <div className={classes.helloWelcome}>Hello, Welcome!</div>
-          <div className={classes.logInPage}>Log-In Page</div>
+      </div>
+      <div className={classes.content_wrapper}>
+        <div className={classes.caption}>
+          A platform that fosters student businesses and UW community!
+        </div>
+        <div className={classes.loginComponent}>
+          <div className={classes.title}>
+            <div className={classes.helloWelcome}>Hello, Welcome!</div>
+            <div className={classes.logInPage}>Log-In Page</div>
+          </div>
+          <div className={classes.frame1}>
+            <div className={classes.formLogIn}>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              <div>
+                  <button
+                    className={classes.login_button}
+                    onClick={() => login()}
+                  >
+                    Sign in with Google 🚀
+                  </button>
+                  <button onClick={() => logOut()}>log out</button>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
