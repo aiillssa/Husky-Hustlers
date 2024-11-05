@@ -50,12 +50,8 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
           <div className={classes.logInPage}>Log-In Page</div>
         </div>
       </div>
-      <div className={classes.image2}></div>
-      <div className={classes.uWLogo}></div>
-      <div className={classes.navBar}>
-        <div className={classes.huskyHustler}>Husky Hustler</div>
-        <div className={classes.logInSignUpFirstToSeeAllStuden}>Log In / Sign Up First to See All Student Business</div>
-      </div>
+
+
     </div>
   );
 };

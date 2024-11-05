@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
-import Homepage from './pages/Homepage/HomePage';
+import Homepage from './pages/Homepage/Homepage';
 import Profile from './pages/Profile';
 import BusinessPage from './pages/MyBusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
@@ -31,10 +31,11 @@ export class App extends Component<{}, AppState> {
             <Routes>
               <Route path="/pages/Profile" element={<Profile />} />
               <Route path="/pages/Homepage" element={<Homepage />} />
-              <Route path="/pages/BusinessPages" element={<BusinessPage />} />
-              <Route path="/pages/BusinessPages" element={<AddBusinessPage />} />
+              <Route path="/pages/BusinessPage" element={<BusinessPage />} />
+              <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
+              {/* Redirect to Homepage after login */}
+              <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
-            <Homepage />
           </BrowserRouter>
         ) : (
           <LoginPage setSignedIn={this.setSignedIn} /> // Pass setSignedIn to LoginPage
