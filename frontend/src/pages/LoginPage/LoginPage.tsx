@@ -16,7 +16,8 @@ interface Props {
 
 const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
+  
+  // ask backend to autheticate the login
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
       googleBackendLogin(code);
