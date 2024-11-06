@@ -107,7 +107,7 @@
 /* food = text that tells the category */
 /* Note not all of it is red why? fix*/
 .food, .food2, .food3, .food4, .food5, .food6, .food7, .food8, .food9{
-  border: 3px solid red;
+  /*border: 3px solid red;*/
   color: #000;
   font-size: 16px;
   line-height: 100%;

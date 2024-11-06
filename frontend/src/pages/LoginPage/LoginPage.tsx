@@ -18,6 +18,10 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
       googleBackendLogin(code);
+      // Security Risk here as it might be called
+      // despite login fail.
+      // Must check that google login is successful first
+      // before calling setSignedIn(true);
       setSignedIn(true);
     },
     flow: "auth-code",
@@ -29,6 +33,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 
   const logOut = () => {
     googleLogout();
+    // Possible security Risk to an XSS attack
     localStorage.removeItem("appJwt");
     setErrorMessage(null);
     setSignedIn(false);
@@ -75,6 +80,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 export const LoginPage: FC<Props> = memo(function LoginPage(props: Props) {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
+      {/*Largest security Risk is showing this client ID*/}
       <GoogleOAuthProvider clientId="410136854211-33d088kspbh9se3oej3sebpmj0jal8v7.apps.googleusercontent.com">
         <LoginPageContent {...props} />
       </GoogleOAuthProvider>
