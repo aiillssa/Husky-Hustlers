@@ -1,7 +1,5 @@
 import React, { memo, useState, useEffect, FC } from "react";
 import { googleLogout, useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import axios from "axios"
-
 
 import classes from "./LoginPage.module.css";
 import resets from "../../components/_resets.module.css";
@@ -80,7 +78,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 export const LoginPage: FC<Props> = memo(function LoginPage(props: Props) {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
-      {/*Largest security Risk is showing this client ID*/}
+      {/*Public Key */}
       <GoogleOAuthProvider clientId="410136854211-33d088kspbh9se3oej3sebpmj0jal8v7.apps.googleusercontent.com">
         <LoginPageContent {...props} />
       </GoogleOAuthProvider>
