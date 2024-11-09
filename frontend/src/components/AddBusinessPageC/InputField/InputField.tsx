@@ -2,7 +2,7 @@ import { memo } from 'react';
 import type { FC, ReactNode } from 'react';
 
 import resets from '../../_resets.module.css';
-import classes from './InputField_StateDefaultValueTy.module.css';
+import classes from './InputField.module.css';
 
 interface Props {
   className?: string;
@@ -14,7 +14,7 @@ interface Props {
   };
 }
 /* @figmaId 9:82 */
-export const InputField_StateDefaultValueTy: FC<Props> = memo(function InputField_StateDefaultValueTy(props = {}) {
+export const InputField: FC<Props> = memo(function InputField(props = {}) {
   return (
     <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       {props.text?.label != null ? props.text?.label : <div className={classes.label}>Label</div>}
@@ -24,3 +24,5 @@ export const InputField_StateDefaultValueTy: FC<Props> = memo(function InputFiel
     </div>
   );
 });
+
+export default InputField

@@ -4,7 +4,7 @@ import type { FC, ReactNode } from 'react';
 import resets from '../../_resets.module.css';
 import { Settings } from '../Settings/Settings';
 import { Icon } from './Icon';
-import classes from './IconButton_StyleStandardStateE.module.css';
+import classes from './IconButton.module.css';
 
 interface Props {
   className?: string;
@@ -13,7 +13,7 @@ interface Props {
   };
 }
 /* @figmaId 18:163 */
-export const IconButton_StyleStandardStateE: FC<Props> = memo(function IconButton_StyleStandardStateE(props = {}) {
+export const IconButton: FC<Props> = memo(function IconButton(props = {}) {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <div className={classes.container}>
@@ -30,3 +30,5 @@ export const IconButton_StyleStandardStateE: FC<Props> = memo(function IconButto
     </div>
   );
 });
+
+export default IconButton

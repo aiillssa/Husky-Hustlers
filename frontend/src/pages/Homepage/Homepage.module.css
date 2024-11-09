@@ -1,8 +1,187 @@
+/*Webpage body */
 .root {
-    height: 100%;
-    font-family: sans-serif;
-    background-color: #f5f5f5;
-    flex-basis: 100%;
-    overflow-y: auto;
-  }
-  
+  position: relative;
+  width: 100vw; /* Ensures it spans the full viewport width */
+  height: 100vh; /* Optional: Ensures it spans the full viewport height */
+  background-color: white; /* Background color of homepage */
+  background-size: cover; /* Ensures the background covers the container without overflowing */
+  overflow-x: hidden; /* Prevents any horizontal scrolling if overflow still occurs */
+  margin: 0; /* Reset default margins */
+  padding: 0; /* Reset default padding */
+}
+
+/* Search Bar on home page*/
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Center horizontally if necessary */
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+/*The UW Logo on the bottom left*/
+.uWLogo {
+  position: absolute;
+  left: 17px;
+  top: 1033px;
+  width: 143px;
+  height: 202px;
+  background-image:/* webpackIgnore: true */ url('assets/uWLogo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Formats the cards on the home page so that it a 3 by 3. */
+.cardGrid {
+  width: 70%x;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: min-content;
+  flex-wrap: wrap;
+  gap: 32px 42px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+/* Rectangle card outline*/
+.card {
+  width: 337px;
+  height: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 19px;
+  padding: 32px 44px;
+  border-radius: 62px;
+  background-color: #ece6f0;
+}
+
+/* Positions for Name, BusinessName, and Keyword description */
+.cardHeading {
+  height: min-content;
+  flex-direction: column;
+}
+
+/* Seller's actual name?*/
+.name, .name2, .name3, .name4, .name5, .name6, .name7, .name8, .name9 {
+  color: #000;
+  font-size: 25px;
+  font-weight: 300;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  height: min-content;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+/* Title of seller's business name*/
+.businessName, .businessName2, .businessName3, .businessName4, .businessName5, .businessName6, .businessName7, .businessName8, .businessName9 {
+  color: #000;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  height: min-content;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+/* Description in textbox */
+.description, .description2, .description3, .description4, .description5, .description6, .description7, .description8, .description9 {
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+/* food = text that tells the category */
+/* Note not all of it is red why? fix*/
+.food, .food2, .food3, .food4, .food5, .food6, .food7, .food8, .food9{
+  /*border: 3px solid red;*/
+  color: #000;
+  font-size: 16px;
+  line-height: 100%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: -1px;
+  top: 1px;
+  width: 89px;
+  height: 34px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Affects keyword description text*/
+.textBlock, .textBlock2, .textBlock3, .textBlock4, .textBlock5, .textBlock6, .textBlock7, .textBlock8, .textBlock9 {
+  color: #000;
+  font-size: 25px;
+  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+
+/* what does this do? can't find it with border: 3px solid red;*/
+.artWork {
+  color: #000;
+  font-size: 16px;
+  line-height: 100%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: -1px;
+  top: 1px;
+  width: 89px;
+  height: 34px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* The round rectangles that are the category types */
+.rectangle1.rectangle1 {
+  background-color: #97aaff8a;
+}
+.rectangle2.rectangle2 {
+  background-color: #bef3e9;
+}
+.rectangle3.rectangle3 {
+  background-color: #efff978a;
+}
+.rectangle4.rectangle4 {
+  background-color: #97aaff8a;
+}
+.rectangle5.rectangle5 {
+  background-color: #eef3c0;
+}
+.rectangle6.rectangle6 {
+  background-color: #bef3e9;
+}
+.rectangle7.rectangle7 {
+  background-color: #eef3c0;
+}
+.rectangle8.rectangle8 {
+  background-color: #97ffe38a;
+}
+.rectangle9.rectangle9 {
+  background-color: #97aaff8a;
+}
+.rectangle10.rectangle10 {
+  background-color: pink;
+}
+.rectangle12.rectangle12 {
+  background-color: purple;
+}
