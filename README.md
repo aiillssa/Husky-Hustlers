@@ -1,4 +1,4 @@
-# FOR OTHER DEVS:
+Developer's Documentation & User Manual can be found in the "Wiki" tab.
 
 Set up:
 1) Download Node.js v20.18.0
@@ -22,3 +22,5 @@ Library for making HTTP requests to Google:
 
 to run:
 `npm run start`
+
+
