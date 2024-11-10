@@ -6,7 +6,7 @@ import classes from "./Homepage.module.css";
 import { Rectangle1Default } from "../../components/HomePageC/Rectangle1Default/Rectangle1Default";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
 
-// Define the type for a single seller's data
+// single seller's data
 type SellerData = {
   ownerName: string;
   businessName: string;
@@ -14,7 +14,7 @@ type SellerData = {
   type: "food" | "artwork" | "service" | "craft" | "resell";
 };
 
-// Create an array of 10 mock sellers
+// crate an array of 10 mock sellers
 const mockSellers: SellerData[] = [
   {
     ownerName: "Alice Johnson",
@@ -97,8 +97,6 @@ export class Homepage extends Component<{}, HomepageState> {
 
   render() {
     const { listOfSellers, selectedType } = this.state;
-
-    // Filter the sellers based on the selected type
     const filteredSellers =
       selectedType === "all"
         ? listOfSellers
