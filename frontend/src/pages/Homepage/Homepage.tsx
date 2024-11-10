@@ -1,181 +1,167 @@
-import React, { Component } from 'react';
-import type { FC } from 'react';
+import React, { Component } from "react";
+import type { FC } from "react";
 
-import resets from '../../components/_resets.module.css';
-import classes from './Homepage.module.css';
-import { Rectangle1Default } from '../../components/HomePageC/Rectangle1Default/Rectangle1Default';
-import { SearchBar } from '../../components/HomePageC/SearchBar/SearchBar';
+import resets from "../../components/_resets.module.css";
+import classes from "./Homepage.module.css";
+import { Rectangle1Default } from "../../components/HomePageC/Rectangle1Default/Rectangle1Default";
+import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
 
-type HomepageState = {
-  listOfSellers: String | null;
+// Define the type for a single seller's data
+type SellerData = {
+  ownerName: string;
+  businessName: string;
+  keyword: string;
+  type: "food" | "artwork" | "service" | "craft" | "resell";
 };
 
-// interface Props {
-//   className?: string;
-// }
-/* @figmaId 18:73 */
+// Create an array of 10 mock sellers
+const mockSellers: SellerData[] = [
+  {
+    ownerName: "Alice Johnson",
+    businessName: "Alice’s Artistry",
+    keyword: "Handmade paintings",
+    type: "artwork",
+  },
+  {
+    ownerName: "Bob Smith",
+    businessName: "Bob’s Burgers",
+    keyword: "Delicious burgers",
+    type: "food",
+  },
+  {
+    ownerName: "Carol White",
+    businessName: "Carol’s Crafts",
+    keyword: "Knitted scarves",
+    type: "craft",
+  },
+  {
+    ownerName: "Dave Brown",
+    businessName: "Dave’s Delivery",
+    keyword: "Fast delivery service",
+    type: "service",
+  },
+  {
+    ownerName: "Eve Davis",
+    businessName: "Eve’s Emporium",
+    keyword: "Vintage reselling",
+    type: "resell",
+  },
+  {
+    ownerName: "Frank Green",
+    businessName: "Frank’s Food Truck",
+    keyword: "Gourmet street food",
+    type: "food",
+  },
+  {
+    ownerName: "Grace Lee",
+    businessName: "Grace’s Gallery",
+    keyword: "Modern art pieces",
+    type: "artwork",
+  },
+  {
+    ownerName: "Henry Miller",
+    businessName: "Henry’s Handiwork",
+    keyword: "Custom woodworking",
+    type: "craft",
+  },
+  {
+    ownerName: "Isabella Wilson",
+    businessName: "Isabella’s IT Services",
+    keyword: "Tech support and services",
+    type: "service",
+  },
+  {
+    ownerName: "Jack Taylor",
+    businessName: "Jack’s Junk Shop",
+    keyword: "Antique reselling",
+    type: "resell",
+  },
+];
+
+type HomepageState = {
+  listOfSellers: SellerData[];
+  selectedType: "food" | "artwork" | "service" | "craft" | "resell" | "all";
+};
+
 export class Homepage extends Component<{}, HomepageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { listOfSellers: null };
+    this.state = { listOfSellers: mockSellers, selectedType: "all" };
   }
 
-  render () {
+  handleTypeClick = (
+    type: "food" | "artwork" | "service" | "craft" | "resell" | "all"
+  ) => {
+    this.setState({ selectedType: type });
+  };
+
+  render() {
+    const { listOfSellers, selectedType } = this.state;
+
+    // Filter the sellers based on the selected type
+    const filteredSellers =
+      selectedType === "all"
+        ? listOfSellers
+        : listOfSellers.filter((seller) => seller.type === selectedType);
+
     return (
       <div className={classes.root}>
         <SearchBar className={classes.searchBar} />
-        <div className = {classes.type}>
-          <Rectangle1Default classes={{ rectangle1: classes.rectangle1 }} />
+        <div className={classes.type}>
+          {/* 'All' button to reset the filter */}
+          <div
+            className={classes.allButton}
+            onClick={() => this.handleTypeClick("all")}
+            style={{ cursor: "pointer" }}
+          >
+            Show All
+          </div>
+          {/* Type buttons */}
           <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle2 }}
-              text={{
-                food: <div className={classes.food}>Art Work</div>,
-              }}
-            />
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle3 }}
-              text={{
-                food: <div className={classes.food}>Service</div>,
-              }}
-            />
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle10 }}
-              text={{
-                food: <div className={classes.food}>Craft</div>,
-              }}
-            />
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle12 }}
-              text={{
-                food: <div className={classes.food}>Resell</div>,
-              }}
-            />
+            type="food"
+            onClick={() => this.handleTypeClick("food")}
+            selected={selectedType === "food"}
+          />
+          <Rectangle1Default
+            type="artwork"
+            onClick={() => this.handleTypeClick("artwork")}
+            selected={selectedType === "artwork"}
+          />
+          <Rectangle1Default
+            type="service"
+            onClick={() => this.handleTypeClick("service")}
+            selected={selectedType === "service"}
+          />
+          <Rectangle1Default
+            type="craft"
+            onClick={() => this.handleTypeClick("craft")}
+            selected={selectedType === "craft"}
+          />
+          <Rectangle1Default
+            type="resell"
+            onClick={() => this.handleTypeClick("resell")}
+            selected={selectedType === "resell"}
+          />
         </div>
         <div className={classes.cardGrid}>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name}>Name</div>
-              <div className={classes.businessName}>Business Name</div>
+          {filteredSellers.map((seller, index) => (
+            <div key={index} className={classes.card}>
+              <div className={classes.cardHeading}>
+                <div className={classes.name}>{seller.ownerName}</div>
+                <div className={classes.businessName}>
+                  {seller.businessName}
+                </div>
+              </div>
+              <div className={classes.keywordDescription}>
+                <div className={classes.textBlock}>{seller.keyword}</div>
+              </div>
+              <Rectangle1Default type={seller.type} />
             </div>
-            <div className={classes.keywordDescriptionKeywordDescr1}>
-              <div className={classes.textBlock}>Keyword Description</div>
-            </div>
-            <Rectangle1Default classes={{ rectangle1: classes.rectangle1 }} />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name2}>Name</div>
-              <div className={classes.businessName2}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr2}>
-              <div className={classes.textBlock2}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle2 }}
-              text={{
-                food: <div className={classes.food}>Art Work</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name3}>Name</div>
-              <div className={classes.businessName3}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr3}>
-              <div className={classes.textBlock3}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle3 }}
-              text={{
-                food: <div className={classes.food2}>Service</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name4}>Name</div>
-              <div className={classes.businessName4}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr4}>
-              <div className={classes.textBlock4}>Keyword Description</div>
-            </div>
-            <Rectangle1Default classes={{ rectangle1: classes.rectangle4 }} />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name5}>Name</div>
-              <div className={classes.businessName5}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr5}>
-              <div className={classes.textBlock5}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle5 }}
-              text={{
-                food: <div className={classes.food3}>Service</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name6}>Name</div>
-              <div className={classes.businessName6}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr6}>
-              <div className={classes.textBlock6}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle6 }}
-              text={{
-                food: <div className={classes.food4}>Art Work</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name7}>Name</div>
-              <div className={classes.businessName7}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr7}>
-              <div className={classes.textBlock7}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle7 }}
-              text={{
-                food: <div className={classes.food5}>Service</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name8}>Name</div>
-              <div className={classes.businessName8}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr8}>
-              <div className={classes.textBlock8}>Keyword Description</div>
-            </div>
-            <Rectangle1Default
-              classes={{ rectangle1: classes.rectangle8 }}
-              text={{
-                food: <div className={classes.food6}>Art Work</div>,
-              }}
-            />
-          </div>
-          <div className={classes.card}>
-            <div className={classes.cardHeading}>
-              <div className={classes.name9}>Name</div>
-              <div className={classes.businessName9}>Business Name</div>
-            </div>
-            <div className={classes.keywordDescriptionKeywordDescr9}>
-              <div className={classes.textBlock9}>Keyword Description</div>
-            </div>
-            <Rectangle1Default classes={{ rectangle1: classes.rectangle9 }} />
-          </div>
+          ))}
         </div>
       </div>
     );
   }
-};
+}
 
-export default Homepage
+export default Homepage;

@@ -1,24 +1,46 @@
 import { memo } from 'react';
-import type { FC, ReactNode } from 'react';
+import type { FC, MouseEventHandler } from 'react';
 
 import resets from '../../_resets.module.css';
 import classes from './Rectangle1Default.module.css';
 
 interface Props {
-  className?: string;
-  classes?: {
-    rectangle1?: string;
-  };
-  text?: {
-    food?: ReactNode;
-  };
+  type: 'food' | 'artwork' | 'service' | 'craft' | 'resell' | 'all';
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  selected?: boolean;
 }
-/* @figmaId 11:469 */
-export const Rectangle1Default: FC<Props> = memo(function Rectangle1Default(props = {}) {
+
+export const Rectangle1Default: FC<Props> = memo(function Rectangle1Default({
+  type,
+  onClick,
+  selected = false,
+}) {
+  const textMap = {
+    food: 'Food',
+    artwork: 'Artwork',
+    service: 'Service',
+    craft: 'Craft',
+    resell: 'Resell',
+    all: 'All',
+  };
+
+  const colorClassMap = {
+    food: classes.food,
+    artwork: classes.artwork,
+    service: classes.service,
+    craft: classes.craft,
+    resell: classes.resell,
+    all: classes.all,
+  };
+
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
-      <div className={`${props.classes?.rectangle1 || ''} ${classes.rectangle1}`}></div>
-      {props.text?.food != null ? props.text?.food : <div className={classes.food}>Food</div>}
+    <div
+      className={`${resets.clapyResets} ${classes.root} ${selected ? classes.selected : ''}`}
+      onClick={onClick}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className={`${classes.rectangle1} ${colorClassMap[type]}`}></div>
+      <div className={classes.text}>{textMap[type]}</div>
     </div>
   );
 });
