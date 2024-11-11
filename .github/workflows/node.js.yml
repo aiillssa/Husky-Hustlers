@@ -41,7 +41,7 @@ jobs:
     - name: Run tests
       run: |
         cd frontend 
-        npm test -- --ci --coverage  # Run tests in CI mode
+        npm test -- --ci --coverage --testPathPattern="src\Tests"
 
     # Optionally, upload code coverage report (you can skip this if not using codecov)
     # - name: Upload coverage to Codecov
