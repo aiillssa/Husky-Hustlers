@@ -31,10 +31,11 @@ jobs:
         npm ci
 
     # Run the build
-    - name: Build the project
-      run: |
-        cd frontend
-        npm run start
+    # commented out so it wouldn't run forever (since we don't have tests)
+    # - name: Build the project
+    #   run: |
+    #     cd frontend
+    #     npm run start
 
     # Run tests
     - name: Run tests
