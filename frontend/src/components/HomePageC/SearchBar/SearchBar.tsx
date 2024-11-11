@@ -1,6 +1,5 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import type { FC } from 'react';
-import React, {useState} from 'react';
 
 import resets from '../../_resets.module.css';
 import { IconButton } from '../IconButton/IconButton';
@@ -15,12 +14,12 @@ interface Props {
   classes?: {
     root?: string;
   };
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 }
+
 /* @figmaId 11:334 */
-export const SearchBar: FC<Props> = memo(function SearchBar(props = {}) {
-  const [input, setInput] = useState("");
-
-
+export const SearchBar: FC<Props> = memo(function SearchBar(props) {
   return (
     <div className={`${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       <div className={classes.stateLayer}>
@@ -36,7 +35,11 @@ export const SearchBar: FC<Props> = memo(function SearchBar(props = {}) {
           }}
         />
         <div className={classes.content}>
-          <input placeholder="Type to search..." />
+          <input
+            placeholder="  Type to search by business name..."
+            onChange={props.onSearchChange}
+            value={props.value}
+          />
         </div>
         <div className={classes.trailingElements}>
           <IconButton
@@ -56,4 +59,4 @@ export const SearchBar: FC<Props> = memo(function SearchBar(props = {}) {
   );
 });
 
-export default SearchBar
+export default SearchBar;

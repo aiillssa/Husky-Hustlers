@@ -6,109 +6,120 @@ import classes from "./Homepage.module.css";
 import { Rectangle1Default } from "../../components/HomePageC/Rectangle1Default/Rectangle1Default";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
 
-// single seller's data
+// Format for contact informatoin
+interface ContactInformation {
+  instagram?: string;
+  email?: string;
+  phone?: string;
+  // Add other contact fields as needed
+}
+
+// Categories format passed in from server
+interface Category {
+  categoryName: "Food" | "Artwork" | "Service" | "Craft" | "Resell";
+}
+
+// Define the type for a single seller's data
 type SellerData = {
+  types: any;
+  idshops: number;
+  shopName: string;
+  shopDescription: string;
   ownerName: string;
-  businessName: string;
-  keyword: string;
-  type: "food" | "artwork" | "service" | "craft" | "resell";
+  contactInformation: ContactInformation;
+  categories: Category[];
 };
 
-// crate an array of 10 mock sellers
-const mockSellers: SellerData[] = [
-  {
-    ownerName: "Alice Johnson",
-    businessName: "Alice’s Artistry",
-    keyword: "Handmade paintings",
-    type: "artwork",
-  },
-  {
-    ownerName: "Bob Smith",
-    businessName: "Bob’s Burgers",
-    keyword: "Delicious burgers",
-    type: "food",
-  },
-  {
-    ownerName: "Carol White",
-    businessName: "Carol’s Crafts",
-    keyword: "Knitted scarves",
-    type: "craft",
-  },
-  {
-    ownerName: "Dave Brown",
-    businessName: "Dave’s Delivery",
-    keyword: "Fast delivery service",
-    type: "service",
-  },
-  {
-    ownerName: "Eve Davis",
-    businessName: "Eve’s Emporium",
-    keyword: "Vintage reselling",
-    type: "resell",
-  },
-  {
-    ownerName: "Frank Green",
-    businessName: "Frank’s Food Truck",
-    keyword: "Gourmet street food",
-    type: "food",
-  },
-  {
-    ownerName: "Grace Lee",
-    businessName: "Grace’s Gallery",
-    keyword: "Modern art pieces",
-    type: "artwork",
-  },
-  {
-    ownerName: "Henry Miller",
-    businessName: "Henry’s Handiwork",
-    keyword: "Custom woodworking",
-    type: "craft",
-  },
-  {
-    ownerName: "Isabella Wilson",
-    businessName: "Isabella’s IT Services",
-    keyword: "Tech support and services",
-    type: "service",
-  },
-  {
-    ownerName: "Jack Taylor",
-    businessName: "Jack’s Junk Shop",
-    keyword: "Antique reselling",
-    type: "resell",
-  },
-];
-
+// Define the state type for the Homepage component
 type HomepageState = {
   listOfSellers: SellerData[];
   selectedType: "food" | "artwork" | "service" | "craft" | "resell" | "all";
+  searchTerm: string;
 };
 
 export class Homepage extends Component<{}, HomepageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { listOfSellers: mockSellers, selectedType: "all" };
+    this.state = { listOfSellers: [], selectedType: "all", searchTerm: "" };
   }
 
+  componentDidMount() {
+    this.fetchData("all");
+  }
+
+  fetchData(type: string) {
+    let url = "http://localhost:8088/shops";
+    if (type !== "all") {
+      url += `/${type}`;
+    }
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: any) => {
+        const sellers = data.shops.map((shop: SellerData) => {
+          // Map categories to types array for each shop
+          // add types array to each shop in sellers
+          // and types is an array containing
+          // only these specific string literals.
+          const types = shop.categories.map((category) =>
+            category.categoryName.toLowerCase()
+          ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
+
+          return { ...shop, types };
+        });
+
+        this.setState({ listOfSellers: sellers });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  // add click behavior for each type on homepage
   handleTypeClick = (
     type: "food" | "artwork" | "service" | "craft" | "resell" | "all"
   ) => {
-    this.setState({ selectedType: type });
+    this.setState({ selectedType: type }, () => {
+      this.fetchData(type);
+    });
+  };
+
+  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ searchTerm: event.target.value });
   };
 
   render() {
-    const { listOfSellers, selectedType } = this.state;
-    const filteredSellers =
-      selectedType === "all"
-        ? listOfSellers
-        : listOfSellers.filter((seller) => seller.type === selectedType);
+    // modify filteredSellers arrays to only include shops that have selectedType
+    // display filteredSellers on homepage only
+    const { listOfSellers, selectedType, searchTerm } = this.state;
+
+    const filteredSellers = listOfSellers.filter((seller) => {
+      const matchesType =
+        selectedType === "all" || seller.types.includes(selectedType);
+
+      const matchesSearch = seller.shopName
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      return matchesType && matchesSearch;
+    });
 
     return (
       <div className={classes.root}>
-        <SearchBar className={classes.searchBar} />
+        <SearchBar
+          className={classes.searchBar}
+          onSearchChange={this.handleSearchChange}
+          value={this.state.searchTerm}
+        />
+
         <div className={classes.type}>
           {/* 'All' button to reset the filter */}
           <div
-            className={classes.allButton}
             onClick={() => this.handleTypeClick("all")}
             style={{ cursor: "pointer" }}
           >
@@ -146,14 +157,12 @@ export class Homepage extends Component<{}, HomepageState> {
             <div key={index} className={classes.card}>
               <div className={classes.cardHeading}>
                 <div className={classes.name}>{seller.ownerName}</div>
-                <div className={classes.businessName}>
-                  {seller.businessName}
-                </div>
+                <div className={classes.businessName}>{seller.shopName}</div>
               </div>
-              <div className={classes.keywordDescription}>
-                <div className={classes.textBlock}>{seller.keyword}</div>
+              <div className={classes.description}>
+                  {seller.shopDescription}
               </div>
-              <Rectangle1Default type={seller.type} />
+              <Rectangle1Default type={seller.types[0]} />
             </div>
           ))}
         </div>

@@ -8,6 +8,7 @@
   overflow-x: hidden; /* Prevents any horizontal scrolling if overflow still occurs */
   margin: 0; /* Reset default margins */
   padding: 0; /* Reset default padding */
+  padding-top: 40px;
 }
 
 .searchBar {
@@ -24,7 +25,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .uWLogo {
@@ -49,6 +50,7 @@
   gap: 32px 42px;
   padding-left: 100px;
   padding-right: 100px;
+  padding-top: 20px;
 }
 
 .card {
@@ -60,6 +62,7 @@
   padding: 32px 44px;
   border-radius: 62px;
   background-color: #ece6f0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .cardHeading {
@@ -90,16 +93,14 @@
 }
 
 .description {
+  padding-top: 10px;
   width: min-content;
   height: min-content;
   white-space: nowrap;
   flex-direction: column;
-}
-
-.textBlock {
   color: #000;
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 20px;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
+  padding-bottom: 5px;
 }

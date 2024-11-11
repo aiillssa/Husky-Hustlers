@@ -46,6 +46,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
           Log In / Sign Up First to See All Student Business
         </div>
       </div>
+      
       <div className={classes.content_wrapper}>
         <div className={classes.caption}>
           A platform that fosters student businesses and UW community!
