@@ -1,6 +1,6 @@
 // SumComponent.test.js
 import { render, screen } from '@testing-library/react';
-import DummyComponent from './dummyTestComponent';
+import DummyComponent from '../components/dummyTestComponent';
 
 test('displays 1 + 1 = 2', () => {
   // Render the component
