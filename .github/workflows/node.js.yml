@@ -41,7 +41,7 @@ jobs:
     - name: Run Jest tests
       run: |
         cd frontend 
-        npm test -- --ci --coverage --testPathPattern="src/Tests/"
+        npm test -- --ci --coverage --testPathPattern="src/**/__tests__/**/*.tsx"
 
     # Optionally, upload code coverage report (you can skip this if not using codecov)
     # - name: Upload coverage to Codecov
