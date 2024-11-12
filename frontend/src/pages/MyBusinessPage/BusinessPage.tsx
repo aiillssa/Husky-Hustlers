@@ -24,7 +24,7 @@ export class BusinessPage extends Component<{}, BusinessPageState> {
             <div>
               <h1>BusinessPage</h1>
               <Link to="/pages/AddBusinessPage" className={'nav-button'}>
-                <button>Add my business</button>
+                Add my business
               </Link>
             </div>
           )}

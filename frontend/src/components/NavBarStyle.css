@@ -8,18 +8,27 @@ nav {
   }
   
   .nav-button {
-    padding: 10px 15px;
-    background-color: #4CAF50; /* Button color */
-    color: white; /* Text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s;
+    background-color: #4B2E83; /* Purple color */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+
   }
   
   .nav-button:hover {
-    background-color: #45a049; /* Darker on hover */
+    background-color: #6b3f99; /* Lighter purple for hover effect */
+    transform: translateY(-4px); /* Lift effect */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
   
   .nav-button.active {
-    background-color: #388e3c; /* Active link color */
+    background-color: #3f1d5d; /* Darker purple for active state */
+    transform: translateY(2px); /* Button presses down */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
