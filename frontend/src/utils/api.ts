@@ -22,7 +22,7 @@ export const addUser = async (name: string, email: string): Promise<void> => {
 };
 
 // Logs the user in to their account through google
-export const googleBackendLogin = async (code: string): Promise<void> => {
+export const googleBackendLogin = async (code: string): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
     const response = await axios.post("http://localhost:8088/google", {
@@ -36,8 +36,10 @@ export const googleBackendLogin = async (code: string): Promise<void> => {
     console.log("User's name:", name);
     console.log("User's email:", email);
     console.log("jwt: ", appJwt);
+    return { success: true };
   } catch (error) {
     console.error("Login failed:", error);
+    return { success: false, error: "Login failed. Please try again." };
    
   }
 }

@@ -1,6 +1,5 @@
-import React, { memo, useState, useEffect, FC } from "react";
+import React, { memo, useState, FC } from "react";
 import { googleLogout, useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-
 import classes from "./LoginPage.module.css";
 import resets from "../../components/_resets.module.css";
 import { googleBackendLogin } from "../../utils/api";
@@ -11,16 +10,17 @@ interface Props {
 
 const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  
-  // ask backend to autheticate the login
+
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
-      googleBackendLogin(code);
-      // Security Risk here as it might be called
-      // despite login fail.
-      // Must check that google login is successful first
-      // before calling setSignedIn(true);
-      setSignedIn(true);
+      const { success, error } = await googleBackendLogin(code);
+
+      if (success) {
+        setSignedIn(true);
+        setErrorMessage(null); // Clear any previous error messages
+      } else {
+        setErrorMessage(error || "Login failed. Please try again.");
+      }
     },
     flow: "auth-code",
     onError: (error) => {
@@ -31,7 +31,6 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 
   const logOut = () => {
     googleLogout();
-    // Possible security Risk to an XSS attack
     localStorage.removeItem("appJwt");
     setErrorMessage(null);
     setSignedIn(false);
@@ -59,14 +58,11 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
             <div className={classes.formLogIn}>
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
               <div>
-                  <button
-                    className={classes.login_button}
-                    onClick={() => login()}
-                  >
-                    Sign in with Google 🚀
-                  </button>
-                  <button onClick={() => logOut()}>log out</button>
-                </div>
+                <button className={classes.login_button} onClick={() => login()}>
+                  Sign in with Google 🚀
+                </button>
+                <button onClick={() => logOut()}>Log Out</button>
+              </div>
             </div>
           </div>
         </div>
@@ -78,7 +74,6 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 export const LoginPage: FC<Props> = memo(function LoginPage(props: Props) {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
-      {/*Public Key */}
       <GoogleOAuthProvider clientId="410136854211-33d088kspbh9se3oej3sebpmj0jal8v7.apps.googleusercontent.com">
         <LoginPageContent {...props} />
       </GoogleOAuthProvider>
@@ -87,3 +82,6 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props: Props) {
 });
 
 export default LoginPage;
+
+
+
