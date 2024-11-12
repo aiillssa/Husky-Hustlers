@@ -13,8 +13,9 @@
   bottom: 0;
   border-radius: 30px;
   background-color: #ece6f0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
-.food {
+.text {
   color: #000;
   font-size: 16px;
   line-height: 100%;
@@ -29,4 +30,29 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+/* Color styles for each type */
+.food {
+  background-color: #ffcccc; 
+}
+
+.artwork {
+  background-color: #ccffcc; 
+}
+
+.service {
+  background-color: #ccccff; 
+}
+
+.craft {
+  background-color: #fff0b3; 
+}
+
+.resell {
+  background-color: #ffccff; 
+}
+
+.selected {
+  font-weight: 1000;
 }
