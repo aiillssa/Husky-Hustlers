@@ -9,8 +9,6 @@ interface ContactInformation {
 }
 
 // Categories format passed in from server
-
-
 interface Shops {
   shopName: string;
   shopDescription: string;
@@ -37,16 +35,21 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Categories for users to select
   const categories: string[] = [
-      "Food",
+    "Food",
     "Artwork",
-     "Service",
-     "Craft",
-     "Resell",
+    "Service",
+    "Craft",
+    "Resell",
   ];
 
+  // Set category state to the user selected one
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = Array.from(e.target.selectedOptions, (option) => option.value);
+    const value = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
     setSelectedCategories(value);
   };
 
@@ -60,12 +63,11 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       contactInformation: {
         instagram,
       },
-      userIdUsers: 18, 
-      categories: selectedCategories.map((categoryName) => ( categoryName )),
+      userIdUsers: 18, // TODO: fix later
+      categories: selectedCategories.map((categoryName) => categoryName),
     };
 
     try {
-      console.log(businessData);
       const response = await fetch("http://localhost:8088/shops/", {
         method: "POST",
         headers: {
@@ -73,14 +75,13 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         },
         body: JSON.stringify(businessData),
       });
-      console.log(response);
 
       if (response.ok) {
         // Handle success
         setSubmitted(true);
         setError(null);
 
-        // Optionally, reset the form fields
+        // Rreset the form fields
         setShopName("");
         setShopDescription("");
         setOwnerName("");
@@ -89,7 +90,9 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       } else {
         // Handle server errors
         const errorData = await response.json();
-        setError(errorData.message || "An error occurred while submitting the form.");
+        setError(
+          errorData.message || "An error occurred while submitting the form."
+        );
       }
     } catch (err) {
       // Handle network errors
@@ -145,10 +148,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
             onChange={handleCategoryChange}
           >
             {categories.map((category) => (
-              <option
-                value={category}
-                key={category}
-              >
+              <option value={category} key={category}>
                 {category}
               </option>
             ))}
@@ -162,17 +162,11 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
 
         {/* Success Message */}
         {submitted && !error && (
-          <div className={classes.successMessage}>
-            Submission successful!
-          </div>
+          <div className={classes.successMessage}>Submission successful!</div>
         )}
 
         {/* Error Message */}
-        {error && (
-          <div className={classes.errorMessage}>
-            {error}
-          </div>
-        )}
+        {error && <div className={classes.errorMessage}>{error}</div>}
       </form>
       <div className={classes.uWLogo}></div>
     </div>
