@@ -16,7 +16,7 @@ const InputField: FC<InputFieldProps> = memo(function InputField({
   onChange,
 }) {
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
+    <div className={classes.root}>
       <label className={classes.label}>{label}</label>
       <input
         className={classes.input}

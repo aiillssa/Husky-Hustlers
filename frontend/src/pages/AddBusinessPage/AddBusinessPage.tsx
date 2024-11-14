@@ -1,22 +1,19 @@
 import { memo, useState } from "react";
 import type { FC } from "react";
-import resets from "../../components/_resets.module.css";
-
+import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/AddBusinessPageC/Button/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
-import classes from "./AddBusinessPage.module.css";
 
 interface ContactInformation {
   instagram: string;
 }
 
+// Categories format passed in from server
 interface Category {
-  id: number;
-  name: string;
+  categoryName: string;
 }
 
 interface Shops {
-  idshops: number;
   shopName: string;
   shopDescription: string;
   ownerName: string;
@@ -35,41 +32,68 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   const [shopDescription, setShopDescription] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [instagram, setInstagram] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  // Mock categories data (you can replace this with data fetched from an API)
+  // State variables for submission status and error handling
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const categories: Category[] = [
-    { id: 1, name: "Art" },
-    { id: 2, name: "Retail" },
-    { id: 3, name: "Service" },
-    // Add more categories as needed
+    { categoryName: "Food" },
+    { categoryName: "Artwork" },
+    { categoryName: "Service" },
+    { categoryName: "Craft" },
+    { categoryName: "Resell" },
   ];
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => Number(option.value)
-    );
+    const value = Array.from(e.target.selectedOptions, (option) => option.value);
     setSelectedCategories(value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Construct the business data object
     const businessData: Shops = {
-      idshops: Date.now(), // Generate a unique ID (you can adjust this as needed)
       shopName,
       shopDescription,
       ownerName,
       contactInformation: {
         instagram,
       },
-      categories: selectedCategories.map(
-        (id) => categories.find((cat) => cat.id === id)!
-      ),
+      categories: selectedCategories.map((categoryName) => ({ categoryName })),
     };
-    console.log("Submitted Business Data:", businessData);
-    // TODO: Send this data to the server or perform any action
+
+    try {
+      const response = await fetch("http://localhost:8088/shops/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(businessData),
+      });
+
+      if (response.ok) {
+        // Handle success
+        setSubmitted(true);
+        setError(null);
+
+        // Optionally, reset the form fields
+        setShopName("");
+        setShopDescription("");
+        setOwnerName("");
+        setInstagram("");
+        setSelectedCategories([]);
+      } else {
+        // Handle server errors
+        const errorData = await response.json();
+        setError(errorData.message || "An error occurred while submitting the form.");
+      }
+    } catch (err) {
+      // Handle network errors
+      console.error("Error submitting data:", err);
+      setError("A network error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -104,7 +128,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
 
         {/* Instagram Handle Field */}
         <InputField
-          label="Instagram Handle"
+          label="Instagram"
           value={instagram}
           onChange={(e) => setInstagram(e.target.value)}
         />
@@ -115,26 +139,38 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
           <select
             className={classes.select}
             multiple
-            value={selectedCategories.map(String)}
+            value={selectedCategories}
             onChange={handleCategoryChange}
           >
             {categories.map((category) => (
-              <option value={category.id} key={category.id}>
-                {category.name}
+              <option
+                value={category.categoryName}
+                key={category.categoryName}
+              >
+                {category.categoryName}
               </option>
             ))}
           </select>
         </div>
 
         {/* Submit Button */}
-        <div className={classes.buttonGroup}>
-          <Button
-            className={classes.button2}
-            text={{
-              button: <div className={classes.button}>Submit</div>,
-            }}
-          />
-        </div>
+        <Button className={classes.button} type="submit">
+          Submit
+        </Button>
+
+        {/* Success Message */}
+        {submitted && !error && (
+          <div className={classes.successMessage}>
+            Submission successful!
+          </div>
+        )}
+
+        {/* Error Message */}
+        {error && (
+          <div className={classes.errorMessage}>
+            {error}
+          </div>
+        )}
       </form>
       <div className={classes.uWLogo}></div>
     </div>

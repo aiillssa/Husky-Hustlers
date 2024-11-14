@@ -1,25 +1,20 @@
-import { memo } from 'react';
-import type { FC, ReactNode } from 'react';
-
-import resets from '../../_resets.module.css';
+import React from 'react';
+import type { FC } from 'react';
 import classes from './Button.module.css';
 
-interface Props {
-  className?: string;
-  classes?: {
-    root?: string;
-  };
-  text?: {
-    button?: ReactNode;
-  };
+interface ButtonProps {
+  className: string;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
+  children: React.ReactNode;
 }
-/* @figmaId 9:165 */
-const Button: FC<Props> = memo(function Button_VariantPrimaryStateDefa(props = {}) {
+
+const Button: FC<ButtonProps> = ({ className, type = 'button', onClick, children }) => {
   return (
-    <button className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
-      {props.text?.button != null ? props.text?.button : <div className={classes.button}>Button</div>}
+    <button className={`${classes.root} ${className}`} type={type} onClick={onClick}>
+      {children}
     </button>
   );
-});
+};
 
-export default Button
+export default Button;
