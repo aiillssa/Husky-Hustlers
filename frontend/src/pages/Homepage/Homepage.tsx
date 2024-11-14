@@ -50,14 +50,15 @@ export class Homepage extends Component<{}, HomepageState> {
   fetchData(type: string) {
     let url = "http://localhost:8088/shops";
     if (type !== "all") {
-      url += `/${type}`;
+      url += `/categories/${type}`;
     }
-
+    
     fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
+        console.log("Successfully accessed shops at endpoint: " + url);
         return response.json();
       })
       .then((data: any) => {
