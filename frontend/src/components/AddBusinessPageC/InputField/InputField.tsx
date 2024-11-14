@@ -1,28 +1,31 @@
-import { memo } from 'react';
-import type { FC, ReactNode } from 'react';
+import { memo } from "react";
+import type { FC } from "react";
 
-import resets from '../../_resets.module.css';
-import classes from './InputField.module.css';
+import resets from "../../_resets.module.css";
+import classes from "./InputField.module.css";
 
-interface Props {
-  className?: string;
-  classes?: {
-    root?: string;
-  };
-  text?: {
-    label?: ReactNode;
-  };
+interface InputFieldProps {
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-/* @figmaId 9:82 */
-export const InputField: FC<Props> = memo(function InputField(props = {}) {
+
+const InputField: FC<InputFieldProps> = memo(function InputField({
+  label,
+  value,
+  onChange,
+}) {
   return (
-    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
-      {props.text?.label != null ? props.text?.label : <div className={classes.label}>Label</div>}
-      <div className={classes.input}>
-        <div className={classes.value}>Value</div>
-      </div>
+    <div className={classes.root}>
+      <label className={classes.label}>{label}</label>
+      <input
+        className={classes.input}
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 });
 
-export default InputField
+export default InputField;

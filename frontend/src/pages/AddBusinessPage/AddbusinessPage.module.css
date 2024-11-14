@@ -1,209 +1,69 @@
-.username2.username2 {
-    width: initial;
-    height: 107px;
-    align-self: stretch;
-  }
-  .username {
-    color: #1e1e1e;
-    font-size: 24px;
-    line-height: 120%;
-    font-weight: 600;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    letter-spacing: -0.02em;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .description {
-    color: #757575;
-    font-size: 16px;
-    line-height: 140%;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .email2.email2 {
-    width: initial;
-    align-self: stretch;
-  }
-  .email {
-    color: #1e1e1e;
-    font-size: 24px;
-    line-height: 120%;
-    font-weight: 600;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    letter-spacing: -0.02em;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .description2 {
-    color: #757575;
-    font-size: 16px;
-    line-height: 140%;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .password2.password2 {
-    width: initial;
-    align-self: stretch;
-  }
-  .password {
-    color: #1e1e1e;
-    font-size: 24px;
-    line-height: 120%;
-    font-weight: 600;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    letter-spacing: -0.02em;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .description3 {
-    color: #757575;
-    font-size: 16px;
-    line-height: 140%;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .password4.password4 {
-    width: initial;
-    align-self: stretch;
-  }
-  .password3 {
-    color: #1e1e1e;
-    font-size: 24px;
-    line-height: 120%;
-    font-weight: 600;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    letter-spacing: -0.02em;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .description4 {
-    color: #757575;
-    font-size: 16px;
-    line-height: 140%;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    height: min-content;
-    align-self: stretch;
-    flex-direction: column;
-  }
-  .button2.button2 {
-    width: initial;
-    flex: 1;
-  }
-  .button {
-    color: #f5f5f5;
-    font-size: 16px;
-    line-height: 100%;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .root {
-    position: relative;
-    width: 1280px;
-    height: 832px;
-    flex-direction: column;
-    align-items: flex-start;
-    background-image: linear-gradient(120.5deg, #ffff 16%, #4b2e83ff 98%);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-    overflow: hidden;
-  }
-  .frame2 {
-    position: absolute;
-    left: 692px;
-    top: 0;
-    width: 466px;
-    height: 832px;
-    flex-direction: column;
-    align-items: center;
-    background-color: #e6e6e6;
-    backdrop-filter: blur(5px);
-  }
-  .formSignUp {
-    position: absolute;
-    left: 0;
-    top: 106px;
-    width: 466px;
-    height: 619px;
-    flex-direction: column;
-    gap: 23px;
-    padding: 25px 24px;
-    border-radius: 8px;
-    background-color: #e6e6e6;
-  }
-  .buttonGroup {
-    height: 40px;
-    align-self: stretch;
-    align-items: center;
-  }
-  .addYourBusiness {
-    position: absolute;
-    left: 117px;
-    top: 245px;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .textBlock {
-    color: #000;
-    font-size: 96px;
-    font-weight: bold;
-    font-family: Inria Serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-  }
-  .textBlock2 {
-    margin-top: 0;
-    color: #000;
-    font-size: 96px;
-    font-weight: bold;
-    font-family: Inria Serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-  }
-  .startYourBusinessHere {
-    color: #000;
-    font-size: 32px;
-    font-weight: bold;
-    font-family: Inria Serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    position: absolute;
-    left: 125px;
-    top: 483px;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .uWLogo {
-    position: absolute;
-    left: 0;
-    top: 651px;
-    width: 125px;
-    height: 181px;
-    background-image:/* webpackIgnore: true */ url('assets/uWLogo.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
+.root {
+  position: relative;
+  width: 100vw; /* Ensures it spans the full viewport width */
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-image: linear-gradient(120.5deg, #ffff 16%, #4b2e83ff 98%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  overflow: hidden;
+}
+
+.addYourBusiness {
+  width: 50%;
+  height: 100%;
+  margin-right: 100px;
+}
+
+.textBlock {
+  width: 80%;
+  color: #000;
+  font-size: 96px;
+  font-weight: bold;
+  font-family: Inria Serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding-top: 250px;
+  padding-left: 400px;
+}
+
+.startYourBusinessHere {
+  color: #000;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Inria Serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+  width: 40%;
+  padding-left: 400px;
+}
+
+.form {
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e6e6e6;
+  backdrop-filter: blur(5px);
+  padding: 50px;
+  margin-right: 200px;
+  margin-left: 100px;
+
+}
+
+.button {
+  color: white;
+  width: 100px;
+}
+
+.className {
+  width: 20px;
+}
