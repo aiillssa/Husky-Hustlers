@@ -1,34 +1,35 @@
 nav {
-    position: fixed; /* Fixed positioning */
-     top: 10px; /* Distance from the top */
-     right: 10px; /* Distance from the right */
-     display: flex; /* Flexbox for horizontal alignment */
-     gap: 10px;
-     z-index: 10; 
-  }
-  
-  .nav-button {
-    background-color: #4B2E83; /* Purple color */
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 15px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  position: fixed; /* Fixed positioning */
+   top: 10px; /* Distance from the top */
+   right: 40px; /* Distance from the right */
+   display: flex; /* Flexbox for horizontal alignment */
+   gap: 10px;
+   z-index: 10; 
+}
 
-  }
-  
-  .nav-button:hover {
-    background-color: #6b3f99; /* Lighter purple for hover effect */
-    transform: translateY(-4px); /* Lift effect */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  .nav-button.active {
-    background-color: #3f1d5d; /* Darker purple for active state */
-    transform: translateY(2px); /* Button presses down */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.nav-button {
+background-color: #4B2E83; /* Purple color */
+color: white;
+border: none;
+border-radius: 10px;
+padding: 15px 30px;
+font-size: 16px;
+font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+cursor: pointer;
+text-decoration: none; /*Get rid of underline*/
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.nav-button:hover {
+  background-color: #6b3f99; /* Lighter purple for hover effect */
+  transform: translateY(-4px); /* Lift effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.nav-button.active {
+  background-color: #3f1d5d; /* Darker purple for active state */
+  transform: translateY(2px); /* Button presses down */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
