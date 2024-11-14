@@ -9,16 +9,15 @@ interface ContactInformation {
 }
 
 // Categories format passed in from server
-interface Category {
-  categoryName: string;
-}
+
 
 interface Shops {
   shopName: string;
   shopDescription: string;
   ownerName: string;
   contactInformation: ContactInformation;
-  categories: Category[];
+  userIdUsers: Number;
+  categories: string[];
 }
 
 interface Props {
@@ -38,12 +37,12 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const categories: Category[] = [
-    { categoryName: "Food" },
-    { categoryName: "Artwork" },
-    { categoryName: "Service" },
-    { categoryName: "Craft" },
-    { categoryName: "Resell" },
+  const categories: string[] = [
+      "Food",
+    "Artwork",
+     "Service",
+     "Craft",
+     "Resell",
   ];
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,10 +60,12 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       contactInformation: {
         instagram,
       },
-      categories: selectedCategories.map((categoryName) => ({ categoryName })),
+      userIdUsers: 18, 
+      categories: selectedCategories.map((categoryName) => ( categoryName )),
     };
 
     try {
+      console.log(businessData);
       const response = await fetch("http://localhost:8088/shops/", {
         method: "POST",
         headers: {
@@ -72,6 +73,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         },
         body: JSON.stringify(businessData),
       });
+      console.log(response);
 
       if (response.ok) {
         // Handle success
@@ -144,10 +146,10 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
           >
             {categories.map((category) => (
               <option
-                value={category.categoryName}
-                key={category.categoryName}
+                value={category}
+                key={category}
               >
-                {category.categoryName}
+                {category}
               </option>
             ))}
           </select>

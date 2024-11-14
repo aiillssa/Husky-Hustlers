@@ -50,7 +50,7 @@ export class Homepage extends Component<{}, HomepageState> {
   fetchData(type: string) {
     let url = "http://localhost:8088/shops";
     if (type !== "all") {
-      url += `/${type}`;
+      url += `/categories/${type}`;
     }
 
     fetch(url)
