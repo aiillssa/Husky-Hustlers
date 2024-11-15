@@ -39,8 +39,7 @@ export const Rectangle1Default: FC<Props> = memo(function Rectangle1Default({
       onClick={onClick}
       style={{ cursor: 'pointer' }}
     >
-      <div className={`${classes.rectangle1} ${colorClassMap[type]}`}></div>
-      <div className={classes.text}>{textMap[type]}</div>
+      <div className={`${classes.rectangle1} ${colorClassMap[type]} ${classes.text}`}>{textMap[type]}</div>
     </div>
   );
 });

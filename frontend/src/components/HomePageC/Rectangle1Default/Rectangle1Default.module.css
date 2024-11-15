@@ -4,7 +4,9 @@
   height: 35px;
   flex-direction: column;
   align-items: flex-start;
+  cursor: pointer; /* Ensure the cursor changes to a pointer on hover */
 }
+
 .rectangle1 {
   position: absolute;
   left: 0;
@@ -15,12 +17,13 @@
   background-color: #ece6f0;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
+.root:hover .rectangle1 {
+  transform: translateY(-4px); /* Lift effect */
+}
+
 .text {
-  color: #000;
-  font-size: 16px;
-  line-height: 100%;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
+  /* Existing styles */
   position: absolute;
   left: -1px;
   top: 1px;
@@ -32,25 +35,26 @@
   flex-direction: column;
 }
 
+
 /* Color styles for each type */
 .food {
-  background-color: #ffcccc; 
+  background-color: #ffcccc;
 }
 
 .artwork {
-  background-color: #ccffcc; 
+  background-color: #ccffcc;
 }
 
 .service {
-  background-color: #ccccff; 
+  background-color: #ccccff;
 }
 
 .craft {
-  background-color: #fff0b3; 
+  background-color: #fff0b3;
 }
 
 .resell {
-  background-color: #ffccff; 
+  background-color: #ffccff;
 }
 
 .selected {

@@ -22,7 +22,6 @@
 
 
 .cardGrid {
-  width: 70%x;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +38,7 @@
 }
 
 .card {
-  width: 337px;
+  width: 20%;
   height: auto;
   flex-direction: column;
   align-items: flex-start;

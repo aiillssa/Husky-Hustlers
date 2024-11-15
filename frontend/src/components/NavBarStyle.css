@@ -1,25 +1,28 @@
 nav {
-  position: fixed; /* Fixed positioning */
-   top: 10px; /* Distance from the top */
-   right: 40px; /* Distance from the right */
-   display: flex; /* Flexbox for horizontal alignment */
-   gap: 10px;
-   z-index: 10; 
+  display: flex; /* Flexbox for horizontal alignment */
+  gap: 10px;
+  z-index: 10;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(179, 129, 179);
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
 }
 
 .nav-button {
-background-color: #4B2E83; /* Purple color */
-color: white;
-border: none;
-border-radius: 10px;
-padding: 15px 30px;
-font-size: 16px;
-font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-cursor: pointer;
-text-decoration: none; /*Get rid of underline*/
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  background-color: #4b2e83; /* Purple color */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 14px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  cursor: pointer;
+  text-decoration: none; /*Get rid of underline*/
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .nav-button:hover {

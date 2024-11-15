@@ -53,7 +53,7 @@ export class Homepage extends Component<{}, HomepageState> {
     if (type !== "all") {
       url += `/categories/${type}`;
     }
-    
+
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -73,7 +73,7 @@ export class Homepage extends Component<{}, HomepageState> {
           ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
 
           // Add place holder image
-          const placeholderImage = 'test';
+          const placeholderImage = "test";
           const image = shop.image || placeholderImage;
 
           return { ...shop, types };
@@ -127,10 +127,14 @@ export class Homepage extends Component<{}, HomepageState> {
           {/* 'All' button to reset the filter */}
           <div
             onClick={() => this.handleTypeClick("all")}
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              fontWeight: this.state.selectedType === "all" ? 1000 : "normal",
+            }}
           >
             Show All
           </div>
+
           {/* Type buttons */}
           <Rectangle1Default
             type="food"
@@ -162,16 +166,16 @@ export class Homepage extends Component<{}, HomepageState> {
           {filteredSellers.map((seller, index) => (
             <div key={index} className={classes.card}>
               <img
-              src={seller.image}
-              alt={`${seller.shopName} image`}
-              className={classes.shopImage}
+                src={seller.image}
+                alt={`${seller.shopName} image`}
+                className={classes.shopImage}
               />
               <div className={classes.cardHeading}>
                 <div className={classes.name}>{seller.ownerName}</div>
                 <div className={classes.businessName}>{seller.shopName}</div>
               </div>
               <div className={classes.description}>
-                  {seller.shopDescription}
+                {seller.shopDescription}
               </div>
               <Rectangle1Default type={seller.types[0]} />
             </div>
