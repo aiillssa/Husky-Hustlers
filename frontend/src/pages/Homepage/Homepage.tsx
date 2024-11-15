@@ -28,6 +28,7 @@ type SellerData = {
   ownerName: string;
   contactInformation: ContactInformation;
   categories: Category[];
+  image?: string;
 };
 
 // Define the state type for the Homepage component
@@ -69,6 +70,10 @@ export class Homepage extends Component<{}, HomepageState> {
           const types = shop.categories.map((category) =>
             category.categoryName.toLowerCase()
           ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
+
+          // Add place holder image
+          const placeholderImage = 'test';
+          const image = shop.image || placeholderImage;
 
           return { ...shop, types };
         });
@@ -155,6 +160,11 @@ export class Homepage extends Component<{}, HomepageState> {
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
             <div key={index} className={classes.card}>
+              <img
+              src={seller.image}
+              alt={`${seller.shopName} image`}
+              className={classes.shopImage}
+              />
               <div className={classes.cardHeading}>
                 <div className={classes.name}>{seller.ownerName}</div>
                 <div className={classes.businessName}>{seller.shopName}</div>

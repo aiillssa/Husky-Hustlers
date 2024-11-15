@@ -20,25 +20,6 @@
   padding-bottom: 20px;
 }
 
-.type {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-.uWLogo {
-  position: absolute;
-  left: 17px;
-  top: 1033px;
-  width: 143px;
-  height: 202px;
-  background-image:/* webpackIgnore: true */ url('assets/uWLogo.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
 .cardGrid {
   width: 70%x;
@@ -51,6 +32,10 @@
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 20px;
+}
+
+.shopImage {
+  border-radius: 8px;
 }
 
 .card {
@@ -104,3 +89,13 @@
     'Liberation Sans', sans-serif;
   padding-bottom: 5px;
 }
+
+.type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+
