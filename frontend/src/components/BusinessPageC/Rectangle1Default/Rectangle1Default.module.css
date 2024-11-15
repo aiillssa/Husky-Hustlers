@@ -1,0 +1,34 @@
+.root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 88px;
+  height: 35px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rectangle1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 30px;
+  background-color: #ece6f0;
+}
+.food {
+  color: #000;
+  font-size: 16px;
+  line-height: 100%;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: -1px;
+  top: 1px;
+  width: 89px;
+  height: 34px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
