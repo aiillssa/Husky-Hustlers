@@ -1,9 +1,6 @@
 import { memo } from 'react';
 import type { FC, ReactNode } from 'react';
-
 import resets from '../../_resets.module.css';
-import { Star_Size16 } from '../Star_Size16/Star_Size16';
-import { X_Size16 } from '../X_Size16/X_Size16';
 import classes from './Button.module.css';
 
 interface Props {
