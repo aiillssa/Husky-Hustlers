@@ -2,7 +2,7 @@ import { memo } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
 import resets from '../../_resets.module.css';
-import classes from './Rectangle1Default.module.css';
+import classes from './CategoryButton.module.css';
 
 interface Props {
   type: 'food' | 'artwork' | 'service' | 'craft' | 'resell' | 'all';
@@ -10,7 +10,7 @@ interface Props {
   selected?: boolean;
 }
 
-export const Rectangle1Default: FC<Props> = memo(function Rectangle1Default({
+export const CategoryButton: FC<Props> = memo(function CategoryButton({
   type,
   onClick,
   selected = false,

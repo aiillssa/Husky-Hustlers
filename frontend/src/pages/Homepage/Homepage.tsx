@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import type { FC } from "react";
-
-import resets from "../../components/_resets.module.css";
 import classes from "./Homepage.module.css";
-import { Rectangle1Default } from "../../components/HomePageC/Rectangle1Default/Rectangle1Default";
+import { CategoryButton } from "../../components/HomePageC/CategoryButton/CategoryButton";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
 
 // Format for contact informatoin
@@ -135,28 +132,28 @@ export class Homepage extends Component<{}, HomepageState> {
             Show All
           </div>
 
-          {/* Type buttons */}
-          <Rectangle1Default
+          {/* Categories */}
+          <CategoryButton
             type="food"
             onClick={() => this.handleTypeClick("food")}
             selected={selectedType === "food"}
           />
-          <Rectangle1Default
+          <CategoryButton
             type="artwork"
             onClick={() => this.handleTypeClick("artwork")}
             selected={selectedType === "artwork"}
           />
-          <Rectangle1Default
+          <CategoryButton
             type="service"
             onClick={() => this.handleTypeClick("service")}
             selected={selectedType === "service"}
           />
-          <Rectangle1Default
+          <CategoryButton
             type="craft"
             onClick={() => this.handleTypeClick("craft")}
             selected={selectedType === "craft"}
           />
-          <Rectangle1Default
+          <CategoryButton
             type="resell"
             onClick={() => this.handleTypeClick("resell")}
             selected={selectedType === "resell"}
@@ -177,7 +174,7 @@ export class Homepage extends Component<{}, HomepageState> {
               <div className={classes.description}>
                 {seller.shopDescription}
               </div>
-              <Rectangle1Default type={seller.types[0]} />
+              <CategoryButton type={seller.types[0]} />
             </div>
           ))}
         </div>
