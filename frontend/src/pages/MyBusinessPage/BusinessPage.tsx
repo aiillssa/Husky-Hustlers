@@ -4,7 +4,6 @@ import { memo } from 'react';
 import type { FC } from 'react';
 
 import resets from '../../components/_resets.module.css';
-import { Arrow_back } from '../../components/BusinessPageC/Arrow_back/Arrow_back';
 import classes from './BusinessPage.module.css';
 import { ProfilePicIcon } from './ProfilePicIcon';
 import { Rectangle1Default } from '../../components/BusinessPageC/Rectangle1Default/Rectangle1Default';
@@ -30,7 +29,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         ) : (
           <>
             <div className={classes.upperFrame}>
-              <Arrow_back />
               <div className={classes.frame11}>
                 <div className={classes.profilePic}>
                   <ProfilePicIcon className={classes.icon} />
