@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -9,24 +8,27 @@ import BusinessPage from './pages/MyBusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
 
 type AppState = {
+  // Tracks whether the user is signed in
   signedIn: boolean;
 };
 
 export class App extends Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
+    // Initialize the state with the user not signed in
     this.state = { signedIn: false };
   }
 
+  // Function to update the signed-in state
   setSignedIn = (value: boolean) => {
     this.setState({ signedIn: value });
   };
 
-  // Layout component that includes Navbar
+  // Layout component to include the Navbar with nested routes
   NavbarLayout = () => (
     <>
-      <Navbar />
-      <Outlet /> {/* This renders the nested route's component */}
+      <Navbar /> {/* Always displays the Navbar */}
+      <Outlet /> {/* Renders the content of nested routes */}
     </>
   );
 
@@ -34,24 +36,25 @@ export class App extends Component<{}, AppState> {
     return (
       <div>
         {this.state.signedIn ? (
+          // If signed in, render the main application routes
           <BrowserRouter>
             <Routes>
-              {/* Routes with Navbar */}
+              {/* Routes with the Navbar */}
               <Route element={<this.NavbarLayout />}>
                 <Route path="/pages/Profile" element={<Profile />} />
                 <Route path="/pages/Homepage" element={<Homepage />} />
                 <Route path="/pages/BusinessPage" element={<BusinessPage />} />
               </Route>
 
-              {/* Routes without Navbar */}
+              {/* Routes without the Navbar */}
               <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
-
-              {/* Redirect to Homepage after login */}
+              {/* Redirect to Homepage by default */}
               <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
           </BrowserRouter>
         ) : (
-          <LoginPage setSignedIn={this.setSignedIn} /> // Pass setSignedIn to LoginPage
+          // Pass setSignedIn to allow login.
+          <LoginPage setSignedIn={this.setSignedIn} />
         )}
       </div>
     );
