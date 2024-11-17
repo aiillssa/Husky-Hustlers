@@ -4,7 +4,7 @@ import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
 import Profile from './pages/ProfilePage/Profile';
-import BusinessPage from './pages/MyBusinessPage/BusinessPage';
+import BusinessPage from './pages/BusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
 
 type AppState = {

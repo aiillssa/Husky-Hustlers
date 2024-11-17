@@ -14,7 +14,7 @@ interface Props {
 // Main functional component for the BusinessPage
 export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   // State to track if a business is associated with the user
-  const [hasBusiness, setHasBusiness] = useState(true); // True will rendere the user's business page
+  const [hasBusiness, setHasBusiness] = useState(false); // True will rendere the user's business page
 
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
