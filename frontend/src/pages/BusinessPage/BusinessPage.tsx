@@ -6,6 +6,9 @@ import { ProfilePicIcon } from './ProfilePicIcon';
 import resets from '../../components/_resets.module.css';
 import classes from './BusinessPage.module.css';
 
+// This should be the user's business store
+// They can add, edit, or delete their shop.
+
 interface Props {
   className?: string;
 }
