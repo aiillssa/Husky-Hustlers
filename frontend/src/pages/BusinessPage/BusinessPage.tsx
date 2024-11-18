@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import type { FC } from 'react';
 import { ProfilePicIcon } from './ProfilePicIcon';
-import { Rectangle1Default } from '../../components/BusinessPageC/Rectangle1Default/Rectangle1Default';
 import resets from '../../components/_resets.module.css';
 import classes from './BusinessPage.module.css';
 
@@ -42,7 +41,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 <div className={classes.frame10}>
                   {/* Business name */}
                   <div className={classes.businessName}>Business Name</div>
-                  <Rectangle1Default className={classes.rectangle1Default} />
                 </div>
               </div>
             </div>
