@@ -1,7 +1,7 @@
 import { memo, useState } from "react";
 import type { FC } from "react";
 import classes from "./AddbusinessPage.module.css";
-import Button from "../../components/AddBusinessPageC/Button/Button";
+import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 
 interface ContactInformation {
