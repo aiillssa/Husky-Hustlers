@@ -5,7 +5,10 @@ import { useParams } from "react-router-dom";
 function StorePage() {
   const { shopId } = useParams<{ shopId: string }>();
 
-  const [contactInformation, setContactInformation] = useState<string | null>(null);
+  const [contactInformation, setContactInformation] = useState<Map<
+    string,
+    string
+  > | null>(null);
   const [shopName, setShopName] = useState<string>("");
   const [ownerName, setOwnerName] = useState<string>("");
   const [categories, setCategories] = useState<string[]>([]);
@@ -17,7 +20,12 @@ function StorePage() {
         try {
           const shop = await getShop(Number(shopId));
           console.log(`Shop received from getShop: ${shop}`);
-          setContactInformation(shop.contactInformation);
+          const contactInfoMap = new Map();
+          for (const [key, value] of Object.entries(shop.contactInformation)) {
+            contactInfoMap.set(key, value);
+          }
+          console.log(contactInfoMap);
+          setContactInformation(contactInfoMap);
           setShopName(shop.shopName);
           setOwnerName(shop.ownerName);
           setCategories(shop.categories);
@@ -27,13 +35,14 @@ function StorePage() {
       };
       fetchData();
     }
-  });
+  }, []);
 
   return (
     <>
       <div>Shop to display to users after clicking on card</div>
       <div>Shop Name: {shopName}</div>
       <div>Owner Name: {ownerName}</div>
+      <div>Contact Information: {contactInformation}</div>
     </>
   );
 }
