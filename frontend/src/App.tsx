@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Profile from './pages/ProfilePage/Profile';
 import BusinessPage from './pages/BusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
+import StorePage from './pages/BusinessPage/StorePage';
 
 type AppState = {
   // Tracks whether the user is signed in
@@ -44,6 +45,7 @@ export class App extends Component<{}, AppState> {
                 <Route path="/pages/Profile" element={<Profile />} />
                 <Route path="/pages/Homepage" element={<Homepage />} />
                 <Route path="/pages/BusinessPage" element={<BusinessPage />} />
+                <Route path="/pages/StorePage" element={<StorePage />} />
               </Route>
 
               {/* Routes without the Navbar */}

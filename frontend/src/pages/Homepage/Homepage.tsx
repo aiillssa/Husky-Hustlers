@@ -3,6 +3,7 @@ import classes from "./Homepage.module.css";
 import { CategoryButton } from "../../components/HomePageC/CategoryButton/CategoryButton";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
 import { getAllShops, getShops } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 // Format for contact informatoin
 interface ContactInformation {
@@ -142,21 +143,27 @@ export class Homepage extends Component<{}, HomepageState> {
         </div>
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
-            <div key={index} className={classes.card}>
-              <img
-                src={seller.image}
-                alt={`${seller.shopName} image`}
-                className={classes.shopImage}
-              />
-              <div className={classes.cardHeading}>
-                <div className={classes.name}>{seller.ownerName}</div>
-                <div className={classes.businessName}>{seller.shopName}</div>
+            <Link
+              key={index}
+              to={`/pages/StorePage?shopId=${seller.idshops}`}
+              className={classes.cardLink}
+            >
+              <div className={classes.card}>
+                <img
+                  src={seller.image}
+                  alt={`${seller.shopName} image`}
+                  className={classes.shopImage}
+                />
+                <div className={classes.cardHeading}>
+                  <div className={classes.name}>{seller.ownerName}</div>
+                  <div className={classes.businessName}>{seller.shopName}</div>
+                </div>
+                <div className={classes.description}>
+                  {seller.shopDescription}
+                </div>
+                <CategoryButton type={seller.types[0]} />
               </div>
-              <div className={classes.description}>
-                {seller.shopDescription}
-              </div>
-              <CategoryButton type={seller.types[0]} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
