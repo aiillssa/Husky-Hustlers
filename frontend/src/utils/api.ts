@@ -22,7 +22,9 @@ export const addUser = async (name: string, email: string): Promise<void> => {
 };
 
 // Logs the user in to their account through google
-export const googleBackendLogin = async (code: string): Promise<{ success: boolean; error?: string }> => {
+export const googleBackendLogin = async (
+  code: string
+): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
     const response = await axios.post("http://localhost:8088/google", {
@@ -40,12 +42,11 @@ export const googleBackendLogin = async (code: string): Promise<{ success: boole
   } catch (error) {
     console.error("Login failed:", error);
     return { success: false, error: "Login failed. Please try again." };
-   
   }
-}
+};
 
 // List of all current shops
-export const getAllShops = async (): Promise<void> => {
+export const getAllShops = async (): Promise<any> => {
   try {
     // Send GET request to /shops endpoint
     const response = await axios.get("http://localhost:8088/shops");
@@ -54,6 +55,7 @@ export const getAllShops = async (): Promise<void> => {
     const shops = response.data;
 
     console.log("Shops:", shops);
+    return shops;
   } catch (error) {
     console.error("Failed to fetch shops:", error);
   }
@@ -73,14 +75,56 @@ export const createShop = async (
       shopDescription,
       ownerName,
       contactInformation,
-      userIdUsers, 
+      userIdUsers,
       categories: [categories],
     });
 
     console.log("Shop created successfully:", response.data);
   } catch (error: any) {
-    console.error("Failed to create shop:", error.response ? error.response.data : error.message);
+    console.error(
+      "Failed to create shop:",
+      error.response ? error.response.data : error.message
+    );
   }
 };
 
+export const getShops = async (type: string): Promise<any> => {
+  try {
+    // Send GET request to /shops endpoint
+    let url = "http://localhost:8088/shops";
+    if (type !== "all") {
+      url += `/categories/${type}`;
+    }
+    const response = await axios.get(url);
+    // Extract shops array from the response
+    const shops = response.data.shops;
+
+    console.log("Shops:", shops);
+    return shops;
+  } catch (error: any) {
+    console.error(
+      `Failed to get shops: ${
+        error.response ? error.response.data : error.message
+      }`
+    );
+    console.error("Failed to fetch shops:", error);
+  }
+};
+
+export const getShop = async (shopId: number): Promise<any> => {
+  try {
+    const response = await axios.get(`http://localhost:8088/shops/${shopId}`);
+    const shopInfo = response.data.shop;
+
+    console.log(`Shop info: ${shopInfo}`);
+    return shopInfo;
+  } catch (error: any) {
+    console.error(
+      `Failed to get shops: ${
+        error.response ? error.response.data : error.message
+      }`
+    );
+    console.error("Failed to fetch shops:", error);
+  }
+};
 export {};

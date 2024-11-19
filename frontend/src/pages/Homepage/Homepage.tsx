@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Homepage.module.css";
 import { CategoryButton } from "../../components/HomePageC/CategoryButton/CategoryButton";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
+import { getAllShops, getShops } from "../../utils/api";
 
 // Format for contact informatoin
 interface ContactInformation {
@@ -45,42 +46,22 @@ export class Homepage extends Component<{}, HomepageState> {
     this.fetchData("all");
   }
 
-  fetchData(type: string) {
-    let url = "http://localhost:8088/shops";
-    if (type !== "all") {
-      url += `/categories/${type}`;
-    }
-
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        console.log("Successfully accessed shops at endpoint: " + url);
-        return response.json();
-      })
-      .then((data: any) => {
-        const sellers = data.shops.map((shop: SellerData) => {
-          // Map categories to types array for each shop
-          // add types array to each shop in sellers
-          // and types is an array containing
-          // only these specific string literals.
-          const types = shop.categories.map((category) =>
-            category.categoryName.toLowerCase()
-          ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
-
-          // Add place holder image
-          const placeholderImage = "test";
-          const image = shop.image || placeholderImage;
-
-          return { ...shop, types };
-        });
-
-        this.setState({ listOfSellers: sellers });
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+  async fetchData(type: string) {
+    try {
+      const shops = await getShops(type);
+      console.log(`Shops received from getShops: ${shops}`);
+      const sellers = shops.map((shop: SellerData) => {
+        const types = shop.categories.map((category) =>
+          category.categoryName.toLowerCase()
+        ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
+        const placeholderImage = "test";
+        const image = shop.image || placeholderImage;
+        return { ...shop, types };
       });
+      this.setState({ listOfSellers: sellers });
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
   }
 
   // add click behavior for each type on homepage
