@@ -15,7 +15,7 @@ function StorePage() {
     if (shopId) {
       const fetchData = async () => {
         try {
-          const shop = await getShop(Number(shopId)); // Ensure shopId is a number
+          const shop = await getShop(Number(shopId));
           console.log(`Shop received from getShop: ${shop}`);
           setContactInformation(shop.contactInformation);
           setShopName(shop.shopName);
@@ -27,12 +27,11 @@ function StorePage() {
       };
       fetchData();
     }
-  }, [shopId]); // Trigger the effect when shopId changes
+  });
 
   return (
     <>
       <div>Shop to display to users after clicking on card</div>
-      <div>Contact Information:</div>
       <div>Shop Name: {shopName}</div>
       <div>Owner Name: {ownerName}</div>
     </>
