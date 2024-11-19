@@ -144,10 +144,10 @@ export class Homepage extends Component<{}, HomepageState> {
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
             <Link
-              key={index}
-              to={`/pages/StorePage?shopId=${seller.idshops}`}
-              className={classes.cardLink}
-            >
+            key={index}
+            to={`/pages/StorePage/${seller.idshops}`}
+            className={classes.cardLink}
+          >
               <div className={classes.card}>
                 <img
                   src={seller.image}

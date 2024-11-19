@@ -32,10 +32,9 @@ function StorePage() {
   return (
     <>
       <div>Shop to display to users after clicking on card</div>
-      <div>Contact Information: {contactInformation}</div>
+      <div>Contact Information:</div>
       <div>Shop Name: {shopName}</div>
       <div>Owner Name: {ownerName}</div>
-      <div>Categories: {categories.join(", ")}</div>
     </>
   );
 }
