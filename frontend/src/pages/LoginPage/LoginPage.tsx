@@ -67,20 +67,19 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
         <div className={classes.loginComponent}>
           <div className={classes.title}>
             <div className={classes.helloWelcome}>Hello, Welcome!</div>
-            <div className={classes.logInPage}>Log-In Page</div>
+            <div className={classes.logInPage}>Join Our Community</div>
           </div>
-          <div className={classes.frame1}>
+          <div>
             <div className={classes.formLogIn}>
               {/* Display an error message if present */}
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-              <div>
                 {/* Button to trigger Google login */}
                 <button className={classes.login_button} onClick={() => login()}>
                   Sign in with Google 🚀
                 </button>
                 {/* Button to log out: We'll move that into a different area later */}
-                <button onClick={() => logOut()}>Log Out</button>
-              </div>
+                <button className={classes.logout_button} onClick={() => logOut()}>Log In</button>
+
             </div>
           </div>
         </div>

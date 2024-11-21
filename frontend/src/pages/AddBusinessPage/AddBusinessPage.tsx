@@ -155,6 +155,13 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
           </select>
         </div>
 
+         {/* Instagram Handle Field */}
+         <InputField
+          label="Other"
+          value={instagram}
+          onChange={(e) => setInstagram(e.target.value)}
+        />
+
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
           Submit

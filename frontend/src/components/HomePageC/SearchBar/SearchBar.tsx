@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
-import type { FC } from 'react';
+import React, { memo } from "react";
+import type { FC } from "react";
 
-import classes from './SearchBar.module.css';
+import classes from "./SearchBar.module.css";
+import magnifyingGlassIcon from "./magnifying_glass.svg"; // Adjust the path as needed
 
 interface Props {
   className?: string;
@@ -15,17 +16,21 @@ interface Props {
 /* @figmaId 11:334 */
 export const SearchBar: FC<Props> = memo(function SearchBar(props) {
   return (
-    <div className={`${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
+    <div
+      className={`${props.classes?.root || ""} ${props.className || ""} ${
+        classes.root
+      }`}
+    >
       <div className={classes.stateLayer}>
-        <div className={classes.content}>
-          <input
-            placeholder="  Type to search by business name..."
-            onChange={props.onSearchChange}
-            value={props.value}
-          />
-        </div>
-        <div className={classes.trailingElements}>
-        </div>
+        {/* Magnifying glass icon */}
+        <img src={magnifyingGlassIcon} alt="Search" />
+        {/* Input field */}
+        <input
+          className={classes.input}
+          placeholder="Type to search by business name..."
+          onChange={props.onSearchChange}
+          value={props.value}
+        />
       </div>
     </div>
   );

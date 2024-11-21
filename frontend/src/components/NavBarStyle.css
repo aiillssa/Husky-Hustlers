@@ -3,6 +3,7 @@ nav {
   gap: 10px;
   z-index: 10;
   width: 99vw;
+  padding: 10px;
   background-color: rgb(179, 129, 179);
   display: flex;
   justify-content: flex-end;
