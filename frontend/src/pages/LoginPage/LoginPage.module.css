@@ -142,29 +142,6 @@ p {
   margin: 10px 0;
 }
 
-/* Log out button */
-.logout_button{
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #8a8a8a;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
-}
-
-.login_button {
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #8a8a8a;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
-}
-
 /* Profile icon */
 img {
   border: 10px solid white;
