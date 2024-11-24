@@ -7,9 +7,8 @@ function StorePage() {
   const { shopId } = useParams<{ shopId: string }>(); /*Gets ShopID */
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null);
   const [shopName, setShopName] = useState<string>("");
-  const [ownerName, setOwnerName] = useState<string>("");
   const [shopDescription, setShopDescription] = useState<string>("");
-  const [categories, setCategories] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
 
   // Fetch shop data when shopId is available
   useEffect(() => {
@@ -21,12 +20,9 @@ function StorePage() {
           for (const [key, value] of Object.entries(shop.contactInformation)) {
             contactInfoMap.set(key, value);
           }
-          console.log(contactInfoMap);
           setContactInformation(contactInfoMap);
           setShopName(shop.shopName);
-          setOwnerName(shop.ownerName);
           setShopDescription(shop.shopDescription);
-          setCategories(shop.categories);
         } catch (err) {
           console.error("Error fetching data:", err);
         }
@@ -45,9 +41,24 @@ function StorePage() {
 
       {/* Tabs Section */}
       <div className={classes.tabs}>
-        <div className={classes.tab}>Basics</div>
-        <div className={classes.tab}>Other</div>
-        <div className={classes.tab}>Pictures</div>
+        <div
+          className={`${classes.tab} ${activeTab === "Basics" ? classes.activeTab : ""}`}
+          onClick={() => setActiveTab("Basics")}
+        >
+          Basics
+        </div>
+        <div
+          className={`${classes.tab} ${activeTab === "Other" ? classes.activeTab : ""}`}
+          onClick={() => setActiveTab("Other")}
+        >
+          Other
+        </div>
+        <div
+          className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""}`}
+          onClick={() => setActiveTab("Pictures")}
+        >
+          Pictures
+        </div>
       </div>
 
       {/* Divider Line */}
@@ -55,22 +66,40 @@ function StorePage() {
 
       {/* Content Section */}
       <div className={classes.content}>
-        <div className={classes.section}>
-          <div className={classes.sectionTitle}>Description:</div>
-          <div className={classes.sectionContent}>{shopDescription}</div>
-        </div>
-        <div className={classes.section}>
-          <div className={classes.sectionTitle}>Contact Info:</div>
-          <div className={classes.sectionContent}>
-            {contactInformation}
+        {activeTab === "Basics" && (
+          <>
+            <div className={classes.section}>
+              <div className={classes.sectionTitle}>Description:</div>
+              <div className={classes.sectionContent}>{shopDescription || "No description available."}</div>
+            </div>
+            <div className={classes.section}>
+              <div className={classes.sectionTitle}>Contact Info:</div>
+              <div className={classes.sectionContent}>
+                {contactInformation ? (
+                  Array.from(contactInformation.entries()).map(([key, value]) => (
+                    <div key={key}>
+                      {key}: {value}
+                    </div>
+                  ))
+                ) : (
+                  "No contact information available."
+                )}
+              </div>
+            </div>
+          </>
+        )}
+        {activeTab === "Other" && (
+          <div className={classes.section}>
+            <div className={classes.sectionTitle}>Other Information:</div>
+            <div className={classes.sectionContent}>This is a placeholder for other content.</div>
           </div>
-        </div>
-        <div className={classes.section}>
-          <div className={classes.sectionTitle}>Dietary Accommodation:</div>
-        </div>
-        <div className={classes.section}>
-          <div className={classes.sectionTitle}>Delivery Option:</div>
-        </div>
+        )}
+        {activeTab === "Pictures" && (
+          <div className={classes.section}>
+            <div className={classes.sectionTitle}>Pictures:</div>
+            <div className={classes.sectionContent}>This is a placeholder for pictures.</div>
+          </div>
+        )}
       </div>
     </div>
   );

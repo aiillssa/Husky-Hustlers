@@ -79,3 +79,9 @@ html, body {
     color: black;
     font-size: 20px;
   }
+
+/* Active tab styling */
+.activeTab {
+    font-weight: bold;
+  }
+  
