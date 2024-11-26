@@ -75,15 +75,7 @@ function StorePage() {
             <div className={classes.section}>
               <div className={classes.sectionTitle}>Contact Info:</div>
               <div className={classes.sectionContent}>
-                {contactInformation ? (
-                  Array.from(contactInformation.entries()).map(([key, value]) => (
-                    <div key={key}>
-                      {key}: {value}
-                    </div>
-                  ))
-                ) : (
-                  "No contact information available."
-                )}
+                {contactInformation}
               </div>
             </div>
           </>
