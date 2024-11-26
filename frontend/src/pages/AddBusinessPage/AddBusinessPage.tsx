@@ -3,6 +3,7 @@ import type { FC } from "react";
 import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
+import { Navigate } from "react-router-dom";
 
 interface ContactInformation {
   instagram: string;
@@ -34,6 +35,9 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   // State variables for submission status and error handling
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // State variable for redirection
+  const [redirect, setRedirect] = useState(false);
 
   // Categories for users to select
   const categories: string[] = [
@@ -81,12 +85,15 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         setSubmitted(true);
         setError(null);
 
-        // Rreset the form fields
+        // Reset the form fields
         setShopName("");
         setShopDescription("");
         setOwnerName("");
         setInstagram("");
         setSelectedCategories([]);
+
+        // Redirect to homepage
+        setRedirect(true);
       } else {
         // Handle server errors
         const errorData = await response.json();
@@ -100,6 +107,11 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       setError("A network error occurred. Please try again later.");
     }
   };
+
+  // Redirect to homepage if redirect state is true
+  if (redirect) {
+    return <Navigate to="/pages/Homepage" replace />;
+  }
 
   return (
     <div className={classes.root}>
@@ -154,13 +166,6 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
             ))}
           </select>
         </div>
-
-         {/* Instagram Handle Field */}
-         <InputField
-          label="Other"
-          value={instagram}
-          onChange={(e) => setInstagram(e.target.value)}
-        />
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
