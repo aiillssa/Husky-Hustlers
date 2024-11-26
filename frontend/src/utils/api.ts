@@ -18,7 +18,7 @@ export const googleLogIn = async (
     console.log("User's email: ", email);
     console.log("User's name: ", name);
     console.log("Message: ", message);
-    
+    localStorage.setItem('userID', id);
     localStorage.setItem('authToken', token);
     return { success: true };
   } catch (error) {
@@ -93,7 +93,12 @@ export const getShops = async (type: string): Promise<any> => {
     const token = localStorage.getItem("authToken");
     console.log('THE TOKEN IS: ', token);
 
-    const response = await axios.get(url);
+    const response = await axios.get(url,
+      {
+        headers: {
+        Authorization: "Bearer " + token,
+      }}  
+    );
     // Extract shops array from the response
     const shops = response.data.shops;
 

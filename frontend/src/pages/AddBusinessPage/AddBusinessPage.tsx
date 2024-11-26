@@ -63,7 +63,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       contactInformation: {
         instagram,
       },
-      userIdUsers: 18, // TODO: fix later
+      userIdUsers: localStorage.get("userID"), // TODO: fix later
       categories: selectedCategories.map((categoryName) => categoryName),
     };
 
