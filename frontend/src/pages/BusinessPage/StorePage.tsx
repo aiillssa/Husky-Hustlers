@@ -80,16 +80,25 @@ function StorePage() {
             </div>
           </>
         )}
-        {activeTab === "Other" && (
-          <div className={classes.section}>
-            <div className={classes.sectionTitle}>Other Information:</div>
-            <div className={classes.sectionContent}>This is a placeholder for other content.</div>
-          </div>
-        )}
         {activeTab === "Pictures" && (
-          <div className={classes.section}>
-            <div className={classes.sectionTitle}>Pictures:</div>
-            <div className={classes.sectionContent}>This is a placeholder for pictures.</div>
+          <div className={classes.picturesSection}>
+            <div className={classes.pictureRow}>
+              <div className={classes.pictureCard}>
+                <div className={classes.imagePlaceholder}></div>
+                <div className={classes.caption}>Caption</div>
+                <div className={classes.pricing}>Pricing</div>
+              </div>
+              <div className={classes.pictureCard}>
+                <div className={classes.imagePlaceholder}></div>
+                <div className={classes.caption}>Caption</div>
+                <div className={classes.pricing}>Pricing</div>
+              </div>
+              <div className={classes.pictureCard}>
+                <div className={classes.imagePlaceholder}></div>
+                <div className={classes.caption}>Caption</div>
+                <div className={classes.pricing}>Pricing</div>
+              </div>
+            </div>
           </div>
         )}
       </div>
