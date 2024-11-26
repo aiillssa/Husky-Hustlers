@@ -19,6 +19,8 @@ export const googleLogIn = async (
     console.log("User's name: ", name);
     console.log("Message: ", message);
     localStorage.setItem('userID', id);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userName', name)
     localStorage.setItem('authToken', token);
     return { success: true };
   } catch (error) {
