@@ -1,43 +1,25 @@
-import axios from "axios";
-export const addUser = async (name: string, email: string): Promise<void> => {
-  try {
-    const urlencodedBody = new URLSearchParams();
-    urlencodedBody.append("name", name);
-    urlencodedBody.append("email", email);
-    console.log(name, email);
-    const response = await fetch("http://localhost:8088/users", {
-      //   mode: "no-cors",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: name, email: email }),
-    });
+import axios from '../utils/axios';
 
-    const data = await response.json();
-    console.log(`This is the data: ${data}`); // Check if the backend responds correctly
-  } catch (error) {
-    console.error("Error connecting to backend:", error);
-  }
-};
 
 // Logs the user in to their account through google
-export const googleBackendLogin = async (
-  code: string
+export const googleLogIn = async (
+  code: string,
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
-    const response = await axios.post("http://localhost:8088/google", {
+    const response = await axios.post("/google/signIn", {
       code,
     });
-    const { appJwt, name, email, user_id } = response.data;
 
-    // Save JWT in local storage
-    localStorage.setItem("appJwt", appJwt);
-    console.log("User's ID:", user_id);
-    console.log("User's name:", name);
-    console.log("User's email:", email);
-    console.log("jwt: ", appJwt);
+    const { auth, token, id, email, name, message } = response.data;
+    console.log("Auth:", auth);
+    console.log("Token:", token);
+    console.log("User's id:", id);
+    console.log("User's email: ", email);
+    console.log("User's name: ", name);
+    console.log("Message: ", message);
+    
+    localStorage.setItem('authToken', token);
     return { success: true };
   } catch (error) {
     console.error("Login failed:", error);
@@ -45,11 +27,24 @@ export const googleBackendLogin = async (
   }
 };
 
+export const googleSignUp = async (
+  code: string,
+): Promise<{ success: boolean; error?: string }> => {
+  try {
+    // Send code to the backend to get appJwt
+    const response = await axios.post("/googleUp", {});
+    return { success: true };
+    
+  }catch (error) {
+    console.error("Signup failed:", error);
+    return { success: false, error: "Sign up failed. Please try again." };
+  }
+};
 // List of all current shops
 export const getAllShops = async (): Promise<any> => {
   try {
     // Send GET request to /shops endpoint
-    const response = await axios.get("http://localhost:8088/shops");
+    const response = await axios.get("/shops");
 
     // Extract shops array from the response
     const shops = response.data;
@@ -70,7 +65,7 @@ export const createShop = async (
   categories: string
 ): Promise<void> => {
   try {
-    const response = await axios.post("http://localhost:8088/shops", {
+    const response = await axios.post("/shops", {
       shopName,
       shopDescription,
       ownerName,
@@ -91,10 +86,13 @@ export const createShop = async (
 export const getShops = async (type: string): Promise<any> => {
   try {
     // Send GET request to /shops endpoint
-    let url = "http://localhost:8088/shops";
+    let url = "/shops";
     if (type !== "all") {
       url += `/categories/${type}`;
     }
+    const token = localStorage.getItem("authToken");
+    console.log('THE TOKEN IS: ', token);
+
     const response = await axios.get(url);
     // Extract shops array from the response
     const shops = response.data.shops;
@@ -113,7 +111,7 @@ export const getShops = async (type: string): Promise<any> => {
 
 export const getShop = async (shopId: number): Promise<any> => {
   try {
-    const response = await axios.get(`http://localhost:8088/shops/${shopId}`);
+    const response = await axios.get(`shops/${shopId}`);
     const shopInfo = response.data.shop;
 
     console.log(`Shop info: ${shopInfo}`);
@@ -127,4 +125,5 @@ export const getShop = async (shopId: number): Promise<any> => {
     console.error("Failed to fetch shops:", error);
   }
 };
+
 export {};

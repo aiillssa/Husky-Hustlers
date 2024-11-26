@@ -1,6 +1,6 @@
 import React, { memo, useState, FC } from "react";
 import { googleLogout, useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { googleBackendLogin } from "../../utils/api";
+import { googleLogIn, googleSignUp } from "../../utils/api";
 import classes from "./LoginPage.module.css";
 import resets from "../../components/_resets.module.css";
 
@@ -13,21 +13,22 @@ interface Props {
 const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   // State to manage error messages during login
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
   // Google login function using OAuth for authentication
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
       // Attempt to authenticate with the backend using the returned auth code
-      const { success, error } = await googleBackendLogin(code);
+      const result = await googleLogIn(code);
 
-      if (success) {
+      if (result.success) {
         // If login is successful, update the signed-in state and 
         // clear any previous error messages
+        console.log("User logged in successfully!");
+        
         setSignedIn(true);
         setErrorMessage(null);
       } else {
         // Display an error message if the login fails
-        setErrorMessage(error || "Login failed. Please try again.");
+        setErrorMessage(result.error || "Login failed. Please try again.");
       }
     },
     flow: "auth-code",
@@ -35,6 +36,29 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
       // Handle errors during the login process
       console.error("Login Failed:", error);
       setErrorMessage("Login failed. Please try again.");
+    },
+  });
+
+  const signup = useGoogleLogin({
+    onSuccess: async ({ code }) => {
+      // Attempt to authenticate with the backend using the returned auth code
+      const result = await googleSignUp(code);
+
+      if (result.success) {
+        // If login is successful, update the signed-in state and 
+        // clear any previous error messages
+        console.log("User signed up successfully!");
+        setErrorMessage(null);
+      } else {
+        // Display an error message if the sign up fails
+        setErrorMessage(result.error || "Sign up failed. Please try again.");
+      }
+    },
+    flow: "auth-code",
+    onError: (error) => {
+      // Handle errors during the sign up process
+      console.error("Sign up Failed:", error);
+      setErrorMessage("Sign up failed. Please try again.");
     },
   });
 
@@ -73,13 +97,14 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
             <div className={classes.formLogIn}>
               {/* Display an error message if present */}
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              {/* Button to trigger Google Sign up */}
+              <button className={classes.logout_button} onClick={() => signup()}>
+                  Sign up with Google
+                </button>
                 {/* Button to trigger Google login */}
                 <button className={classes.login_button} onClick={() => login()}>
-                  Sign in with Google 🚀
+                  Sign in with Google
                 </button>
-                {/* Button to log out: We'll move that into a different area later */}
-                <button className={classes.logout_button} onClick={() => logOut()}>Log In</button>
-
             </div>
           </div>
         </div>
