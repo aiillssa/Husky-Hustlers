@@ -46,10 +46,11 @@ export class App extends Component<{}, AppState> {
                 <Route path="/pages/Homepage" element={<Homepage />} />
                 <Route path="/pages/BusinessPage" element={<BusinessPage />} />
                 <Route path="/pages/StorePage/:shopId" element={<StorePage />} />
+                <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
               </Route>
 
               {/* Routes without the Navbar */}
-              <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
+              
               {/* Redirect to Homepage by default */}
               <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
