@@ -35,6 +35,7 @@ export const googleBackendLogin = async (
     // Save JWT in local storage
     localStorage.setItem("appJwt", appJwt);
     console.log("User's ID:", user_id);
+    localStorage.setItem("userID", user_id);
     console.log("User's name:", name);
     console.log("User's email:", email);
     console.log("jwt: ", appJwt);

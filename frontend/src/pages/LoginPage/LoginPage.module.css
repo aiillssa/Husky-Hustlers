@@ -29,8 +29,6 @@
 
 }
 
-
-
 /* Wrapper for caption and loginComponent */
 .content_wrapper {
   display: flex;
@@ -51,7 +49,7 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
   letter-spacing: -0.03em;
-  width:36%;
+  width:40%;
   height: auto;
   text-align: left;
   margin-top: 10px;
