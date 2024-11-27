@@ -97,10 +97,10 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         setRedirect(true);
       } else {
         // Handle errors at server
-        const errorData = await response.json();
-        setError(
-          errorData.message || "An error occurred while submitting the form."
-        );
+        console.log(response.status)
+        if (response.status === 400) {
+          setError("Cannot add a business because you have already added one previously, and each person is only allowed to enter one.")
+        }
       }
     } catch (err) {
       // Handle network errors
