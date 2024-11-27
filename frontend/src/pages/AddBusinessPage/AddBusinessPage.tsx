@@ -9,7 +9,7 @@ interface ContactInformation {
   instagram: string;
 }
 
-// Categories format passed in from server
+// Updated Shops interface with necessaryDescription field
 interface Shops {
   shopName: string;
   shopDescription: string;
@@ -17,13 +17,13 @@ interface Shops {
   contactInformation: ContactInformation;
   userIdUsers: Number;
   categories: string[];
+  necessaryDescription?: any;
 }
 
 interface Props {
   className?: string;
 }
 
-/* @figmaId 120:727 */
 const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   // State variables for each form field
   const [shopName, setShopName] = useState("");
@@ -31,13 +31,13 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   const [ownerName, setOwnerName] = useState("");
   const [instagram, setInstagram] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
   // State variables for submission status and error handling
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   // State variable for redirection
   const [redirect, setRedirect] = useState(false);
+  // State for necessaryDescription
+  const [necessaryDescription, setNecessaryDescription] = useState<Record<string, string>>({});
 
   // Categories for users to select
   const categories: string[] = [
@@ -50,10 +50,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
 
   // Set category state to the user selected one
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
+    const value = Array.from(e.target.selectedOptions, (option) => option.value);
     setSelectedCategories(value);
   };
 
@@ -67,10 +64,14 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       contactInformation: {
         instagram,
       },
-      userIdUsers: 18, // TODO: fix later
-      categories: selectedCategories.map((categoryName) => categoryName),
+      userIdUsers: Number(localStorage.getItem("userID")), 
+      categories: selectedCategories,
+      necessaryDescription,
     };
-
+    console.log(businessData);
+    console.log("userID")
+    console.log(localStorage.getItem("userID"));
+    
     try {
       const response = await fetch("http://localhost:8088/shops/", {
         method: "POST",
@@ -84,18 +85,18 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         // Handle success
         setSubmitted(true);
         setError(null);
-
         // Reset the form fields
         setShopName("");
         setShopDescription("");
         setOwnerName("");
         setInstagram("");
         setSelectedCategories([]);
+        setNecessaryDescription({});
 
         // Redirect to homepage
         setRedirect(true);
       } else {
-        // Handle server errors
+        // Handle errors at server
         const errorData = await response.json();
         setError(
           errorData.message || "An error occurred while submitting the form."
@@ -112,6 +113,14 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   if (redirect) {
     return <Navigate to="/pages/Homepage" replace />;
   }
+
+  // Function to handle changes in necessaryDescription fields
+  const handleNecessaryDescriptionChange = (question: string, answer: string) => {
+    setNecessaryDescription((prev) => ({
+      ...prev,
+      [question]: answer,
+    }));
+  };
 
   return (
     <div className={classes.root}>
@@ -166,6 +175,95 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
             ))}
           </select>
         </div>
+
+        {/* Additional Questions for Food Category */}
+        {selectedCategories.includes("Food") && (
+          <>
+            {/* Any dietary accommodation */}
+            <InputField
+              label="Any dietary accommodation"
+              value={necessaryDescription["Any dietary accommodation"] || ""}
+              onChange={(e) =>
+                handleNecessaryDescriptionChange("Any dietary accommodation", e.target.value)
+              }
+            />
+            {/* Pick-up option: delivery on campus, pick at seller’s location */}
+            <div className={classes.inputGroup}>
+              <label className={classes.label}>Pick-up option</label>
+              <select
+                className={classes.select}
+                value={necessaryDescription["Pick-up option (Food)"] || ""}
+                onChange={(e) =>
+                  handleNecessaryDescriptionChange("Pick-up option (Food)", e.target.value)
+                }
+              >
+                <option value="">Select an option</option>
+                <option value="delivery on campus">Delivery on campus</option>
+                <option value="pick at seller’s location">
+                  Pick at seller’s location
+                </option>
+              </select>
+            </div>
+          </>
+        )}
+
+        {/* Additional Questions for Artwork, Craft, Resell Categories */}
+        {(selectedCategories.includes("Artwork") ||
+          selectedCategories.includes("Craft") ||
+          selectedCategories.includes("Resell")) && (
+          <>
+            {/* Pick-up option: delivery on campus, pickup at seller’s location, digital */}
+            <div className={classes.inputGroup}>
+              <label className={classes.label}>Pick-up option</label>
+              <select
+                className={classes.select}
+                value={necessaryDescription["Pick-up option (ACR)"] || ""}
+                onChange={(e) =>
+                  handleNecessaryDescriptionChange("Pick-up option (ACR)", e.target.value)
+                }
+              >
+                <option value="">Select an option</option>
+                <option value="delivery on campus">Delivery on campus</option>
+                <option value="pickup at seller’s location">
+                  Pickup at seller’s location
+                </option>
+                <option value="digital">Digital</option>
+              </select>
+            </div>
+          </>
+        )}
+
+        {/* Additional Questions for Service Category */}
+        {selectedCategories.includes("Service") && (
+          <>
+            {/* Business hour */}
+            <InputField
+              label="Business hour"
+              value={necessaryDescription["Business hour"] || ""}
+              onChange={(e) =>
+                handleNecessaryDescriptionChange("Business hour", e.target.value)
+              }
+            />
+            {/* Open to travel: yes, no, my business is online */}
+            <div className={classes.inputGroup}>
+              <label className={classes.label}>Open to travel</label>
+              <select
+                className={classes.select}
+                value={necessaryDescription["Open to travel"] || ""}
+                onChange={(e) =>
+                  handleNecessaryDescriptionChange("Open to travel", e.target.value)
+                }
+              >
+                <option value="">Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="my business is online">
+                  My business is online
+                </option>
+              </select>
+            </div>
+          </>
+        )}
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
