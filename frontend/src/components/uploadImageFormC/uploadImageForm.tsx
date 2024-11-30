@@ -5,7 +5,7 @@ import axios from 'axios';
 const UploadImageForm = () => {
     const[ file, setFile ] = useState<File | null>(null);
     const[ progress, setProgress ] = useState({started: false, prcnt: 0});
-    const[ msg, setMsg ] = useState("no file selected");
+    const[ msg, setMsg ] = useState("");
 
 
     function handleUpload() {
@@ -43,15 +43,19 @@ const UploadImageForm = () => {
     return (
         <>
             <div>
+                <h3>Upload your business gallery images here:</h3>
                 <input onChange={ (event) => {
                         if(!event.target.files) {
                             return;
                         }
                         setFile(event.target.files[0])
                     }} type='file'/>
+                <br/>
                 <button onClick={ handleUpload }>Upload</button>
+                {msg && <span>{msg}</span>}
+                <br/>
                 {progress.started && <progress max="100" value={progress.prcnt}></progress>}
-                (msg && <span>{msg}</span>)
+                
             </div>
             
         </>
