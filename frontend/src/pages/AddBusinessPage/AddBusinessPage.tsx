@@ -164,7 +164,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         console.log(response.status);
         if (response.status === 400) {
           setError(
-            "Cannot add a business because you have already added one previously, and each person is only allowed to enter one."
+            "Cannot add a business because you have already added one previously. Each person is only allowed to enter one."
           );
         } else {
           const errorText = await response.text();
@@ -391,6 +391,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
             </div>
           </>
         )}
+
+        {/* TODO: ask image, description, and price about all products they want to list from users */}
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
