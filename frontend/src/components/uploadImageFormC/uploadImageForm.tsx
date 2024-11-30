@@ -20,7 +20,7 @@ const uploadImageForm = () => {
             return {...prevState, started: true}
         })
         // what goes in here???
-        axios.post('http://localhost:8088/blobs', formData, {
+        axios.post('http://localhost:8088/blobs/', formData, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
