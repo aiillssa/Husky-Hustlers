@@ -4,6 +4,7 @@ import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 import { Navigate } from "react-router-dom";
+import UploadImageForm from "../../components/UploadImageFormC/uploadImageForm";
 
 interface ContactInformation {
   instagram: string;
@@ -393,6 +394,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         )}
 
         {/* TODO: ask image, description, and price about all products they want to list from users */}
+        <UploadImageForm/>
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
-const uploadImageForm = () => {
+const UploadImageForm = () => {
     const[ file, setFile ] = useState<File | null>(null);
     const[ progress, setProgress ] = useState({started: false, prcnt: 0});
     const[ msg, setMsg ] = useState("no file selected");
@@ -41,19 +41,22 @@ const uploadImageForm = () => {
     }
 
     return (
-        <div>
-            <input onChange={ (event) => {
-                    if(!event.target.files) {
-                        return;
-                    }
-                    setFile(event.target.files[0])
-                }} type='file'/>
-            <button onClick={ handleUpload }>Upload</button>
-            {progress.started && <progress max="100" value={progress.prcnt}></progress>}
-            (msg && <span>{msg}</span>)
-        </div>
+        <>
+            <div>
+                <input onChange={ (event) => {
+                        if(!event.target.files) {
+                            return;
+                        }
+                        setFile(event.target.files[0])
+                    }} type='file'/>
+                <button onClick={ handleUpload }>Upload</button>
+                {progress.started && <progress max="100" value={progress.prcnt}></progress>}
+                (msg && <span>{msg}</span>)
+            </div>
+            
+        </>
         
     )
 };
 
-export default uploadImageForm;
+export default UploadImageForm;
