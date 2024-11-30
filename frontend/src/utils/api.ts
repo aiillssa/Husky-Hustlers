@@ -80,10 +80,10 @@ export const getShops = async (type: string): Promise<any> => {
     const token = localStorage.getItem("authToken");
     console.log('THE TOKEN IS: ', token);
 
-    const response = await axios.get(url,
-      {
+    const response = await axios.get(url,{
         withCredentials: true,
-        headers: {Authorization: "Bearer " + token,}},
+        headers: {Authorization: "Bearer " + token,}
+      },
     );
     // Extract shops array from the response
     const shops = response.data.shops;
