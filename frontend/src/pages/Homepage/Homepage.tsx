@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./Homepage.module.css";
 import { CategoryButton } from "../../components/HomePageC/CategoryButton/CategoryButton";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
-import { getAllShops, getShops } from "../../utils/api";
+import { getShops } from "../../utils/api";
 import { Link } from "react-router-dom";
 
 // Format for contact informatoin

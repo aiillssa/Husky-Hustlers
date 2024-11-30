@@ -42,21 +42,6 @@ export const googleSignUp = async (
     return { success: false, error: "Sign up failed. Please try again." };
   }
 };
-// List of all current shops
-export const getAllShops = async (): Promise<any> => {
-  try {
-    // Send GET request to /shops endpoint
-    const response = await axios.get("/shops");
-
-    // Extract shops array from the response
-    const shops = response.data;
-
-    console.log("Shops:", shops);
-    return shops;
-  } catch (error) {
-    console.error("Failed to fetch shops:", error);
-  }
-};
 
 export const createShop = async (
   shopName: string,
@@ -97,9 +82,8 @@ export const getShops = async (type: string): Promise<any> => {
 
     const response = await axios.get(url,
       {
-        headers: {
-        Authorization: "Bearer " + token,
-      }}  
+        withCredentials: true,
+        headers: {Authorization: "Bearer " + token,}},
     );
     // Extract shops array from the response
     const shops = response.data.shops;
