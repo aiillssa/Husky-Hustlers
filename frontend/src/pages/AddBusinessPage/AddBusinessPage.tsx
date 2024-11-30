@@ -244,8 +244,6 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         {errors["instagram"] && (
           <div className={classes.errorMessage}>{errors["instagram"]}</div>
         )}
-        
-        {/* TODO: ask image, description, and price about all products they want to list from users */}
 
         {/* Category Selection */}
         <div className={classes.inputGroup}>
@@ -393,6 +391,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
             </div>
           </>
         )}
+
+        {/* TODO: ask image, description, and price about all products they want to list from users */}
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
