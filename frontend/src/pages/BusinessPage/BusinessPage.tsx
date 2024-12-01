@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { memo } from 'react';
-import type { FC } from 'react';
-import { ProfilePicIcon } from './ProfilePicIcon';
-import resets from '../../components/_resets.module.css';
-import classes from './BusinessPage.module.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { memo } from "react";
+import type { FC } from "react";
+import { ProfilePicIcon } from "./ProfilePicIcon";
+import resets from "../../components/_resets.module.css";
+import classes from "./BusinessPage.module.css";
+import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton"; // Import the DeleteButton component
 
 // This should be the user's business store
 // They can add, edit, or delete their shop.
@@ -17,6 +18,33 @@ interface Props {
 export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   // State to track if a business is associated with the user
   const [hasBusiness, setHasBusiness] = useState(false); // True will rendere the user's business page
+  const [shopData, setShopData] = useState<any>(null);
+
+  // Fetch user data on component mount
+  useEffect(() => {
+    const userIDString = localStorage.getItem("userID");
+    if (userIDString) {
+      const userID = Number(userIDString);
+      // Fetch user data to check if they have a business
+      fetch(`http://localhost:8088/shops/user/${userID}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setHasBusiness(data.hasShop);
+          if (data.hasShop) {
+            setShopData(data.shop);
+            console.log(data.shop);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, []);
+
+  const handleBusinessDeletion = () => {
+    setHasBusiness(false);
+    setShopData(null);
+  };
 
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
@@ -34,6 +62,13 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         ) : (
           // If a business is associated, display the business information
           <>
+            {/* Include the DeleteButton here, passing idshops */}
+
+            <DeleteButton
+              idshops={shopData.idshops}
+              onDelete={handleBusinessDeletion}
+            />
+            {/* Displayed all info entered by */}
             <div className={classes.upperFrame}>
               {/* Section for profile and business details */}
               <div className={classes.frame11}>
@@ -66,7 +101,8 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 <div className={classes.descriptionFrame}>
                   <div className={classes.description}>Description:</div>
                   <div className={classes.thisIsDescriptionThisIsDescrip}>
-                    This is Description. This is Description. This is Description.
+                    This is Description. This is Description. This is
+                    Description.
                   </div>
                 </div>
                 {/* Contact information section */}
@@ -80,7 +116,9 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 </div>
                 {/* Dietary accommodations section */}
                 <div className={classes.diettaryFrame}>
-                  <div className={classes.dietaryAccommodation}>Dietary Accommodation:</div>
+                  <div className={classes.dietaryAccommodation}>
+                    Dietary Accommodation:
+                  </div>
                   <div className={classes.thisIsDietaryAccommodationThis}>
                     This is dietary accommodation.
                   </div>
