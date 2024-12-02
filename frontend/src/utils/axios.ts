@@ -16,7 +16,6 @@ axiosInstance.interceptors.request.use(function (config) {
 // Response interceptor to handle new tokens from the backend
 axiosInstance.interceptors.response.use(function (response) {
     // Check if a new token is issued in the Authorization header
-    console.log("Header is :", response.headers.Authorization);
 
     const newAuthToken = response.headers.authorization?.split(' ')[1];
     if (newAuthToken) {

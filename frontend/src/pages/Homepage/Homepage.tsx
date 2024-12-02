@@ -50,7 +50,6 @@ export class Homepage extends Component<{}, HomepageState> {
   async fetchData(type: string) {
     try {
       const shops = await getShops(type);
-      console.log(`Shops received from getShops: ${shops}`);
       const sellers = shops.map((shop: SellerData) => {
         const types = shop.categories.map((category) =>
           category.categoryName.toLowerCase()

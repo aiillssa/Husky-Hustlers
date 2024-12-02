@@ -79,7 +79,7 @@ export const getShops = async (type: string): Promise<any> => {
       url += `/categories/${type}`;
     }
     
-    const response = await axios.get(url,);
+    const response = await axios.get(url);
 
     
     
