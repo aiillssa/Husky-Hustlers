@@ -4,12 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 13px;
+  padding-top: 20px;
 }
 .label {
   color: #1e1e1e;
-  font-size: 16px;
-  line-height: 140%;
+  font-size: 20px;
+  line-height: 100%;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
   height: min-content;
@@ -25,5 +26,5 @@
   border-radius: 8px;
   background-color: #fff;
   overflow: hidden;
-  margin: 10px;
+  border: 1px solid rgba(0,0,0,.2);
 }

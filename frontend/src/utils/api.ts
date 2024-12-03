@@ -11,16 +11,16 @@ export const googleLogIn = async (
       code,
     });
 
-    const { auth, token, id, email, name, message } = response.data;
-    console.log("Auth:", auth);
-    console.log("Token:", token);
-    console.log("User's id:", id);
-    console.log("User's email: ", email);
-    console.log("User's name: ", name);
-    localStorage.setItem('userID', id);
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('userName', name)
-    localStorage.setItem('authToken', token);
+
+    const { token, id, email, name } = response.data;
+    // Save JWT in local storage
+    localStorage.setItem("appJwt", token);
+    console.log("User's ID:", id);
+    localStorage.setItem("userID", id);
+    console.log("User's name:", name);
+    console.log("User's email:", email);
+    console.log("jwt: ", token);
+
     return { success: true };
   } catch (error) {
     console.error("Login failed:", error);
