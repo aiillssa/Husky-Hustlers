@@ -4,7 +4,7 @@ import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 import { Navigate } from "react-router-dom";
-import UploadImageForm from "../../components/UploadImageFormC/UploadImageForm";
+import UploadImageForm from "../../components/uploadImageFormC/uploadImageForm";
 
 interface ContactInformation {
   instagram: string;
