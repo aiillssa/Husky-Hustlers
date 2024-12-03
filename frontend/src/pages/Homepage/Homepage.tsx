@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./Homepage.module.css";
 import { CategoryButton } from "../../components/HomePageC/CategoryButton/CategoryButton";
 import { SearchBar } from "../../components/HomePageC/SearchBar/SearchBar";
-import { getAllShops, getShops } from "../../utils/api";
+import { getShops } from "../../utils/api";
 import { Link } from "react-router-dom";
 
 // Format for contact informatoin
@@ -50,7 +50,6 @@ export class Homepage extends Component<{}, HomepageState> {
   async fetchData(type: string) {
     try {
       const shops = await getShops(type);
-      console.log(`Shops received from getShops: ${shops}`);
       const sellers = shops.map((shop: SellerData) => {
         const types = shop.categories.map((category) =>
           category.categoryName.toLowerCase()
