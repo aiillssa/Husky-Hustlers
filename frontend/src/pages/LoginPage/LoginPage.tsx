@@ -1,5 +1,5 @@
 import React, { memo, useState, FC } from "react";
-import { googleLogout, useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { googleLogIn, googleSignUp } from "../../utils/api";
 import classes from "./LoginPage.module.css";
 import resets from "../../components/_resets.module.css";
@@ -63,13 +63,6 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   });
 
   // Function to handle logging out the user
-  const logOut = () => {
-    googleLogout(); // Clear Google authentication
-    localStorage.removeItem("appJwt"); // Remove stored token from local storage
-    setErrorMessage(null); // Clear any error messages
-    setSignedIn(false); // Update the signed-in state to false
-    console.log("signed out");
-  };
 
   return (
     <div className={`${classes.root}`}>

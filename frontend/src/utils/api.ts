@@ -33,7 +33,7 @@ export const googleSignUp = async (
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
-    const response = await axios.post("/googleUp", {});
+    const response = await axios.post("/google/signUp", {});
     return { success: true };
     
   }catch (error) {
@@ -115,4 +115,11 @@ export const getShop = async (shopId: number): Promise<any> => {
   }
 };
 
+export const logOut = async (): Promise<void> => {
+  try {
+    const response = await axios.post(`/google/logOut`);
+  } catch (error: any){
+    console.log("Error in signing out: ", error);
+  }
+}
 export {};
