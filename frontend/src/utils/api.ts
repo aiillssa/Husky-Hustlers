@@ -14,7 +14,7 @@ export const googleLogIn = async (
 
     const { token, id, email, name } = response.data;
     // Save JWT in local storage
-    localStorage.setItem("appJwt", token);
+    localStorage.setItem("authToken", token);
     console.log("User's ID:", id);
     localStorage.setItem("userID", id);
     console.log("User's name:", name);
