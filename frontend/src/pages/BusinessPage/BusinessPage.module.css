@@ -7,7 +7,8 @@ html, body {
 
 .navButton {
   position: relative;
-  top: 79px;
+  top: 40px;
+  right: 180px;
   background-color: #4B2E83;
   color: #fff;
   text-decoration: none;
@@ -92,6 +93,8 @@ html, body {
 
 .section {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sectionTitle {

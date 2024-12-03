@@ -4,7 +4,8 @@ import { memo } from "react";
 import type { FC } from "react";
 import resets from "../../components/_resets.module.css";
 import classes from "./BusinessPage.module.css";
-import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton"; // Import the DeleteButton component
+import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton";
+import EditButton from "../../components/BusinessPage/EditButton/EditButton";
 
 interface Props {
   className?: string;
@@ -14,7 +15,7 @@ interface Props {
 export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [hasBusiness, setHasBusiness] = useState(false); // True will render the user's business page
   const [shopData, setShopData] = useState<any>(null);
-  const [contactInformation, setContactInformation] = useState<string | null>(null); // Assuming a stringified value
+  const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
 
   useEffect(() => {
@@ -28,7 +29,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
           setHasBusiness(data.hasShop);
           if (data.hasShop) {
             setShopData(data.shop);
-            setContactInformation(JSON.stringify(data.shop.contactInformation)); // Simplified for now
+            const contactInfoMap = new Map<string, string>(
+              Object.entries(data.shop.contactInformation || {}).map(
+                ([key, value]) => [key, String(value)] // Ensure value is cast to a string
+              )
+            );
+            setContactInformation(contactInfoMap);
           }
         })
         .catch((error) => {
@@ -40,6 +46,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const handleBusinessDeletion = () => {
     setHasBusiness(false);
     setShopData(null);
+    setContactInformation(null);
   };
 
   return (
@@ -54,36 +61,60 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
             <Link to="/pages/AddBusinessPage" className={classes.navButton}>
               Add my business
             </Link>
+            <div> 
+              <h2> Hello User, you have not created a store page yet.</h2>
+            </div>
           </div>
         ) : (
           <div className={classes.pageContainer}>
             {/* Header Section */}
             <div className={classes.header}>
+              <div className={classes.actionButtons}>
+                <EditButton
+                  idshops={shopData?.idshops || 0}
+                  description={shopData?.shopDescription || ""}
+                  contactInfo={contactInformation || new Map()} // Ensure it's a Map, even if empty
+                  onEdit={(updatedDescription, updatedContactInfo) => {
+                    setShopData({
+                      ...shopData,
+                      shopDescription: updatedDescription,
+                    });
+                    setContactInformation(updatedContactInfo);
+                  }}
+                />
+                <DeleteButton
+                  idshops={shopData?.idshops || 0}
+                  onDelete={handleBusinessDeletion}
+                />
+              </div>
               <div className={classes.profilePic}></div>
-              <div className={classes.shopName}>{shopData?.shopName || "Unnamed Shop"}</div>
+              <div className={classes.shopName}>
+                {shopData?.shopName || "Unnamed Shop"}
+              </div>
             </div>
-
-            <DeleteButton
-              idshops={shopData.idshops}
-              onDelete={handleBusinessDeletion}
-            />
 
             {/* Tabs Section */}
             <div className={classes.tabs}>
               <div
-                className={`${classes.tab} ${activeTab === "Basics" ? classes.activeTab : ""}`}
+                className={`${classes.tab} ${
+                  activeTab === "Basics" ? classes.activeTab : ""
+                }`}
                 onClick={() => setActiveTab("Basics")}
               >
                 Basics
               </div>
               <div
-                className={`${classes.tab} ${activeTab === "Other" ? classes.activeTab : ""}`}
+                className={`${classes.tab} ${
+                  activeTab === "Other" ? classes.activeTab : ""
+                }`}
                 onClick={() => setActiveTab("Other")}
               >
                 Other
               </div>
               <div
-                className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""}`}
+                className={`${classes.tab} ${
+                  activeTab === "Pictures" ? classes.activeTab : ""
+                }`}
                 onClick={() => setActiveTab("Pictures")}
               >
                 Pictures
@@ -97,17 +128,27 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
             <div className={classes.content}>
               {activeTab === "Basics" && (
                 <>
-                <div className={classes.section}>
-                  <div className={classes.sectionTitle}>Description:</div>
-                  <div className={classes.sectionContent}>{shopData.shopDescription || "No description available."}</div>
-                </div>
-                <div className={classes.section}>
-                  <div className={classes.sectionTitle}>Contact Info:</div>
-                  <div className={classes.sectionContent}>
-                    {contactInformation}
+                  <div className={classes.section}>
+                    <div className={classes.sectionTitle}>Description:</div>
+                    <div className={classes.sectionContent}>
+                      {shopData?.shopDescription || "No description available."}
+                    </div>
                   </div>
-                </div>
-              </>
+                  <div className={classes.section}>
+                    <div className={classes.sectionTitle}>Contact Info:</div>
+                    <div className={classes.sectionContent}>
+                      {contactInformation
+                        ? Array.from(contactInformation.entries()).map(
+                            ([key, value]) => (
+                              <div key={key}>
+                                <strong>{key}:</strong> {value}
+                              </div>
+                            )
+                          )
+                        : "No contact information available."}
+                    </div>
+                  </div>
+                </>
               )}
               {activeTab === "Pictures" && (
                 <div className={classes.picturesSection}>

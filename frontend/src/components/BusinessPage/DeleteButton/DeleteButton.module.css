@@ -3,6 +3,7 @@
 .container {
     position: absolute;
     right: 80px;
+    margin-top: 40px;
   }
   
   .deleteButton {
