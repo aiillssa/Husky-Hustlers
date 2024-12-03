@@ -4,11 +4,11 @@ nav {
   z-index: 10;
   width: 99vw;
   padding: 10px;
-  background-color: rgb(179, 129, 179);
+  background-color: rgba(255,255,255,.5);
   display: flex;
   justify-content: flex-end;
   position: sticky; /*When scrolling down, navigation bar follows */ 
-  top: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
 
 .nav-button {

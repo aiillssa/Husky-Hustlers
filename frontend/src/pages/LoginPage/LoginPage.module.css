@@ -12,6 +12,8 @@
   background-repeat: no-repeat;
   background-size: auto;
   overflow: hidden;
+  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
 }
 
 /* Navbar */
@@ -20,13 +22,10 @@
   justify-content: space-between;
   align-items: center;
   width: 70%;
-  margin-bottom: 5%; /* Adjust the value to control the spacing */
   font-size: 20px;
   font-weight: 200;
-  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
   white-space: nowrap;
-
+  padding-bottom: 50px;
 }
 
 /* Wrapper for caption and loginComponent */
@@ -43,7 +42,7 @@
 .caption {  
   position:relative;  
   color: black;
-  font-size: 75px;
+  font-size: 80px;
   line-height: 120%;
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -52,8 +51,7 @@
   width:40%;
   height: auto;
   text-align: left;
-  margin-top: 10px;
-  padding-top: 40px;
+  padding-top: 50px;
 }
 
 /* Login Component */
@@ -64,11 +62,10 @@
   justify-content: center;
   width: 40%;
   height: 50%;
-  padding: 10%;
   border-radius: 59px;
   background-color: #fff;
   box-shadow: 4px 4px 4px 4px #00000040;
-  gap: 10%;
+  gap: 50px;
 }
 
 /* Title and Login Text */
@@ -82,16 +79,12 @@
 .helloWelcome {
   color: #000;
   font-size: 48px;
-  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
 }
 
 .logInPage {
   color: #000;
   font-size: 20px;
   font-weight: 100;
-  font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
 }
 
 /* Login Form */
@@ -126,14 +119,6 @@
   background-size: contain;
 }
 
-/* Adjusting text elements */
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  background-color: black;
-}
-
 /* Profile info */
 p {
   font-size: 1.2rem;
@@ -154,4 +139,10 @@ img {
   color: red;
   font-weight: bold;
   margin-top: 10px;
+}
+
+
+.login_button, .logout_button {
+  width: 100%;
+  font-size: 17px;
 }

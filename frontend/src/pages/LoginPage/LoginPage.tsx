@@ -92,7 +92,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
 // All child components can use Google OAuth functionalities.
 export const LoginPage: FC<Props> = memo(function LoginPage(props: Props) {
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
+    <div className={classes.root}>
       <GoogleOAuthProvider clientId="410136854211-33d088kspbh9se3oej3sebpmj0jal8v7.apps.googleusercontent.com">
         <LoginPageContent {...props} />
       </GoogleOAuthProvider>
