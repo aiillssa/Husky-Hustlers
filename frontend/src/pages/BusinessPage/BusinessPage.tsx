@@ -59,13 +59,14 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
           <div className={classes.pageContainer}>
             {/* Header Section */}
             <div className={classes.header}>
-              <DeleteButton
-              idshops={shopData.idshops}
-              onDelete={handleBusinessDeletion}
-              />
               <div className={classes.profilePic}></div>
               <div className={classes.shopName}>{shopData?.shopName || "Unnamed Shop"}</div>
             </div>
+
+            <DeleteButton
+              idshops={shopData.idshops}
+              onDelete={handleBusinessDeletion}
+            />
 
             {/* Tabs Section */}
             <div className={classes.tabs}>
@@ -96,19 +97,17 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
             <div className={classes.content}>
               {activeTab === "Basics" && (
                 <>
-                  <div className={classes.section}>
-                    <div className={classes.sectionTitle}>Description:</div>
-                    {shopData?.shopDescription || "No description available."}
-                    <div className={classes.sectionContent}>
-                    </div>
+                <div className={classes.section}>
+                  <div className={classes.sectionTitle}>Description:</div>
+                  <div className={classes.sectionContent}>{shopData.shopDescription || "No description available."}</div>
+                </div>
+                <div className={classes.section}>
+                  <div className={classes.sectionTitle}>Contact Info:</div>
+                  <div className={classes.sectionContent}>
+                    {contactInformation}
                   </div>
-                  <div className={classes.section}>
-                    <div className={classes.sectionTitle}>Contact Info:</div>
-                    <div className={classes.sectionContent}>
-                      {contactInformation || "No contact information available."}
-                    </div>
-                  </div>
-                </>
+                </div>
+              </>
               )}
               {activeTab === "Pictures" && (
                 <div className={classes.picturesSection}>

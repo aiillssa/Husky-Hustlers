@@ -5,10 +5,6 @@ html, body {
   height: 100%; /* Ensures consistent vertical sizing */
 }
 
-.DeleteButton {
-  color: purple;
-}
-
 .navButton {
   position: relative;
   top: 79px;
@@ -35,6 +31,7 @@ html, body {
   display: flex;
   flex-direction: column; /* Align children in a column */
   box-sizing: border-box;
+  
 }
 
 .header {
