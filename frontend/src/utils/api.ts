@@ -42,30 +42,21 @@ export const googleSignUp = async (
   }
 };
 
-export const createShop = async (
-  shopName: string,
-  shopDescription: string,
-  ownerName: string,
-  contactInformation: string,
-  userIdUsers: string,
-  categories: string
-): Promise<void> => {
+export const createShop = async (businessData: string): Promise<number> => {
   try {
-    const response = await axios.post("/shops", {
-      shopName,
-      shopDescription,
-      ownerName,
-      contactInformation,
-      userIdUsers,
-      categories: [categories],
+    const response = await axios.post("/shops", businessData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-
     console.log("Shop created successfully:", response.data);
+    return response.status;
   } catch (error: any) {
     console.error(
       "Failed to create shop:",
       error.response ? error.response.data : error.message
     );
+    return error.response?.status;
   }
 };
 
