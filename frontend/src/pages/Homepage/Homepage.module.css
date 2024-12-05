@@ -4,7 +4,6 @@
   width: 100vw; /* Ensures it spans the full viewport width */
   height: 100vh; /* Optional: Ensures it spans the full viewport height */
   box-sizing: border-box; /* Prevents horizontal scrolling due to padding*/
-  background-color: white; /* Background color of homepage */
   background-size: cover; /* Ensures the background covers the container without overflowing */
   overflow-x: hidden; /* Prevents any horizontal scrolling if overflow occurs */
   margin: 0; /* Reset default margins */

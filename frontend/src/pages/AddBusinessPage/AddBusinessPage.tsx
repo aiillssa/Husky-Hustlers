@@ -4,7 +4,8 @@ import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 import { Navigate } from "react-router-dom";
-import UploadImageForm from "../../components/UploadImageFormC/UploadImageForm";
+import UploadImageForm from "../../components/uploadImageFormC/uploadImageForm";
+import { createShop } from "../../utils/api";
 
 interface ContactInformation {
   instagram: string;
@@ -138,15 +139,9 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
     console.log(businessData);
 
     try {
-      const response = await fetch("http://localhost:8088/shops/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(businessData),
-      });
+      const response = await createShop(JSON.stringify(businessData))
 
-      if (response.ok) {
+      if (response === 201) {
         // Handle success
         setSubmitted(true);
         setError(null);
@@ -162,14 +157,13 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         setRedirect(true);
       } else {
         // Handle errors at server
-        console.log(response.status);
-        if (response.status === 400) {
+        console.log(response);
+        if (response === 400) {
           setError(
             "Cannot add a business because you have already added one previously. Each person is only allowed to enter one."
           );
         } else {
-          const errorText = await response.text();
-          setError(errorText || "An error occurred while submitting the form.");
+          setError( "An error occurred while submitting the form.");
         }
       }
     } catch (err) {

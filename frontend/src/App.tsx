@@ -7,6 +7,7 @@ import Profile from './pages/ProfilePage/Profile';
 import BusinessPage from './pages/BusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
 import StorePage from './pages/BusinessPage/StorePage';
+import { initializeAxios } from './utils/axios';
 
 type AppState = {
   // Tracks whether the user is signed in
@@ -17,7 +18,9 @@ export class App extends Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
     // Initialize the state with the user not signed in
-    this.state = { signedIn: false };
+    const token = localStorage.getItem('authToken');
+    this.state = { signedIn: !!token };
+    initializeAxios(this.setSignedIn);
   }
 
   // Function to update the signed-in state
