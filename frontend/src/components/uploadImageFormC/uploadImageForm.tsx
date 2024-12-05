@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
+interface DataToSend {
+    images: FormData;
+    id: string;
+    source: string;
+  }
 const UploadImageForm = () => {
     const[ file, setFile ] = useState<File | null>(null);
     const[ progress, setProgress ] = useState({started: false, prcnt: 0});
@@ -20,8 +25,15 @@ const UploadImageForm = () => {
         setProgress(prevState => {
             return {...prevState, started: true}
         })
-        // what goes in here???
-        axios.post('http://localhost:8088/blobs/', formData, {
+        
+        const data: DataToSend = {
+            images: formData,
+            id: "test ID",
+            source: "test SOURCE",
+          };
+          
+        // what goes in here??
+        axios.post('http://localhost:8088/blobs/', data, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
