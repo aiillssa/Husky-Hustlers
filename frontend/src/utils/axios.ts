@@ -21,7 +21,7 @@ export const handleSignOut = () => {
     setSignedIn(false); 
     console.log("signed out");
     logOut(); // clears cookies
-    window.location.href = '/';
+    //window.location.href = '/';
   } else {
     console.error('Sign-out function not initialized.');
   }
