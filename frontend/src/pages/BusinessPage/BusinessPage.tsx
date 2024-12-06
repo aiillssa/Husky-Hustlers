@@ -6,6 +6,9 @@ import resets from "../../components/_resets.module.css";
 import classes from "./BusinessPage.module.css";
 import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton";
 import EditButton from "../../components/BusinessPage/EditButton/EditButton";
+import { getShopWithUserID } from "../../utils/api";
+import { setMaxIdleHTTPParsers } from "http";
+import { AxiosError } from "axios";
 
 interface Props {
   className?: string;
@@ -17,36 +20,52 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [shopData, setShopData] = useState<any>(null);
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
-
+  const [message, setMessage] = useState<string>("You do not have a shop right now. Click add your business button to add your business.");
+  
   useEffect(() => {
-    const userIDString = localStorage.getItem("userID");
-    if (userIDString) {
-      const userID = Number(userIDString);
-      // Fetch user data to check if they have a business
-      fetch(`http://localhost:8088/shops/user/${userID}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setHasBusiness(data.hasShop);
-          if (data.hasShop) {
-            setShopData(data.shop);
+    const fetchShop = async () => {
+      const userIDString = localStorage.getItem("userID");
+      if (userIDString) {
+        const userID = Number(userIDString);
+        console.log("userID",userID);
+        // Fetch user data to check if they have a business
+        try {
+          const res = await getShopWithUserID(userID);
+          console.log("fetched data", res);
+          if (res.hasShop) {
+            setHasBusiness(true);
+            setMessage("Successfully fetched your business data");
+            setShopData(res.shop);
             const contactInfoMap = new Map<string, string>(
-              Object.entries(data.shop.contactInformation || {}).map(
+              Object.entries(res.shop.contactInformation || {}).map(
                 ([key, value]) => [key, String(value)] // Ensure value is cast to a string
               )
             );
             setContactInformation(contactInfoMap);
+          } 
+        } catch (error: any) {
+          // Check if error is a 404 (no shop found)
+          if (error.response && error.response.status === 404) {
+            // User does not have a business
+            setHasBusiness(false);
+            setMessage("You do not have a shop right now. Click add your business button to add your business.");
+          } else {
+            // Other errors
+            setHasBusiness(false);
+            setMessage("Cannot fetch your business data.");
+            console.error("Error fetching user data:", error);
           }
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    }
+        }
+      }
+    };
+    fetchShop();
   }, []);
 
   const handleBusinessDeletion = () => {
     setHasBusiness(false);
     setShopData(null);
     setContactInformation(null);
+    setMessage("Your business has been deleted. Add a business again!");
   };
 
   return (
@@ -62,7 +81,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
               Add my business
             </Link>
             <div> 
-              <h2> Hello User, you have not created a store page yet.</h2>
+              <h2> {message}</h2>
             </div>
           </div>
         ) : (

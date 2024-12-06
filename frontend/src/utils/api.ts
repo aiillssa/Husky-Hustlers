@@ -89,6 +89,7 @@ export const getShops = async (type: string): Promise<any> => {
   }
 };
 
+// get shop information using shopID 
 export const getShop = async (shopId: number): Promise<any> => {
   try {
     const response = await axios.get(`shops/${shopId}`);
@@ -103,6 +104,23 @@ export const getShop = async (shopId: number): Promise<any> => {
       }`
     );
     console.error("Failed to fetch shops:", error);
+  }
+};
+
+// get shop infromation using userID
+export const getShopWithUserID = async (userID: number): Promise<any> => {
+  try {
+    const response = await axios.get(`shops/user/${userID}`);
+    const shopInfo = response.data;
+    return shopInfo;
+  } catch (error: any) {
+    console.error(
+      `Failed to get shops: ${
+        error.response ? error.response.data : error.message
+      }`
+    );
+    console.error("Failed to fetch shops:", error);
+    return error;
   }
 };
 
@@ -122,6 +140,7 @@ export const deleteShop = async (idshops: number): Promise<any> => {
   } catch (error: any) {
     // network issues or unexpected errors
     console.error("Failed to delete shops:", error);
+    return undefined;
   }
 };
 
