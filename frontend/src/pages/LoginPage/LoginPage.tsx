@@ -2,8 +2,6 @@ import React, { memo, useState, FC } from "react";
 import { useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { googleLogIn, googleSignUp } from "../../utils/api";
 import classes from "./LoginPage.module.css";
-import resets from "../../components/_resets.module.css";
-
 interface Props {
   // Prop to update the signed-in state in the parent component
   setSignedIn: (value: boolean) => void;
@@ -20,10 +18,10 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
       const result = await googleLogIn(code);
 
       if (result.success) {
-        // If login is successful, update the signed-in state and 
+        // If login is successful, update the signed-in state and
         // clear any previous error messages
         console.log("User logged in successfully!");
-        
+
         setSignedIn(true);
         setErrorMessage(null);
       } else {
@@ -45,7 +43,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
       const result = await googleSignUp(code);
 
       if (result.success) {
-        // If login is successful, update the signed-in state and 
+        // If login is successful, update the signed-in state and
         // clear any previous error messages
         console.log("User signed up successfully!");
         setErrorMessage(null);
@@ -68,10 +66,8 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
     <div className={`${classes.root}`}>
       {/* Navigation bar with brand and prompt */}
       <div className={classes.navBar}>
-        <div className={classes.huskyHustler}>Husky Hustler</div>
-        <div className={classes.logInSignUpFirstToSeeAllStuden}>
-          Log In / Sign Up First to See All Student Business
-        </div>
+        <span>Husky Hustler</span>
+        <span>Log In / Sign Up First to See All Student Business</span>
       </div>
 
       <div className={classes.content_wrapper}>
@@ -79,28 +75,30 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
         <div className={classes.caption}>
           A platform that fosters student businesses and UW community!
         </div>
-
-        {/* Login form */}
-        <div className={classes.loginComponent}>
-          <div className={classes.title}>
-            <div className={classes.helloWelcome}>Hello, Welcome!</div>
-            <div className={classes.logInPage}>Join Our Community</div>
-          </div>
-          <div>
+          {/* Login form */}
+          <div className={classes.loginComponent}>
+            <div className={classes.title}>
+              <div className={classes.helloWelcome}>
+                Welcome to Husky Hustler!
+              </div>
+              <div className={classes.join}>Join Our Community</div>
+            </div>
             <div className={classes.formLogIn}>
               {/* Display an error message if present */}
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
               {/* Button to trigger Google Sign up */}
-              <button className={classes.logout_button} onClick={() => signup()}>
-                  Sign up with Google
-                </button>
-                {/* Button to trigger Google login */}
-                <button className={classes.login_button} onClick={() => login()}>
-                  Sign in with Google
-                </button>
+              {/* Button to trigger Google login */}
+              <button className={classes.login_button} onClick={() => login()}>
+                Sign in with Google
+              </button>
+              <button
+                className={classes.logout_button}
+                onClick={() => signup()}
+              >
+                Don't have an account? Click here to sign up!
+              </button>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );
