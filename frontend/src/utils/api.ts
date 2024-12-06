@@ -113,4 +113,17 @@ export const logOut = async (): Promise<void> => {
     console.log("Error in signing out: ", error);
   }
 }
+
+export const deleteShop = async (idshops: number): Promise<any> => {
+  try {
+    const response = await axios.delete(`/shops/${idshops}`);
+    console.log(response.data)
+    return response;
+  } catch (error: any) {
+    // network issues or unexpected errors
+    console.error("Failed to delete shops:", error);
+  }
+};
+
+
 export {};
