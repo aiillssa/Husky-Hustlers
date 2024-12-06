@@ -12,7 +12,7 @@ export const googleLogIn = async (
     });
 
 
-    const { token, id, email, name } = response.data;
+    const { token, id, email, name, picture } = response.data;
     // Save JWT in local storage
     localStorage.setItem("authToken", token);
     console.log("User's ID:", id);
@@ -20,6 +20,7 @@ export const googleLogIn = async (
     console.log("User's name:", name);
     console.log("User's email:", email);
     console.log("jwt: ", token);
+    console.log("Google profile picture url: ", picture);
 
     return { success: true };
   } catch (error) {
