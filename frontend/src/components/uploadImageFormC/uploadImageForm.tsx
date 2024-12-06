@@ -19,21 +19,22 @@ const UploadImageForm = () => {
             return;
         }
         const formData = new FormData();
-        formData.append(file.name, file);
+        formData.append(file.name, (file));
 
         setMsg("Uploading...");
         setProgress(prevState => {
             return {...prevState, started: true}
         })
         
+        console.log("FORM DATA: ", formData.getAll)
         const data: DataToSend = {
             images: formData,
             id: "test ID",
             source: "test SOURCE",
-          };
+        };
           
         // what goes in here??
-        axios.post('http://localhost:8088/blobs/', data, {
+        axios.post('http://localhost:8088/blob/', data, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
@@ -49,7 +50,7 @@ const UploadImageForm = () => {
             console.log(res.data)})
         .catch(err => {
             setMsg("Upload failed");
-            console.error(err)})
+            console.error(err.response.data)})
     }
 
     return (

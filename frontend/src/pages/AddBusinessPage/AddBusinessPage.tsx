@@ -4,7 +4,7 @@ import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 import { Navigate } from "react-router-dom";
-import UploadImageForm from "../../components/uploadImageFormC/uploadImageForm";
+import UploadImageForm from "../../components/UploadImageFormC/UploadImageForm";
 import { createShop } from "../../utils/api";
 
 interface ContactInformation {
