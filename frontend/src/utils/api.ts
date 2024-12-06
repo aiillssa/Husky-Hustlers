@@ -33,7 +33,7 @@ export const googleSignUp = async (
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
-    const response = await axios.post("/google/signUp", {});
+    const response = await axios.post("/google/signUp", {code});
     return { success: true };
     
   }catch (error) {

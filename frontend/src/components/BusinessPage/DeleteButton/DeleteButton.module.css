@@ -1,0 +1,40 @@
+/* DeleteButton.module.css */
+
+.container {
+    position: absolute;
+    right: 80px;
+    margin-top: 40px;
+  }
+  
+  .deleteButton {
+    background-color: #ff4d4f; /* Red color for delete action */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 160px;
+    height: 40px;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff7875; /* Lighter red on hover */
+  }
+  
+  .deleteButton:focus {
+    outline: none;
+  }
+  
+  .successMessage {
+    margin-top: 10px;
+    color: green;
+    font-size: 14px;
+  }
+  
+  .errorMessage {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+  }
+  
