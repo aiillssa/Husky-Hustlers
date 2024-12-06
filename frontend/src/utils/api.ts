@@ -12,7 +12,7 @@ export const googleLogIn = async (
     });
 
 
-    const { token, id, email, name } = response.data;
+    const { token, id, email, name, picture } = response.data;
     // Save JWT in local storage
     localStorage.setItem("authToken", token);
     console.log("User's ID:", id);
@@ -20,6 +20,7 @@ export const googleLogIn = async (
     console.log("User's name:", name);
     console.log("User's email:", email);
     console.log("jwt: ", token);
+    console.log("Google profile picture url: ", picture);
 
     return { success: true };
   } catch (error) {
@@ -89,6 +90,7 @@ export const getShops = async (type: string): Promise<any> => {
   }
 };
 
+// get shop information using shopID 
 export const getShop = async (shopId: number): Promise<any> => {
   try {
     const response = await axios.get(`shops/${shopId}`);
@@ -106,6 +108,23 @@ export const getShop = async (shopId: number): Promise<any> => {
   }
 };
 
+// get shop infromation using userID
+export const getShopWithUserID = async (userID: number): Promise<any> => {
+  try {
+    const response = await axios.get(`shops/user/${userID}`);
+    const shopInfo = response.data;
+    return shopInfo;
+  } catch (error: any) {
+    console.error(
+      `Failed to get shops: ${
+        error.response ? error.response.data : error.message
+      }`
+    );
+    console.error("Failed to fetch shops:", error);
+    return error;
+  }
+};
+
 export const logOut = async (): Promise<void> => {
   try {
     const response = await axios.post(`/google/logOut`);
@@ -113,4 +132,18 @@ export const logOut = async (): Promise<void> => {
     console.log("Error in signing out: ", error);
   }
 }
+
+export const deleteShop = async (idshops: number): Promise<any> => {
+  try {
+    const response = await axios.delete(`/shops/${idshops}`);
+    console.log(response.data)
+    return response;
+  } catch (error: any) {
+    // network issues or unexpected errors
+    console.error("Failed to delete shops:", error);
+    return undefined;
+  }
+};
+
+
 export {};
