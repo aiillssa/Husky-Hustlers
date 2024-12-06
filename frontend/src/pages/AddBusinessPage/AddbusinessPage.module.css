@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
   background-size: auto;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 .addYourBusiness {
