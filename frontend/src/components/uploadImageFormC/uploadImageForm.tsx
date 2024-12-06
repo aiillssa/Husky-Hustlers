@@ -13,15 +13,21 @@ const UploadImageForm = () => {
             setMsg("no file selected");
             return;
         }
+
         const formData = new FormData();
-        formData.append(file.name, file);
+        formData.append('file', file);
+        //CHANGE THIS to be userID 
+        formData.append("userID", "1");
+        formData.append("source", "banner");
+
 
         setMsg("Uploading...");
         setProgress(prevState => {
             return {...prevState, started: true}
         })
-        // what goes in here???
-        axios.post('http://localhost:8088/blobs/', formData, {
+
+
+        axios.post('http://localhost:8088/blob/', formData, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
@@ -29,7 +35,7 @@ const UploadImageForm = () => {
                 return {...prevState, prcnt:0}
             }) },
             headers: {
-                "Custome-Header": "value"
+                "Custome-Header": "value",
             }
         })
         .then(res => {
