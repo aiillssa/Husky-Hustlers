@@ -3,11 +3,6 @@ import axios from 'axios';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
-interface DataToSend {
-    images: FormData;
-    id: string;
-    source: string;
-  }
 const UploadBannerImage = () => {
     //const fs = require('fs');
 
