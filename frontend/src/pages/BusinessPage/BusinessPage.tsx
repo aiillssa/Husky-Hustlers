@@ -73,7 +73,11 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
       const bannerURLtest = `http://localhost:8088/blob/${id}/${source}`;
 
       if(DEBUG) console.log(bannerURLtest);
+      if(DEBUG) console.log(id);
+      if(DEBUG) console.log(source);
       setBannerURL(bannerURLtest);
+
+      if(DEBUG) console.log("banner URL", bannerURL)
       
     };
 
