@@ -95,6 +95,7 @@ export class Homepage extends Component<{}, HomepageState> {
 
     return (
       <div className={classes.root}>
+        
         <SearchBar
           className={classes.searchBar}
           onSearchChange={this.handleSearchChange}
@@ -112,7 +113,7 @@ export class Homepage extends Component<{}, HomepageState> {
           >
             Show All
           </div>
-
+          <img src="http://localhost:8088/blob/1/banner" style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
           {/* Categories */}
           <CategoryButton
             type="food"

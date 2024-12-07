@@ -10,6 +10,8 @@ import { getShopWithUserID } from "../../utils/api";
 import { setMaxIdleHTTPParsers } from "http";
 import axios from "axios";
 
+const DEBUG : boolean = true;
+
 interface Props {
   className?: string;
 }
@@ -24,6 +26,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [bannerURL, setBannerURL] = useState<string>("No banner image");
   
   useEffect(() => {
+    console.log("Business page called")
     const fetchShop = async () => {
       const userIDString = localStorage.getItem("userID"); // redundant with line 64. Can we factor this out?????
       if (userIDString) {
@@ -61,24 +64,17 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
     };
 
     const fetchBanner = async () => {
+      if(DEBUG) console.log("inside fetchBanner")
+      
+      //const id = 'testID';
       //const id = Number(localStorage.getItem("userID"));
-      const source = 'banner';
-      axios.get('http://localhost:8088/blob/1/${source}')
-      .then(res => {
-        const imageURL = res.data; 
-        setBannerURL(imageURL);
-      })
-      .catch(err => {
-        setMessage("banner unable to be displayed");
-        console.error(err.response.data)})
-      // axios.get('http://localhost:8088/blob/${id}/${source}')
-      // .then(res => {
-      //   const imageURL = res.data; 
-      //   setBannerURL(imageURL);
-      // })
-      // .catch(err => {
-      //   setMessage("banner unable to be displayed");
-      //   console.error(err.response.data)})
+      const id = 'userIDtest';
+      const source = 'sourcetest';
+      const bannerURLtest = `http://localhost:8088/blob/${id}/${source}`;
+
+      if(DEBUG) console.log(bannerURLtest);
+      setBannerURL(bannerURLtest);
+      
     };
 
     fetchShop();
@@ -111,9 +107,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         ) : (
           <div className={classes.pageContainer}>
             {/* Header Section */}
+            {/** BANNER */}
+            <img src={bannerURL} style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
             <div className={classes.header}>
-              {/** BANNER */}
-              <img src={bannerURL} style={{width: "300px", height:"400px"}}/>
+
+              
+              
               <div className={classes.actionButtons}>
                 <EditButton
                   idshops={shopData?.idshops || 0}

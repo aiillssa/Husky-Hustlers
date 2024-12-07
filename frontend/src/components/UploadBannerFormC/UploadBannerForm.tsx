@@ -8,7 +8,7 @@ interface DataToSend {
     id: string;
     source: string;
   }
-const UploadImageForm = () => {
+const UploadBannerImage = () => {
     //const fs = require('fs');
 
     const[ file, setFile ] = useState<File | null>(null);
@@ -16,17 +16,18 @@ const UploadImageForm = () => {
     const[ msg, setMsg ] = useState("");
     
     function handleUpload() {
+        console.log("Entered handleUpload")
         if(!file) {
             setMsg("no file selected");
             return;
         }
         
-        // localStorage.getItem("userID")
+        
         
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('id', 'userID test');
-        formData.append('source', 'source test');
+        formData.append('id', 'userIDtest'); // localStorage.getItem("userID")
+        formData.append('source', 'sourcetest');
 
         setMsg("Uploading...");
         setProgress(prevState => {
@@ -54,14 +55,13 @@ const UploadImageForm = () => {
     return (
         <>
             <div>
-                <h3>Upload your business gallery images here:</h3>
+                <h3>Upload your business page banner here (Dimensions 1200px by 400px):</h3>
                 <input onChange={ (event) => {
                         if(!event.target.files) {
                             return;
                         }
                         setFile(event.target.files[0])
                     }} type='file'/>
-                <br/>
                 <button onClick={ handleUpload }>Upload</button>
                 {msg && <span>{msg}</span>}
                 <br/>
@@ -74,4 +74,4 @@ const UploadImageForm = () => {
     )
 };
 
-export default UploadImageForm;
+export default UploadBannerImage;
