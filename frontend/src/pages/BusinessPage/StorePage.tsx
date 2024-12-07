@@ -3,12 +3,15 @@ import { getShop } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import classes from "./StorePage.module.css";
 
+const DEBUG : boolean = true;
+
 function StorePage() {
   const { shopId } = useParams<{ shopId: string }>(); /*Gets ShopID */
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null);
   const [shopName, setShopName] = useState<string>("");
   const [shopDescription, setShopDescription] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
+  const [bannerURL, setBannerURL] = useState<string>("No banner image");
 
   // Fetch shop data when shopId is available
   useEffect(() => {
@@ -27,12 +30,37 @@ function StorePage() {
           console.error("Error fetching data:", err);
         }
       };
+
+      const fetchBanner = async () => {
+        if(DEBUG) console.log("inside fetchBanner")
+        
+        //const id = 'testID';
+        const id = Number(localStorage.getItem("userID"));
+        //const id = 'userIDtest';
+        const bannerURLtest = `http://localhost:8088/blob/${id}/banner`;
+  
+        if(DEBUG) console.log(bannerURLtest);
+        if(DEBUG) console.log(id);
+        setBannerURL(bannerURLtest);
+  
+        if(DEBUG) console.log("banner URL", bannerURL)
+        
+      };
+
+      
       fetchData();
+      fetchBanner();
     }
   }, [shopId]);
 
   return (
     <div className={classes.pageContainer}>
+
+      
+      {/** BANNER */}
+      <img src={bannerURL} style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
+
+
       {/* Header Section */}
       <div className={classes.header}>
         <div className={classes.profilePic}></div>
