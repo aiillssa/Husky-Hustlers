@@ -21,6 +21,7 @@ const UploadImageForm = () => {
             return;
         }
         
+        // localStorage.getItem("userID")
         
         const formData = new FormData();
         formData.append('file', file);

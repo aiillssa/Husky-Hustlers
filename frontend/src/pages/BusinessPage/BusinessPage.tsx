@@ -8,7 +8,7 @@ import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButto
 import EditButton from "../../components/BusinessPage/EditButton/EditButton";
 import { getShopWithUserID } from "../../utils/api";
 import { setMaxIdleHTTPParsers } from "http";
-import { AxiosError } from "axios";
+import axios from "axios";
 
 interface Props {
   className?: string;
@@ -21,10 +21,11 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
   const [message, setMessage] = useState<string>("You do not have a shop right now. Click add your business button to add your business.");
+  const [bannerURL, setBannerURL] = useState<string>("No banner image");
   
   useEffect(() => {
     const fetchShop = async () => {
-      const userIDString = localStorage.getItem("userID");
+      const userIDString = localStorage.getItem("userID"); // redundant with line 64. Can we factor this out?????
       if (userIDString) {
         const userID = Number(userIDString);
         console.log("userID",userID);
@@ -58,7 +59,30 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         }
       }
     };
+
+    const fetchBanner = async () => {
+      //const id = Number(localStorage.getItem("userID"));
+      const source = 'banner';
+      axios.get('http://localhost:8088/blob/1/${source}')
+      .then(res => {
+        const imageURL = res.data; 
+        setBannerURL(imageURL);
+      })
+      .catch(err => {
+        setMessage("banner unable to be displayed");
+        console.error(err.response.data)})
+      // axios.get('http://localhost:8088/blob/${id}/${source}')
+      // .then(res => {
+      //   const imageURL = res.data; 
+      //   setBannerURL(imageURL);
+      // })
+      // .catch(err => {
+      //   setMessage("banner unable to be displayed");
+      //   console.error(err.response.data)})
+    };
+
     fetchShop();
+    fetchBanner();
   }, []);
 
   const handleBusinessDeletion = () => {
@@ -88,6 +112,8 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
           <div className={classes.pageContainer}>
             {/* Header Section */}
             <div className={classes.header}>
+              {/** BANNER */}
+              <img src={bannerURL} style={{width: "300px", height:"400px"}}/>
               <div className={classes.actionButtons}>
                 <EditButton
                   idshops={shopData?.idshops || 0}
