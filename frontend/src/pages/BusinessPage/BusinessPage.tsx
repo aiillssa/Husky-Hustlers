@@ -67,14 +67,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
       if(DEBUG) console.log("inside fetchBanner")
       
       //const id = 'testID';
-      //const id = Number(localStorage.getItem("userID"));
-      const id = 'userIDtest';
-      const source = 'sourcetest';
-      const bannerURLtest = `http://localhost:8088/blob/${id}/${source}`;
+      const id = Number(localStorage.getItem("userID"));
+      //const id = 'userIDtest';
+      const bannerURLtest = `http://localhost:8088/blob/${id}/banner`;
 
       if(DEBUG) console.log(bannerURLtest);
       if(DEBUG) console.log(id);
-      if(DEBUG) console.log(source);
       setBannerURL(bannerURLtest);
 
       if(DEBUG) console.log("banner URL", bannerURL)

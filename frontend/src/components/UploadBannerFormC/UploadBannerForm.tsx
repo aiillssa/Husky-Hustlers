@@ -25,9 +25,17 @@ const UploadBannerImage = () => {
         
         
         const formData = new FormData();
-        formData.append('file', file);
-        formData.append('id', 'userIDtest'); // localStorage.getItem("userID")
-        formData.append('source', 'sourcetest');
+        const userID = localStorage.getItem("userID");
+        if( typeof userID === 'string') {
+            formData.append('file', file);
+            formData.append('id', userID); 
+            formData.append('source', 'banner');
+        } else {
+            console.error("userID is null. localStorage.getItem is faulty");
+            return;
+        }
+
+        
 
         setMsg("Uploading...");
         setProgress(prevState => {
