@@ -89,7 +89,7 @@ const UploadProductImages = () => {
   const handleCaptionChange = (index: number, value: string) => {
     const wordCount = value.split(/\s+/).length;
 
-    if (wordCount <= 25) {
+    if (wordCount <= 25 || wordCount >= 0) {
       const newCaptions = [...captions];
       newCaptions[index] = value;
       setCaptions(newCaptions);
@@ -111,7 +111,7 @@ const UploadProductImages = () => {
   return (
     <>
       <div>
-        <h3>Upload your business page banner images:</h3>
+        <h3>Upload your product images with captions and prices:</h3>
         <input
           id="fileInput"
           type="file"
@@ -139,7 +139,7 @@ const UploadProductImages = () => {
                     onChange={(e) => handleCaptionChange(index, e.target.value)}
                     maxLength={500} // Optional max character limit
                   />
-                  {captions[index].split(/\s+/).length > 25 && (
+                  {captions[index].split(/\s+/).length > 25 || captions[index].split(/\s+/).length === 0 && (
                     <span style={{ color: 'red' }}>Reached limit of 25 words</span>
                   )}
                 </div>
@@ -166,7 +166,7 @@ const UploadProductImages = () => {
         <br />
         <button onClick={handleUpload}>Upload</button>
         {msg && <span>{msg}</span>}
-        
+
         <br />
         {progress.started && <progress max="100" value={progress.prcnt}></progress>}
 

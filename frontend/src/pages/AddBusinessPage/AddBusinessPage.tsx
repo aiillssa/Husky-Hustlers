@@ -6,6 +6,7 @@ import InputField from "../../components/AddBusinessPageC/InputField/InputField"
 import { Navigate } from "react-router-dom";
 import UploadBannerImage from "../../components/UploadBannerFormC/UploadBannerForm";
 import { createShop } from "../../utils/api";
+import UploadProductImages from "../../components/UploadMultiProductImgGridC/UploadMultiProductImgGrid";
 
 interface ContactInformation {
   instagram: string;
@@ -389,6 +390,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
 
         {/*Upload image*/}
         <UploadBannerImage/>
+
+        <UploadProductImages/>
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">
