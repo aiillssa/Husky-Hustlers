@@ -60,7 +60,7 @@ const UploadProductImages = () => {
     setProgress({ started: true, prcnt: 0 });
 
     // Axios POST request to upload files
-    axios.post('http://localhost:8088/blob/', formData, {
+    axios.post('http://localhost:8088/blob/product', formData, {
       onUploadProgress: (progressEvent) => {
         setProgress(prevState => {
           if (progressEvent.progress !== undefined) {
