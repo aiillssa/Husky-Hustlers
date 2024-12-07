@@ -8,7 +8,9 @@ import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButto
 import EditButton from "../../components/BusinessPage/EditButton/EditButton";
 import { getShopWithUserID } from "../../utils/api";
 import { setMaxIdleHTTPParsers } from "http";
-import { AxiosError } from "axios";
+import axios from "axios";
+
+const DEBUG : boolean = true;
 
 interface Props {
   className?: string;
@@ -21,10 +23,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
   const [message, setMessage] = useState<string>("You do not have a shop right now. Click add your business button to add your business.");
+  const [bannerURL, setBannerURL] = useState<string>("No banner image");
   
   useEffect(() => {
+    console.log("Business page called")
     const fetchShop = async () => {
-      const userIDString = localStorage.getItem("userID");
+      const userIDString = localStorage.getItem("userID"); // redundant with line 64. Can we factor this out?????
       if (userIDString) {
         const userID = Number(userIDString);
         console.log("userID",userID);
@@ -58,7 +62,25 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         }
       }
     };
+
+    const fetchBanner = async () => {
+      if(DEBUG) console.log("inside fetchBanner")
+      
+      //const id = 'testID';
+      const id = Number(localStorage.getItem("userID"));
+      //const id = 'userIDtest';
+      const bannerURLtest = `http://localhost:8088/blob/${id}/banner`;
+
+      if(DEBUG) console.log(bannerURLtest);
+      if(DEBUG) console.log(id);
+      setBannerURL(bannerURLtest);
+
+      if(DEBUG) console.log("banner URL", bannerURL)
+      
+    };
+
     fetchShop();
+    fetchBanner();
   }, []);
 
   const handleBusinessDeletion = () => {
@@ -87,7 +109,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         ) : (
           <div className={classes.pageContainer}>
             {/* Header Section */}
+            {/** BANNER */}
+            <img src={bannerURL} style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
             <div className={classes.header}>
+
+              
+              
               <div className={classes.actionButtons}>
                 <EditButton
                   idshops={shopData?.idshops || 0}

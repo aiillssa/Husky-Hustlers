@@ -4,7 +4,7 @@ import classes from "./AddbusinessPage.module.css";
 import Button from "../../components/Button";
 import InputField from "../../components/AddBusinessPageC/InputField/InputField";
 import { Navigate } from "react-router-dom";
-import UploadImageForm from "../../components/uploadImageFormC/uploadImageForm";
+import UploadBannerImage from "../../components/UploadBannerFormC/UploadBannerForm";
 import { createShop } from "../../utils/api";
 
 interface ContactInformation {
@@ -387,8 +387,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
           </>
         )}
 
-        {/* TODO: ask image, description, and price about all products they want to list from users */}
-        <UploadImageForm/>
+        {/*Upload image*/}
+        <UploadBannerImage/>
 
         {/* Submit Button */}
         <Button className={classes.button} type="submit">

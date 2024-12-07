@@ -95,6 +95,7 @@ export class Homepage extends Component<{}, HomepageState> {
 
     return (
       <div className={classes.root}>
+        
         <SearchBar
           className={classes.searchBar}
           onSearchChange={this.handleSearchChange}
@@ -112,7 +113,6 @@ export class Homepage extends Component<{}, HomepageState> {
           >
             Show All
           </div>
-
           {/* Categories */}
           <CategoryButton
             type="food"

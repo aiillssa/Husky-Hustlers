@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+// https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
+
+
+const UploadMultiProductImgGrid = () => {
+    //const fs = require('fs');
+
+    const[ files, setFiles ] = useState([]);
+    const[ progress, setProgress ] = useState({started: false, prcnt: 0});
+    const[ msg, setMsg ] = useState("");
+    const[captions, setCaptions] = useState([]);
+    
+    function handleUpload() {
+        console.log("Entered handleUpload")
+        if(!file) {
+            setMsg("no file selected");
+            return;
+        }
+        
+        // State to hold files and captions
+    
+
+    // Handle file input change
+    const handleFileChange = (e) => {
+        const files = e.target.files;
+        const newImages = [];
+        for (let i = 0; i < files.length; i++) {
+        newImages.push(files[i]);
+        }
+        setFiles(newImages);
+    };
+
+    // Handle caption input change
+    const handleCaptionChange = (index, e) => {
+        const newCaptions = [...captions];
+        newCaptions[index] = e.target.value;
+        setCaptions(newCaptions);
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        // Append images and captions to FormData
+        files.forEach((image, index) => {
+            formData.append('images', image);
+            formData.append('captions', captions[index]);
+        });
+
+        try {
+        // Send data to the backend via Axios POST request
+        const response = await axios.post('your-server-endpoint', formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            },
+        });
+        console.log(response.data); // Handle server response
+        } catch (error) {
+        console.error('Error uploading images:', error);
+        }
+    };
+    }
+
+    return (
+        <>
+            <div>
+                <h3>You may upload multiple images with caption</h3>
+                <input onChange={ (event) => {
+                        if(!event.target.files) {
+                            return;
+                        }
+                        setFile(event.target.files[0])
+                    }} type='file'/>
+                <button onClick={ handleUpload }>Upload</button>
+                {msg && <span>{msg}</span>}
+                <br/>
+                {progress.started && <progress max="100" value={progress.prcnt}></progress>}
+                
+            </div>
+            
+        </>
+        
+    )
+};
+
+export default UploadMultiProductImgGrid;
