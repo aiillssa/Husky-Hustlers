@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
-const UploadBannerImage = () => {
+const UploadHomepageIcon = () => {
     //const fs = require('fs');
 
     const[ file, setFile ] = useState<File | null>(null);
@@ -24,7 +24,7 @@ const UploadBannerImage = () => {
         if( typeof userID === 'string') {
             formData.append('file', file);
             formData.append('id', userID); 
-            formData.append('source', 'profile');
+            formData.append('source', 'homepage');
         } else {
             console.error("userID is null. localStorage.getItem is faulty");
             return;
@@ -37,8 +37,7 @@ const UploadBannerImage = () => {
             return {...prevState, started: true}
         })
 
-        // change this route!!!
-        axios.post('http://localhost:8088/blob/profile', formData, {
+        axios.post('http://localhost:8088/blob/', formData, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
@@ -58,7 +57,7 @@ const UploadBannerImage = () => {
     return (
         <>
             <div>
-                <h3>Upload your profile picture here:</h3>
+                <h3>Upload your store homepage icon here:</h3>
                 <input onChange={ (event) => {
                         if(!event.target.files) {
                             return;
@@ -77,4 +76,4 @@ const UploadBannerImage = () => {
     )
 };
 
-export default UploadBannerImage;
+export default UploadHomepageIcon;
