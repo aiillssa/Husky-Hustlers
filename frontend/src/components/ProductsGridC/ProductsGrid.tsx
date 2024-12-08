@@ -26,8 +26,6 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
         loading: true,
         error: null,
     });
-    const [imageList, setImageList] = useState<string[]>([]);
-
 
     // Get the userID from localStorage
     useEffect(() => {
@@ -77,19 +75,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                         if (DEBUG) console.log("no more image products for userID", userId);
                         break;
                     }
-
-
                 }
-
-                setImageList(res.data.blobs);
                 setState({ images: imageUrls, loading: false, error: null });  // Assuming 'this' context is correct here
-                // list = res;
             } catch (err) {
                 console.error('Error in getting list of blobs', err);
             }
-
-
-
 
             // Try to load images until an error occurs (assuming missing image if 404) 
 

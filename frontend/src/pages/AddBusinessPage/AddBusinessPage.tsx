@@ -6,7 +6,8 @@ import InputField from "../../components/AddBusinessPageC/InputField/InputField"
 import { Navigate } from "react-router-dom";
 import UploadBannerImage from "../../components/UploadBannerFormC/UploadBannerForm";
 import { createShop } from "../../utils/api";
-import UploadProductImages from "../../components/UploadMultiProductImgGridC/UploadMultiProductImgGrid";
+import { UploadProductImages } from "../../components/UploadMultiProductImgGridC/UploadMultiProductImgGrid";
+import UploadHomepageIcon from "../../components/UploadHomepageIconC/UploadHomepageIcon";
 
 interface ContactInformation {
   instagram: string;
@@ -21,6 +22,12 @@ interface Shops {
   userIdUsers: number;
   categories: string[];
   necessaryDescription?: Record<string, string>;
+  products?: Product[];
+}
+
+export type Product = {
+  caption: string,
+  price: string,
 }
 
 interface Props {
@@ -50,6 +57,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
   // State for form field errors
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
+  const [products, setProducts] = useState<Product[]>([])
+
   // Categories for users to select
   const categories: string[] = [
     "Food",
@@ -58,6 +67,15 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
     "Craft",
     "Resell",
   ];
+
+  const uploadImageCallback = (products: Product[]) => {
+    console.log("updated products");
+    if (products.length == 0) {
+      return;
+    }
+    setProducts(products);
+
+  }
 
   // Handle category change
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -135,8 +153,9 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
       userIdUsers: Number(localStorage.getItem("userID")),
       categories: [selectedCategory], // Adjusted to be an array of one category
       necessaryDescription,
+      products
     };
-    console.log(businessData);
+    console.log("products!", businessData);
 
     try {
       const response = await createShop(JSON.stringify(businessData));
@@ -304,35 +323,35 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         {(selectedCategory === "Artwork" ||
           selectedCategory === "Craft" ||
           selectedCategory === "Resell") && (
-          <>
-            {/* Pick-up option: delivery on campus, pickup at seller’s location, digital */}
-            <div className={classes.inputGroup}>
-              <label className={classes.label}>Pick-up option</label>
-              <select
-                className={classes.select}
-                value={necessaryDescription["Pick-up option (ACR)"] || ""}
-                onChange={(e) =>
-                  handleNecessaryDescriptionChange(
-                    "Pick-up option (ACR)",
-                    e.target.value
-                  )
-                }
-              >
-                <option value="">Select an option</option>
-                <option value="delivery on campus">Delivery on campus</option>
-                <option value="pickup at seller’s location">
-                  Pickup at seller’s location
-                </option>
-                <option value="digital">Digital</option>
-              </select>
-              {errors["Pick-up option (ACR)"] && (
-                <div className={classes.errorMessage}>
-                  {errors["Pick-up option (ACR)"]}
-                </div>
-              )}
-            </div>
-          </>
-        )}
+            <>
+              {/* Pick-up option: delivery on campus, pickup at seller’s location, digital */}
+              <div className={classes.inputGroup}>
+                <label className={classes.label}>Pick-up option</label>
+                <select
+                  className={classes.select}
+                  value={necessaryDescription["Pick-up option (ACR)"] || ""}
+                  onChange={(e) =>
+                    handleNecessaryDescriptionChange(
+                      "Pick-up option (ACR)",
+                      e.target.value
+                    )
+                  }
+                >
+                  <option value="">Select an option</option>
+                  <option value="delivery on campus">Delivery on campus</option>
+                  <option value="pickup at seller’s location">
+                    Pickup at seller’s location
+                  </option>
+                  <option value="digital">Digital</option>
+                </select>
+                {errors["Pick-up option (ACR)"] && (
+                  <div className={classes.errorMessage}>
+                    {errors["Pick-up option (ACR)"]}
+                  </div>
+                )}
+              </div>
+            </>
+          )}
 
         {selectedCategory === "Service" && (
           <>
@@ -382,9 +401,11 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         )}
 
         {/*Upload image*/}
+        <UploadHomepageIcon />
+
         <UploadBannerImage />
 
-        <UploadProductImages/>
+        <UploadProductImages productsCB={uploadImageCallback} />
 
         {/* Submit Button */}
         <Button className={classes.button} type="button" onClick={handleSubmit}>
