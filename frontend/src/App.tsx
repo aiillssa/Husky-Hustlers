@@ -19,7 +19,7 @@ export class App extends Component<{}, AppState> {
     super(props);
     // Initialize the state with the user not signed in
     const token = localStorage.getItem('authToken');
-    this.state = { signedIn: false };
+    this.state = { signedIn: !!token };
     initializeAxios(this.setSignedIn);
   }
 
@@ -53,7 +53,7 @@ export class App extends Component<{}, AppState> {
               </Route>
 
               {/* Routes without the Navbar */}
-              
+
               {/* Redirect to Homepage by default */}
               <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
