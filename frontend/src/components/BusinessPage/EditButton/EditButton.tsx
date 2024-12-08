@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import classes from "./EditButton.module.css";
+import { updateShop } from "../../../utils/api";
 
 interface EditButtonProps {
   idshops: number;
   description: string;
   contactInfo: Map<string, string>;
   onEdit: (updatedDescription: string, updatedContactInfo: Map<string, string>) => void;
+  onSave: () => void;
 }
 
 const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactInfo, onEdit }) => {
@@ -17,27 +19,14 @@ const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactIn
 
   const handleSave = async () => {
     try {
+      console.log()
       const contactInfoObj = Object.fromEntries(updatedContactInfo);
-      const response = await fetch(`http://localhost:8088/shops/${idshops}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          shopDescription: updatedDescription,
-          contactInformation: contactInfoObj,
-        }),
-      });
+      const response = updateShop(updatedDescription, updatedContactInfo, idshops);
+      setUpdatedDescription(updatedDescription);
+      setUpdatedContactInfo(updatedContactInfo);
 
-      if (response.ok) {
-        setMessage("Business information updated successfully.");
-        setMessageType("success");
-        setIsEditing(false);
-        onEdit(updatedDescription, updatedContactInfo); // Call the parent callback
-      } else {
-        setMessage("Failed to update business information. Please try again.");
-        setMessageType("error");
-      }
+      onEdit(updatedDescription, updatedContactInfo);
+     
     } catch (error) {
       console.error("Error updating business:", error);
       setMessage("An error occurred while updating your business.");

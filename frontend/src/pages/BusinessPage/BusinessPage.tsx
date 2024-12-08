@@ -6,7 +6,7 @@ import resets from "../../components/_resets.module.css";
 import classes from "./BusinessPage.module.css";
 import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton";
 import EditButton from "../../components/BusinessPage/EditButton/EditButton";
-import { getShopWithUserID } from "../../utils/api";
+import { getShopWithUserID, updateShop } from "../../utils/api";
 import { setMaxIdleHTTPParsers } from "http";
 import axios from "axios";
 
@@ -20,6 +20,7 @@ interface Props {
 export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
   const [hasBusiness, setHasBusiness] = useState(false); // True will render the user's business page
   const [shopData, setShopData] = useState<any>(null);
+  const [shopDescription, setShopDescription] = useState<string>();
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
   const [message, setMessage] = useState<string>("You do not have a shop right now. Click add your business button to add your business.");
@@ -90,6 +91,23 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
     setMessage("Your business has been deleted. Add a business again!");
   };
 
+  interface ContactInformation {
+    instagram: string;
+  }
+
+  interface Shops {
+    shopName: string;
+    shopDescription: string;
+    ownerName: string;
+    contactInformation: ContactInformation;
+    userIdUsers: number;
+    categories: string[];
+    necessaryDescription?: Record<string, string>;
+  }
+
+
+
+
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       {/* Main container for the business information */}
@@ -123,10 +141,16 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                   onEdit={(updatedDescription, updatedContactInfo) => {
                     setShopData({
                       ...shopData,
-                      shopDescription: updatedDescription,
+                      shopDescription: updatedDescription, 
                     });
                     setContactInformation(updatedContactInfo);
+                    setHasBusiness(true);
                   }}
+                  onSave={() => {
+                    setShopDescription("hello world");
+                  }}
+                  
+                  
                 />
                 <DeleteButton
                   idshops={shopData?.idshops || 0}

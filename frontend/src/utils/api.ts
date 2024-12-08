@@ -71,6 +71,33 @@ export const createShop = async (businessData: string): Promise<ShopResponse> =>
   }
 };
 
+export const updateShop = async (updatedDescription: string, updatedContactInfo: Map<string, string>, shopID: number): Promise<ShopResponse> => {
+  try {
+    const info = {instagram: updatedContactInfo.get("instagram")}
+    console.log("Shop description: ", updatedDescription);
+    console.log("Shop info: ", info);
+
+    //const response  = fetch(`http://localhost:8088/shops/${shopID}`, {method: "PATCH"})
+    const response = await axios.patch(`/shops/${shopID}`, {
+        shopDescription: updatedDescription, 
+        contactInformation: info
+    });
+    console.log("Shop edited successfully:", response.data);
+    return { status: response.status, data: response.data };
+  } catch (error: any) {
+    console.error(
+      "Failed to edit shop:",
+      error.response ? error.response.data : error.message
+    );
+    const e = error.response;
+    if (e) {
+      return { status: e.status, data: JSON.stringify(e.data.error) };
+    } else {
+      return { status: 500, data: { error: "A network error occurred." } };
+    }
+  }
+};
+
 export const getShops = async (type: string): Promise<any> => {
   
 
