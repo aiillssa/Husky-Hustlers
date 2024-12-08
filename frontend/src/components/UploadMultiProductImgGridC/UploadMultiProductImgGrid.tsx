@@ -125,8 +125,8 @@ const UploadProductImages = () => {
         <div>
           <h4>Selected Files:</h4>
 
-          <button onClick={addNewFileField}>Add another image</button>
-          
+          <button onClick={addNewFileField} type='button'>Add another image</button>
+
           <ul>
             {files.map((file, index) => (
               <li key={index}>
@@ -166,7 +166,7 @@ const UploadProductImages = () => {
 
 
         <br />
-        <button onClick={handleUpload}>Upload</button>
+        <button onClick={handleUpload} type='button'>Upload</button>
         {msg && <span>{msg}</span>}
 
         <br />
