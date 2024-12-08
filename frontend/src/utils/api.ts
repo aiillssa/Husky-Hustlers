@@ -114,8 +114,8 @@ export const getShops = async (type: string): Promise<any> => {
     
     // Extract shops array from the response
     const shops = response.data.shops;
-
     console.log("Shops:", shops);
+   
     return shops;
   } catch (error: any) {
     console.error(
