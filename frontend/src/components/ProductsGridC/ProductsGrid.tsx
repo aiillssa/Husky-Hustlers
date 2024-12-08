@@ -41,61 +41,82 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
             try {
                 const res = await axios.get('http://localhost:8088/blob/');
                 if (DEBUG) console.log("blob list:", res.data.blobs);
-                setImageList(res.data.blobs);  // Assuming 'this' context is correct here
+                const imageList = res.data.blobs;
+                let imgs = 0;
+                // verifies that the user has an icon image
+
+                const checkImageExistence = () => {
+                    console.log("in check image existence products grid");
+                    console.log("imgeList", imageList)
+                    imageList.forEach((str: { split: (arg0: string) => [any, any]; }) => {
+                        const [id, source] = str.split('-');
+                        console.log("in loop");
+                        if (DEBUG) console.log("id: ", id);
+                        if (DEBUG) console.log("source: ", source);
+                        console.log("return for product grid: ", id === userId.toString() && source.includes('product'));
+
+                        if (id === userId.toString() && source.includes('product')) {
+                            imgs += 1;
+                        }
+                    })
+                }
+                checkImageExistence();
+                let index = 0;
+                let imageUrls: string[] = [];
+
+                while (imgs > 0) {
+                    try {
+                        // Check if the image exists using axios (you can use fetch, but axios handles errors better)
+                        const imageUrl = `http://localhost:8088/blob/${userId}/products${index}`;
+                        await axios.get(imageUrl);
+                        imageUrls.push(imageUrl);
+                        index += 1;
+                        imgs -= 1;
+                    } catch (error) {
+                        // If we hit an error, we assume we've loaded all available images
+                        if (DEBUG) console.log("no more image products for userID", userId);
+                        break;
+                    }
+
+
+                }
+
+                setImageList(res.data.blobs);
+                setState({ images: imageUrls, loading: false, error: null });  // Assuming 'this' context is correct here
+                // list = res;
             } catch (err) {
                 console.error('Error in getting list of blobs', err);
             }
 
 
 
-            //let imageExists = false;
-            const imageExists = checkImageExistence(Number(userId), "products")
-
-
-            // verifies that the user has an icon image
-            // const checkImageExistence = () => {
-            //     console.log("in check image existence products grid");
-            //     imageList.forEach((str) => {
-            //         const [id, source] = str.split('-');
-
-
-            //         if (DEBUG) console.log("id: ", id);
-            //         if (DEBUG) console.log("source: ", source);
-            //         console.log("return for product grid: ", id === userId.toString() && source.includes('product'));
-
-
-            //         if (id === userId.toString() && source.includes('product')) {
-            //             imageExists = true;
-            //         }
-            //     })
-            // }
-
-            // checkImageExistence();
-            let index = 0;
-            let imageUrls: string[] = [];
 
             // Try to load images until an error occurs (assuming missing image if 404) 
 
             // const imageUrl = `http://localhost:8088/blob/${userId}/products0`;
             // imageUrls.push(imageUrl)
 
-            while (imageExists) {
-                const imageUrl = `http://localhost:8088/blob/${userId}/products${index}`;
+            // while (imageExists) {
 
-                try {
-                    // Check if the image exists using axios (you can use fetch, but axios handles errors better)
-                    await axios.get(imageUrl);
-                    imageUrls.push(imageUrl);
-                    index += 1;
-                } catch (error) {
-                    // If we hit an error, we assume we've loaded all available images
-                    if (DEBUG) console.log("no more image products for userID", userId);
-                    break;
-                }
-            }
+            //     try {
+            //         // Check if the image exists using axios (you can use fetch, but axios handles errors better)
+            //         imageExists = checkImageExistence(Number(userId), "products" + index)
+            //         if (!imageExists) {
+            //             break;
+            //         }
+            //         const imageUrl = `http://localhost:8088/blob/${userId}/products${index}`;
+            //         await axios.get(imageUrl);
+            //         imageUrls.push(imageUrl);
+            //         index += 1;
+            //     } catch (error) {
+            //         // If we hit an error, we assume we've loaded all available images
+            //         if (DEBUG) console.log("no more image products for userID", userId);
+            //         break;
+            //     }
+            // }
 
             // Update state with the fetched image URLs
-            setState({ images: imageUrls, loading: false, error: null });
+
         };
 
         fetchImages();

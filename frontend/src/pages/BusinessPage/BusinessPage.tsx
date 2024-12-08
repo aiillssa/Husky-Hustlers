@@ -20,7 +20,7 @@ interface Props {
 
 //Method takes in a userID and imgSource. checks if a certain image exists with a specific user. 
 //Returns true if it does, false otherwise. 
-export const checkImageExistence = async (userID: number, imgSource: String) => {
+export const checkImageExistence = async (userID: number, imgSource: String, productId?: String) => {
   const res = await axios.get('http://localhost:8088/blob/');
   if (DEBUG) console.log("blob list:", res.data.blobs);
   const blobNames = (res.data.blobs);  // Assuming 'this' context is correct here
@@ -33,12 +33,12 @@ export const checkImageExistence = async (userID: number, imgSource: String) => 
 
     if (id === userID.toString() && imgSource === source) {
       return true
-    } else if (id === userID.toString() && source.includes(imgSource)) {
-      return true
     }
   }
   return false
 }
+
+
 
 // Main functional component for the BusinessPage
 export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
