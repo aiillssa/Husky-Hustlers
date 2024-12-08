@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import axios from 'axios';
+import { Product } from '../../pages/AddBusinessPage/AddBusinessPage';
 
-const UploadProductImages = () => {
+interface UploadProductImagesProps {
+  productsCB: (products: Product[]) => void;
+}
+
+export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }) => {
   const [files, setFiles] = useState<File[]>([]); // Manage multiple files
   const [captions, setCaptions] = useState<string[]>([]); // Store captions for each file
   const [prices, setPrices] = useState<string[]>([]); // Store prices for each file
@@ -12,7 +17,18 @@ const UploadProductImages = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = event.target.files;
     if (!selectedFiles) return;
-    
+
+    // Validate each file before adding it to the state
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+
+      // Check if the file is a JPEG
+      if (!file.type.startsWith('image/')) {
+        setMsg(`File "${file.name}" is not an image. Only images are allowed!`);
+        return; // Stop processing further files
+      }
+    }
+
     // Append selected files to the state
     setFiles((prevFiles) => [...prevFiles, ...Array.from(selectedFiles)]);
     setCaptions((prevCaptions) => [...prevCaptions, '']);
@@ -39,22 +55,33 @@ const UploadProductImages = () => {
     const formData = new FormData();
     const userID = localStorage.getItem("userID");
 
+    const products: { caption: string; price: string; }[] = []
+
     if (typeof userID === 'string') {
       files.forEach((file) => {
         formData.append('files', file); // Append multiple files
       });
+      let index = 0;
       captions.forEach((caption) => {
-        formData.append('captions', caption); // Append multiple cpations
+        //formData.append('captions', caption); // Append multiple cpations
+        products.push({ caption: caption, price: prices[index] })
+        index += 1;
       });
-      prices.forEach((price) => {
-        formData.append('prices', price); // Append multiple prices
-      });
+
+      console.log("this is what products is:", products)
+      // prices.forEach((price) => {
+      //   formData.append('prices', price); // Append multiple prices
+      // });
       formData.append('id', userID);
       formData.append('source', 'products');
+
+      productsCB(products)
     } else {
       console.error("userID is null. localStorage.getItem is faulty");
       return;
     }
+
+
 
     setMsg("Uploading...");
     setProgress({ started: true, prcnt: 0 });
@@ -119,7 +146,7 @@ const UploadProductImages = () => {
           multiple // Allow multiple files selection
           onChange={handleFileChange}
         />
-        
+
 
         {/* Display the names of the selected files with captions and prices */}
         <div>
@@ -167,7 +194,7 @@ const UploadProductImages = () => {
 
         <br />
         <button onClick={handleUpload} type='button'>Upload</button>
-        {msg && <span>{msg}</span>}
+        {msg && <span style={{ color: 'blue' }}>{msg}</span>}
 
         <br />
         {progress.started && <progress max="100" value={progress.prcnt}></progress>}
@@ -178,4 +205,8 @@ const UploadProductImages = () => {
   );
 };
 
-export default UploadProductImages;
+// export default UploadProductImages;
+// function callback(products: { caption: string; price: string; }[]) {
+//   throw new Error('Function not implemented.');
+// }
+

@@ -48,7 +48,7 @@ export class App extends Component<{}, AppState> {
                 <Route path="/pages/Profile" element={<Profile />} />
                 <Route path="/pages/Homepage" element={<Homepage />} />
                 <Route path="/pages/BusinessPage" element={<BusinessPage />} />
-                <Route path="/pages/StorePage/:shopId" element={<StorePage />} />
+                <Route path="/pages/StorePage/:shopId/:userId" element={<StorePage />} />
                 <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
               </Route>
 
