@@ -67,17 +67,17 @@ export class Homepage extends Component<{}, HomepageState> {
       } catch (err) {
         console.error('Error in getting list of blobs', err);
       }
-      
+
 
       const sellers = shops.map((shop: SellerData) => {
         const types = shop.categories.map((category) =>
           category.categoryName.toLowerCase()
         ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
-        
+
         const userID = shop.user.idUsers;
         if (DEBUG) console.log("current user ID: ", userID)
         const image = `http://localhost:8088/blob/${Number(userID)}/homepage`
-        
+
         let imageExists = false;
 
         // verifies that the user has an icon image
@@ -91,22 +91,22 @@ export class Homepage extends Component<{}, HomepageState> {
             if (DEBUG) console.log("return: ", id === userID.toString() && source === 'homepage');
 
 
-            if(id === userID.toString() && source === 'homepage') {
+            if (id === userID.toString() && source === 'homepage') {
               imageExists = true;
             }
           })
         }
 
-        
+
         checkImageExistence();
         console.log(imageExists)
-        if(imageExists) {
+        if (imageExists) {
           return { ...shop, types, image };
         } else {
-          return { ...shop, types};
+          return { ...shop, types };
         }
-        
-               
+
+
       });
       this.setState({ listOfSellers: sellers });
     } catch (err) {
@@ -117,7 +117,7 @@ export class Homepage extends Component<{}, HomepageState> {
 
   setImageList = (list: string[]) => {
     if (DEBUG) console.log("entered setImageList", list);
-    this.setState({imageList: list});
+    this.setState({ imageList: list });
   }
 
   // add click behavior for each type on homepage
@@ -151,7 +151,7 @@ export class Homepage extends Component<{}, HomepageState> {
 
     return (
       <div className={classes.root}>
-        
+
         <SearchBar
           className={classes.searchBar}
           onSearchChange={this.handleSearchChange}
@@ -199,10 +199,11 @@ export class Homepage extends Component<{}, HomepageState> {
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
             <Link
-            key={index}
-            to={`/pages/StorePage/${seller.idshops}`}
-            className={classes.cardLink}
-          >
+              key={index}
+              // will send the shop id and the user id (used to display images)
+              to={`/pages/StorePage/${seller.idshops}/${seller.user.idUsers}`}
+              className={classes.cardLink}
+            >
               <div className={classes.card}>
 
 
@@ -211,7 +212,7 @@ export class Homepage extends Component<{}, HomepageState> {
                   <img
                     src={seller.image}
                     alt={`${seller.shopName} image`}
-                    width="400px" 
+                    width="400px"
                     height="400px"
                   />
                 ) : (
