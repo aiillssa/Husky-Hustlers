@@ -110,10 +110,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
           <div className={classes.pageContainer}>
 
 
-            {/** BANNER */}
-            <img src={bannerURL} style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
-
-
             {/* Header Section */}
             <div className={classes.header}>
 
@@ -142,6 +138,9 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 {shopData?.shopName || "Unnamed Shop"}
               </div>
             </div>
+
+            {/** BANNER */}
+            <img src={bannerURL} style={{width: "100%", height:"200px", objectFit:"cover"}}/>
 
             {/* Tabs Section */}
             <div className={classes.tabs}>

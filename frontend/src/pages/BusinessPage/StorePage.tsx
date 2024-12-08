@@ -56,16 +56,14 @@ function StorePage() {
   return (
     <div className={classes.pageContainer}>
 
-      
-      {/** BANNER */}
-      <img src={bannerURL} style={{width: "1200px", height:"400px", objectFit:"cover"}}/>
-
-
       {/* Header Section */}
       <div className={classes.header}>
         <div className={classes.profilePic}></div>
         <div className={classes.shopName}>{shopName}</div>
       </div>
+
+      {/** BANNER */}
+      <img src={bannerURL} style={{width: "100%", height:"200px", objectFit:"cover"}}/>
 
       {/* Tabs Section */}
       <div className={classes.tabs}>
