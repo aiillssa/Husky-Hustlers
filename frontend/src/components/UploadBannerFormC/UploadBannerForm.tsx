@@ -6,53 +6,57 @@ import axios from 'axios';
 const UploadBannerImage = () => {
     //const fs = require('fs');
 
-    const[ file, setFile ] = useState<File | null>(null);
-    const[ progress, setProgress ] = useState({started: false, prcnt: 0});
-    const[ msg, setMsg ] = useState("");
-    
+    const [file, setFile] = useState<File | null>(null);
+    const [progress, setProgress] = useState({ started: false, prcnt: 0 });
+    const [msg, setMsg] = useState("");
+
     function handleUpload() {
         console.log("Entered handleUpload")
-        if(!file) {
+        if (!file) {
             setMsg("no file selected");
             return;
         }
-        
-        
-        
+
+
+
         const formData = new FormData();
         const userID = localStorage.getItem("userID");
-        if( typeof userID === 'string') {
+        if (typeof userID === 'string') {
             formData.append('file', file);
-            formData.append('id', userID); 
+            formData.append('id', userID);
             formData.append('source', 'banner');
         } else {
             console.error("userID is null. localStorage.getItem is faulty");
             return;
         }
 
-        
+
 
         setMsg("Uploading...");
         setProgress(prevState => {
-            return {...prevState, started: true}
+            return { ...prevState, started: true }
         })
 
-        
+
         axios.post('http://localhost:8088/blob/', formData, {
-            onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
-                if(progressEvent.progress !== undefined) {
-                    return {...prevState, prcnt: progressEvent.progress*100}
-                }
-                return {...prevState, prcnt:0}
-            }) }
+            onUploadProgress: (progressEvent) => {
+                setProgress(prevState => {
+                    if (progressEvent.progress !== undefined) {
+                        return { ...prevState, prcnt: progressEvent.progress * 100 }
+                    }
+                    return { ...prevState, prcnt: 0 }
+                })
+            }
         })
-        .then(res => {
-            setMsg("Uploaded successfully");
-            console.log(res);  // Check the response structure
-            console.log(res.data);})  // Now access res.data
-        .catch(err => {
-            setMsg("Upload failed");
-            console.error(err.response.data)})
+            .then(res => {
+                setMsg("Uploaded successfully");
+                console.log(res);  // Check the response structure
+                console.log(res.data);
+            })  // Now access res.data
+            .catch(err => {
+                setMsg("Upload failed");
+                console.error(err.response.data)
+            })
     }
 
     return (
@@ -67,13 +71,13 @@ const UploadBannerImage = () => {
                     }} type='file'/>
                 <button onClick={ handleUpload } type='button'>Upload</button>
                 {msg && <span>{msg}</span>}
-                <br/>
+                <br />
                 {progress.started && <progress max="100" value={progress.prcnt}></progress>}
-                
+
             </div>
-            
+
         </>
-        
+
     )
 };
 
