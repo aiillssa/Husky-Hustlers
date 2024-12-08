@@ -119,12 +119,14 @@ const UploadProductImages = () => {
           multiple // Allow multiple files selection
           onChange={handleFileChange}
         />
-        <button onClick={addNewFileField}>Add another image</button>
         
 
         {/* Display the names of the selected files with captions and prices */}
         <div>
           <h4>Selected Files:</h4>
+
+          <button onClick={addNewFileField}>Add another image</button>
+          
           <ul>
             {files.map((file, index) => (
               <li key={index}>
