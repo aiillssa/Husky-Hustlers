@@ -3,11 +3,6 @@ import axios from 'axios';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
-interface DataToSend {
-    images: FormData;
-    id: string;
-    source: string;
-}
 const UploadBannerImage = () => {
     //const fs = require('fs');
 
@@ -68,13 +63,13 @@ const UploadBannerImage = () => {
         <>
             <div>
                 <h3>Upload your business page banner here (Dimensions 1200px by 400px):</h3>
-                <input onChange={(event) => {
-                    if (!event.target.files) {
-                        return;
-                    }
-                    setFile(event.target.files[0])
-                }} type='file' />
-                <button onClick={handleUpload} type="button">Upload</button>
+                <input onChange={ (event) => {
+                        if(!event.target.files) {
+                            return;
+                        }
+                        setFile(event.target.files[0])
+                    }} type='file'/>
+                <button onClick={ handleUpload } type='button'>Upload</button>
                 {msg && <span>{msg}</span>}
                 <br />
                 {progress.started && <progress max="100" value={progress.prcnt}></progress>}
