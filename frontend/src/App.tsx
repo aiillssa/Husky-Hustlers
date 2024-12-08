@@ -53,7 +53,7 @@ export class App extends Component<{}, AppState> {
               </Route>
 
               {/* Routes without the Navbar */}
-              
+
               {/* Redirect to Homepage by default */}
               <Route path="/" element={<Navigate to="/pages/Homepage" replace />} />
             </Routes>
