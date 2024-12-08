@@ -65,7 +65,7 @@ const UploadBannerImage = () => {
                         }
                         setFile(event.target.files[0])
                     }} type='file'/>
-                <button onClick={ handleUpload }>Upload</button>
+                <button onClick={ handleUpload } type='button'>Upload</button>
                 {msg && <span>{msg}</span>}
                 <br/>
                 {progress.started && <progress max="100" value={progress.prcnt}></progress>}
