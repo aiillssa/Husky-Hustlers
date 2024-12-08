@@ -11,6 +11,8 @@ interface Props {
 const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
   // State to manage error messages during login
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   // Google login function using OAuth for authentication
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
@@ -47,9 +49,11 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
         // clear any previous error messages
         console.log("User signed up successfully!");
         setErrorMessage(null);
+        setSuccessMessage("Sign up successful! Please login to view Huskey Hustlers!");
       } else {
         // Display an error message if the sign up fails
         setErrorMessage(result.error || "Sign up failed. Please try again.");
+        setSuccessMessage(null);
       }
     },
     flow: "auth-code",
@@ -57,6 +61,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
       // Handle errors during the sign up process
       console.error("Sign up Failed:", error);
       setErrorMessage("Sign up failed. Please try again.");
+      setSuccessMessage(null);
     },
   });
 
@@ -86,6 +91,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
             <div className={classes.formLogIn}>
               {/* Display an error message if present */}
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
               {/* Button to trigger Google Sign up */}
               {/* Button to trigger Google login */}
               <button className={classes.login_button} onClick={() => login()}>
