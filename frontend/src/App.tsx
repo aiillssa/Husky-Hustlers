@@ -19,7 +19,7 @@ export class App extends Component<{}, AppState> {
     super(props);
     // Initialize the state with the user not signed in
     const token = localStorage.getItem('authToken');
-    this.state = { signedIn: !!token };
+    this.state = { signedIn: false };
     initializeAxios(this.setSignedIn);
   }
 
