@@ -48,6 +48,13 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
+.card img {
+  width: 200px; /* Make it span the width of the card */
+  height: 120px; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image looks good when resized */
+  border-radius: 8px; /* Optional: Add rounded corners */
+}
+
 .cardHeading {
   height: min-content;
   flex-direction: column;
