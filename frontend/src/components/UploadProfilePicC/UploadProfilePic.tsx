@@ -38,7 +38,7 @@ const UploadBannerImage = () => {
         })
 
         // change this route!!!
-        axios.post('http://localhost:8088/blob/', formData, {
+        axios.post('http://localhost:8088/blob/profile', formData, {
             onUploadProgress: ( progressEvent ) => { setProgress(prevState => {
                 if(progressEvent.progress !== undefined) {
                     return {...prevState, prcnt: progressEvent.progress*100}
