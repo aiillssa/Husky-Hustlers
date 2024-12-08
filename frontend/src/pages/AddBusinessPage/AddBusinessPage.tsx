@@ -63,8 +63,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
     setSelectedCategory(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     // Reset previous errors
     setErrors({});
     let formIsValid = true;
@@ -139,7 +138,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
     console.log(businessData);
 
     try {
-      const response = await createShop(JSON.stringify(businessData))
+      const response = await createShop(JSON.stringify(businessData));
       console.log("response: ", response);
       if (response.status === 201) {
         // Handle success
@@ -191,7 +190,7 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
           Start Your Business Here
         </div>
       </div>
-      <form className={classes.form} onSubmit={handleSubmit}>
+      <form className={classes.form}>
         {/* Business Name Field */}
         <InputField
           label="Business Name"
@@ -382,10 +381,10 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         )}
 
         {/*Upload image*/}
-        <UploadBannerImage/>
+        <UploadBannerImage />
 
         {/* Submit Button */}
-        <Button className={classes.button} type="submit">
+        <Button className={classes.button} type="button" onClick={handleSubmit}>
           Submit
         </Button>
 
