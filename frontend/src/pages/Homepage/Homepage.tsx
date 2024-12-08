@@ -212,8 +212,6 @@ export class Homepage extends Component<{}, HomepageState> {
                   <img
                     src={seller.image}
                     alt={`${seller.shopName} image`}
-                    width="400px"
-                    height="400px"
                   />
                 ) : (
                   <></>
