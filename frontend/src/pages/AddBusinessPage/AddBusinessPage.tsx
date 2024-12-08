@@ -141,8 +141,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
 
     try {
       const response = await createShop(JSON.stringify(businessData))
-
-      if (response === 201) {
+      console.log("response: ", response);
+      if (response.status === 201) {
         // Handle success
         setSubmitted(true);
         setError(null);
@@ -158,14 +158,8 @@ const AddBusinessPage: FC<Props> = memo(function AddBusinessPage(props) {
         setRedirect(true);
       } else {
         // Handle errors at server
-        console.log(response);
-        if (response === 400) {
-          setError(
-            "Cannot add a business because you have already added one previously. Each person is only allowed to enter one."
-          );
-        } else {
-          setError( "An error occurred while submitting the form.");
-        }
+        console.log(response.data);
+        setError(response.data);
       }
     } catch (err) {
       // Handle network errors

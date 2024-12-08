@@ -43,7 +43,12 @@ export const googleSignUp = async (
   }
 };
 
-export const createShop = async (businessData: string): Promise<number> => {
+interface ShopResponse {
+  status: number;
+  data: any;
+}
+
+export const createShop = async (businessData: string): Promise<ShopResponse> => {
   try {
     const response = await axios.post("/shops", businessData, {
       headers: {
@@ -51,13 +56,18 @@ export const createShop = async (businessData: string): Promise<number> => {
       },
     });
     console.log("Shop created successfully:", response.data);
-    return response.status;
+    return { status: response.status, data: response.data };
   } catch (error: any) {
     console.error(
       "Failed to create shop:",
       error.response ? error.response.data : error.message
     );
-    return error.response?.status;
+    const e = error.response;
+    if (e) {
+      return { status: e.status, data: JSON.stringify(e.data.error) };
+    } else {
+      return { status: 500, data: { error: "A network error occurred." } };
+    }
   }
 };
 
