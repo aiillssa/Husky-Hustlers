@@ -11,3 +11,4 @@ User manual & backend documentation can be found in the "Wiki" tab.
 ** To run the frontend**
 1. `npm run start`
 2. navigate to http://localhost:3000/
+
