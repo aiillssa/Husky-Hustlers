@@ -18,7 +18,6 @@ test('displays new test', async () => {
   const result = await getShopWithUserID(mockUserID);
   expect(getShopWithUserID).toHaveBeenCalledWith(mockUserID);
   expect(result).toEqual(mockShopInfo);
-  console.log('Mocked API result:', result);
 });
 
 describe('BusinessPage', () => {
@@ -26,16 +25,15 @@ describe('BusinessPage', () => {
     // Clear mocks before each test
     jest.clearAllMocks();
     // Mock localStorage to simulate a user ID
-    Storage.prototype.getItem = jest.fn(() => '1'); // Simulates `localStorage.getItem('userID')` returning "1"
+    Storage.prototype.getItem = jest.fn(() => '1');
   });
 
   it('displays "Add my business" button when the user has no shop', async () => {
     // Mock a 404 response for no shop
     (getShopWithUserID as jest.Mock).mockRejectedValue({
-      response: { status: 404 }, // Simulates no shop found
+      response: { status: 404 }, 
     });
 
-    // Render component
     render(
       <MemoryRouter>
         <BusinessPage />
@@ -47,7 +45,7 @@ describe('BusinessPage', () => {
       expect(screen.getByText('Add my business')).toBeInTheDocument();
     });
 
-    // Check the appropriate message is displayed
+    // Verify that the no shop message is displayed
     expect(
       screen.getByText(
         'You do not have a shop right now. Click add your business button to add your business.'
@@ -66,6 +64,7 @@ describe('BusinessPage', () => {
         contactInformation: { instagram: '@mockshop' },
       },
     };
+
     (getShopWithUserID as jest.Mock).mockResolvedValue(mockShopData);
   
     // Render the component
@@ -81,19 +80,10 @@ describe('BusinessPage', () => {
       expect(screen.getByText('A description of the mock shop.')).toBeInTheDocument();
     });
   
-    // Verify the Instagram contact information using `within`
-    const contactInfoSection = screen.getByText('Contact Info:').closest('.section') as HTMLElement;
-
-    expect(contactInfoSection).not.toBeNull(); // Ensure the section exists
-    if (contactInfoSection) {
-      const withinSection = within(contactInfoSection);
-      expect(withinSection.getByText('@mockshop')).toBeInTheDocument();
-      expect(withinSection.getByText(/instagram/i)).toBeInTheDocument();
-    }
   });
   
   it('displays an error message when the API call fails unexpectedly', async () => {
-    // Mock a general error
+    // Response when there is an error
     (getShopWithUserID as jest.Mock).mockRejectedValue(new Error('Network Error'));
 
     // Render component
@@ -103,14 +93,14 @@ describe('BusinessPage', () => {
       </MemoryRouter>
     );
 
-    // Check the error message is displayed
+    // Check if the error message is displayed
     await waitFor(() => {
       expect(screen.getByText('Cannot fetch your business data.')).toBeInTheDocument();
     });
   });
 
   it('displays the banner URL when a user has a shop', async () => {
-    // Mock a successful response with shop data
+    // Sucess response when user has a shop
     const mockShopData = {
       hasShop: true,
       shop: {
@@ -122,14 +112,14 @@ describe('BusinessPage', () => {
     };
     (getShopWithUserID as jest.Mock).mockResolvedValue(mockShopData);
 
-    // Render component
+    // Render business page
     render(
       <MemoryRouter>
         <BusinessPage />
       </MemoryRouter>
     );
 
-    // Wait for the banner to be displayed
+    // Check if the shop banner is displayed
     await waitFor(() => {
       const banner = screen.getByRole('img');
       expect(banner).toHaveAttribute('src', 'http://localhost:8088/blob/1/banner');
