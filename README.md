@@ -8,6 +8,6 @@ User manual & backend documentation can be found in the "Wiki" tab.
 3. Navigate to the /frontend directory
 4.  `npm install` (you might need to do `npm install -force` if it doesn't work)
 
-** To run the frontend**
+** To run the frontend **
 1. `npm run start`
 2. navigate to http://localhost:3000/
