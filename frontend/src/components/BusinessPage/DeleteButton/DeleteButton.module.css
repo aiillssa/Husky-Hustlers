@@ -2,8 +2,9 @@
 
 .container {
     position: absolute;
-    right: 80px;
-    margin-top: 40px;
+    position: absolute;
+    right: 10px;
+    padding: 5px 10px;
   }
   
   .deleteButton {

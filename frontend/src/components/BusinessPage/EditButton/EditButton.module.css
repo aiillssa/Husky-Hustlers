@@ -1,6 +1,7 @@
 .container {
   position: absolute;
-  right: 80px;
+  right: 220px;
+  padding: 5px 10px;
 }
 
 .editButton {
