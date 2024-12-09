@@ -223,8 +223,8 @@ export class Homepage extends Component<{}, HomepageState> {
                   <div className={classes.description}>
                     {seller.shopDescription}
                   </div>
+                  <CategoryButton type={seller.types[0]} />
                 </div>
-                <CategoryButton type={seller.types[0]} />
               </div>
             </Link>
           ))}
