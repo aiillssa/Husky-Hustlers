@@ -165,6 +165,30 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
             {/** BANNER */}
             <img src={bannerURL} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
 
+            
+              
+
+            {/* Tabs Section */}
+            <div className={classes.tabs}>
+              <div
+                className={`${classes.tab} ${activeTab === "Basics" ? classes.activeTab : ""
+                  }`}
+                onClick={() => setActiveTab("Basics")}
+              >
+                Basics
+              </div>
+              <div
+
+                className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""
+                  }`}
+                onClick={() => setActiveTab("Pictures")}
+              >
+                Pictures
+              </div>
+            </div>
+
+
+            {/* edit/delete business tabs Section */}
             <div className={classes.actionButtons}>
                 <EditButton
                   idshops={shopData?.idshops || 0}
@@ -190,30 +214,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
               />
                 
               </div>
-
-              
-
-            {/* Tabs Section */}
-            <div className={classes.tabs}>
-              <div
-                className={`${classes.tab} ${activeTab === "Basics" ? classes.activeTab : ""
-                  }`}
-                onClick={() => setActiveTab("Basics")}
-              >
-                Basics
-              </div>
-              <div
-
-                className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""
-                  }`}
-                onClick={() => setActiveTab("Pictures")}
-              >
-                Pictures
-              </div>
-            </div>
-
-            {/* Divider Line */}
-            <div className={classes.divider}></div>
             
 
             {/* Content Section */}

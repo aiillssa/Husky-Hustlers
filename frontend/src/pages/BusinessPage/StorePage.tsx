@@ -75,7 +75,7 @@ function StorePage() {
       </div>
 
       {/** BANNER */}
-      <img src={bannerURL} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+      <img  src={bannerURL} className="store-header-img" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
 
       {/* Tabs Section */}
       <div className={classes.tabs}>
