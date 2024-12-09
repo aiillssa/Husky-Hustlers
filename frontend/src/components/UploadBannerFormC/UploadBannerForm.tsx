@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './UploadBannerImage.css';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
@@ -65,7 +66,7 @@ const UploadBannerImage = () => {
 
     return (
         <>
-            <div>
+            <div className="upload-banner-form">
                 <h3>Upload your business page banner here (Dimensions 1200px by 400px):</h3>
                 <input onChange={(event) => {
                     if (!event.target.files) {

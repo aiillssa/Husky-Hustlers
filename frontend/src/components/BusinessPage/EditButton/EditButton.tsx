@@ -19,16 +19,18 @@ const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactIn
 
   const handleSave = async () => {
     try {
-      console.log()
       const contactInfoObj = Object.fromEntries(updatedContactInfo);
       const response = updateShop(updatedDescription, updatedContactInfo, idshops);
+      
+      // After saving, close the editing form
       setUpdatedDescription(updatedDescription);
       setUpdatedContactInfo(updatedContactInfo);
 
       onEdit(updatedDescription, updatedContactInfo);
-     
+
+      // Exit the editing mode
+      setIsEditing(false);
     } catch (error) {
-      console.error("Error updating business:", error);
       setMessage("An error occurred while updating your business.");
       setMessageType("error");
     }
@@ -42,11 +44,12 @@ const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactIn
 
   return (
     <div className={classes.container}>
+      {isEditing && <div className={classes.overlay}></div>} {/* Dark overlay when editing */}
       {isEditing ? (
         <div className={classes.editForm}>
           <div className={classes.field}>
             <label>Description:</label>
-            <textarea
+            <input
               className={classes.input}
               value={updatedDescription}
               onChange={(e) => setUpdatedDescription(e.target.value)}
@@ -56,11 +59,6 @@ const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactIn
             <label>Contact Information:</label>
             {Array.from(updatedContactInfo.entries()).map(([key, value]) => (
               <div key={key} className={classes.contactField}>
-                <input
-                  className={classes.input}
-                  value={key}
-                  readOnly
-                />
                 <input
                   className={classes.input}
                   value={value}

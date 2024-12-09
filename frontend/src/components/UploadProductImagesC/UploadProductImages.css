@@ -1,0 +1,145 @@
+/* Scoped styles for UploadProductImages component */
+.upload-product-images {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 20px;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.upload-product-images h3 {
+  font-size: 24px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.upload-product-images h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Buttons */
+.upload-product-images button {
+  background-color: #4b2e83ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-product-images button:hover {
+  background-color: rgb(136, 77, 255);
+}
+
+.upload-product-images button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.upload-product-images button.add-file-button {
+  background-color: #4b2e83ff;
+}
+
+.upload-product-images button.add-file-button:hover {
+  background-color: rgb(136, 77, 255);
+}
+
+/* File Input (hidden) */
+.upload-product-images input[type="file"] {
+  display: none;
+}
+
+/* File list */
+.upload-product-images ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.upload-product-images li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-product-images li div {
+  flex-grow: 1;
+}
+
+.upload-product-images li input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.upload-product-images li input[type="text"]:focus {
+  border-color: #4b2e83ff;
+}
+
+.upload-product-images li label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #555;
+}
+
+.upload-product-images li .error-message {
+  font-size: 12px;
+  color: red;
+}
+
+/* Progress bar */
+.upload-product-images .progress-bar {
+  width: 100%;
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+}
+
+.upload-product-images .progress-bar[value] {
+  appearance: none;
+}
+
+.upload-product-images .progress-bar::-webkit-progress-value {
+  background-color: rgb(181, 144, 255);
+  border-radius: 5px;
+}
+
+.upload-product-images .progress-bar::-moz-progress-bar {
+  background-color: #4b2e83ff;
+  border-radius: 5px;
+}
+
+/* Messages */
+.upload-product-images .info-message {
+  color: #2196F3;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.upload-product-images .error-message {
+  font-size: 14px;
+  color: red;
+}
+
+.upload-product-images input[type="text"]:invalid {
+  border-color: red;
+}
+
+.upload-product-images input[type="text"]:valid {
+  border-color: #4b2e83ff;
+}
