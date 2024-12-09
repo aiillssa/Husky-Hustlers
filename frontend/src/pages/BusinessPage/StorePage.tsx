@@ -14,6 +14,7 @@ function StorePage() {
   const [shopDescription, setShopDescription] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
   const [bannerURL, setBannerURL] = useState<string>("No banner image");
+  const [necessaryDescription, setnecessaryDescription] = useState<Map<string, string> | null>(null); // Map to hold necessary description
 
   // Fetch shop data when shopId is available
   useEffect(() => {
@@ -28,6 +29,12 @@ function StorePage() {
           setContactInformation(contactInfoMap);
           setShopName(shop.shopName);
           setShopDescription(shop.shopDescription);
+          const necessaryDescript = new Map<string, string>(
+            Object.entries(shop.necessaryDescription || {}).map(
+              ([key, value]) => [key, String(value)] // Ensure value is cast to a string
+            )
+          );
+          setnecessaryDescription(necessaryDescript);
           console.log(shop.userID)
         } catch (err) {
           console.error("Error fetching data:", err);
@@ -115,7 +122,12 @@ function StorePage() {
               }
               </div>
             </div>
-          </>
+
+            <div className={classes.section}>
+              <div className={classes.sectionTitle}> Pick Up Option:</div>
+                <div className={classes.sectionContent}>{necessaryDescription || "No description available."}</div>
+              </div>
+           </>
         )}
         {activeTab === "Pictures" && (
           <div>
