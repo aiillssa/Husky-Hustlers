@@ -218,8 +218,16 @@ export class Homepage extends Component<{}, HomepageState> {
                 )}
 
                 <div className={classes.cardHeading}>
-                  <div className={classes.name}>{seller.ownerName}</div>
-                  <div className={classes.businessName}>{seller.shopName}</div>
+                  <div className={classes.name}>
+                    {seller.ownerName.length > 25
+                      ? seller.ownerName.substring(0, 25) + "..."
+                      : seller.ownerName}
+                  </div>
+                  <div className={classes.businessName}>
+                    {seller.shopName.length > 20
+                      ? seller.shopName.substring(0, 15) + "..."
+                      : seller.shopName}
+                  </div>
                   <div className={classes.description}>
                     {seller.shopDescription.length > 165
                       ? seller.shopDescription.substring(0, 165) + "..."

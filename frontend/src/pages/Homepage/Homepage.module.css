@@ -59,6 +59,7 @@
   padding: 20px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   height: 450px;
+  position: relative;
 }
 
 .card:hover {
@@ -80,6 +81,11 @@
 
 .cardHeading {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align text items at the top */
+  gap: 10px;
+  flex-grow: 1;
 }
 
 .name {
