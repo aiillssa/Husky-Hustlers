@@ -4,7 +4,6 @@
     margin: 20px;
     padding: 20px;
     background-color: transparent;
-    /* Removed border-radius and box-shadow */
   }
   
   .upload-homepage-icon h3 {
@@ -24,7 +23,7 @@
   }
   
   .upload-homepage-icon button {
-    background-color: #4b2e83ff; /* Accent color - purple */
+    background-color: #4b2e83ff; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -34,7 +33,7 @@
   }
   
   .upload-homepage-icon button:hover {
-    background-color: rgb(136, 77, 255); /* Darker purple on hover */
+    background-color: rgb(136, 77, 255); 
   }
   
   .upload-homepage-icon span {
@@ -57,12 +56,12 @@
   }
   
   .upload-homepage-icon progress::-webkit-progress-value {
-    background-color: rgb(181, 144, 255); /* Accent color - purple */
+    background-color: rgb(181, 144, 255);
     border-radius: 10px;
   }
   
   .upload-homepage-icon progress::-moz-progress-bar {
-    background-color: #4b2e83ff; /* Accent color - purple */
+    background-color: #4b2e83ff; 
     border-radius: 10px;
   }
   
