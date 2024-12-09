@@ -28,8 +28,8 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
         error: null,
     });
 
-    const [caption, setCaption] = useState("");
-    const [price, setPrice] = useState("");
+    const [caption, setCaption] = useState<string[]>([]);
+    const [price, setPrice] = useState<string[]>([]);
 
     // Get the userID from localStorage
     useEffect(() => {
@@ -90,11 +90,15 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
         const fetchCapAndPrices = async () => {
             const res = await getShopWithUserID(Number(userId));
             const products = res.shop.products;
+            const captions = []
+            const prices = []
             if (products.length > 0) {
                 for (const prod of products) {
-                    setCaption(prod.caption)
-                    setPrice(prod.price)
+                    captions.push(prod.caption)
+                    prices.push(prod.price)
                 }
+                setCaption(captions)
+                setPrice(prices)
                 console.log(products[0].caption);
                 console.log("req", res);
 
@@ -123,8 +127,8 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                 <div className="image-gallery">
                     {state.images.map((image, index) => (
                         <><img key={index} src={image} alt={`product ${index}`} />
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Caption: {caption}</figcaption>
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Price: ${price}</figcaption></>
+                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Caption: {caption[index]}</figcaption>
+                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Price: ${price[index]}</figcaption></>
                     ))}
                 </div>
             ) : (
