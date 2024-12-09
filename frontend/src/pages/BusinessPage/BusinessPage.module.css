@@ -30,7 +30,6 @@
   padding: 15px 30px; /* Space inside the header */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
   gap: 15px; /* Space between profile picture and shop name */
-  width:fit-content;
 }
 
 .shopName {
@@ -42,6 +41,7 @@
   word-wrap: break-word; /* Break words if necessary */
   text-align: left; /* Ensures text stays left aligned */
   margin-top: 5px; /* Adjusts for better spacing if wrapping occurs */
+  
 }
 /*Spacing the tabs */
 .tabs {
