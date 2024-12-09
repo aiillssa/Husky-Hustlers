@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { memo } from "react";
 import type { FC } from "react";
-import resets from "../../components/_resets.module.css";
 import classes from "./BusinessPage.module.css";
 import DeleteButton from "../../components/BusinessPage/DeleteButton/DeleteButton";
 import EditButton from "../../components/BusinessPage/EditButton/EditButton";
