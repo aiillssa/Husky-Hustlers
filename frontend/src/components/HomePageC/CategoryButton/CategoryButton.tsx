@@ -40,9 +40,8 @@ export const CategoryButton: FC<Props> = memo(function CategoryButton({
       }`}
       onClick={onClick}
     >
-      <div className={`${classes.rectangle1} ${colorClassMap[type]}`}>
-        <div className={classes.text}>{textMap[type]}</div>
-      </div>
+      
+      <div className={`${classes.rectangle1} ${colorClassMap[type]} ${classes.text}`}>{textMap[type]}</div>
     </div>
   );
 });
