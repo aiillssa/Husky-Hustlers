@@ -131,13 +131,13 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f8fafc;
+  background-color: #f5f3ff;
 }
 
 .noBusinessBox {
   background-color: white;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(75, 46, 130, 0.1);
   padding: 40px;
   text-align: center;
   max-width: 400px;
@@ -159,13 +159,13 @@
 
 .noBusinessBox:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px rgba(75, 46, 130, 0.15);
 }
 
 .noBusinessTitle {
   font-size: 28px;
   font-weight: bold;
-  color: #2d3748;
+  color: #000000;
   margin-bottom: 20px;
   position: relative;
 }
@@ -175,21 +175,21 @@
   display: block;
   width: 50px;
   height: 3px;
-  background: linear-gradient(90deg, #63b3ed, #4299e1);
+  background: linear-gradient(90deg, #4b2e82, #6b4e9f);
   margin: 10px auto 0;
   border-radius: 2px;
 }
 
 .noBusinessMessage {
   font-size: 18px;
-  color: #4a5568;
+  color: #000000;
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
 .addBusinessButton {
   display: inline-block;
-  background: linear-gradient(90deg, #63b3ed, #4299e1);
+  background: linear-gradient(90deg, #4b2e82, #6b4e9f);
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -197,29 +197,21 @@
   border-radius: 30px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(75, 46, 130, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .addBusinessButton:hover {
-  box-shadow: 0 7px 14px rgba(66, 153, 225, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-  background: linear-gradient(90deg, #4299e1, #3182ce);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(75, 46, 130, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #6b4e9f, #4b2e82);
 }
 
 .addBusinessButton:active {
   transform: translateY(1px);
 }
-.addBusinessButton {
-  display: inline-block;
-  background-color: #4299e1;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
 
-.addBusinessButton:hover {
-  background-color: #3182ce;
+.businessIcon {
+  font-size: 48px;
+  color: #4b2e82;
+  margin-bottom: 20px;
 }
