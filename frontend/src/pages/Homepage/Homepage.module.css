@@ -15,9 +15,9 @@
   width: 100%; /* Ensure it spans the full width if desired */
   z-index: 1000; /* Make sure it appears on top of other elements */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: add a subtle shadow */
-  margin-top: 65px;
-  background-color: rgba(255,255,255);
+  background-color: rgba(255,255,255, 0.5);
   padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 .searchBar {

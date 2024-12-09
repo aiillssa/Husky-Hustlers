@@ -137,7 +137,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
 
 
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
+    <div className={classes.root}>
       {/* Main container for the business information */}
       <div className={classes.infoFrame}>
         {!hasBusiness ? (
