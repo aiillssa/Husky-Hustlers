@@ -163,7 +163,8 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
           <ul>
             {files.map((file, index) => (
               <li key={index}>
-                <div>{file.name}</div>
+                {/* Truncate file name if it exceeds 15 characters */}
+                <div>{file.name.length > 15 ? `${file.name.substring(0, 15)}...` : file.name}</div>
 
                 {/* Caption input */}
                 <div>
@@ -195,6 +196,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
               </li>
             ))}
           </ul>
+
         </div>
 
 
