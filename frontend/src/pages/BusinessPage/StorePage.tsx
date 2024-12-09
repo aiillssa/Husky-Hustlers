@@ -70,7 +70,6 @@ function StorePage() {
 
       {/* Header Section */}
       <div className={classes.header}>
-        <div className={classes.profilePic}></div>
         <div className={classes.shopName}>{shopName}</div>
       </div>
 
