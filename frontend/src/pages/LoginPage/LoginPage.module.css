@@ -46,7 +46,6 @@
   width:40%;
   height: auto;
   text-align: left;
-  padding-top: 50px;
 }
 
 /* Login Component */
@@ -57,10 +56,13 @@
   justify-content: center;
   width: 40%;
   height: 50%;
-  border-radius: 59px;
-  background-color: #fff;
-  box-shadow: 8px 8px 2px 2px black;
+  border-radius: 30px;
+  background-color: #ffffff;
   gap: 40px;
+  border-color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  padding: 20px 20px;
 }
 
 /* Title and Login Text */
@@ -140,6 +142,16 @@ p {
   color: white;
   width: 70%;
   border: none;
+}
+
+.login_button:hover {
+  background-color: #5e3a9c; /* Slightly lighter purple on hover */
+  transform: scale(1.03); /* Slightly enlarge the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth on hover */
+}
+
+.login_button:active {
+  transform: scale(0.97); /* Slightly shrink on click for feedback */
 }
 
 .logout_button {
