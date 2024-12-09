@@ -14,12 +14,11 @@
 
 .pageContainer {
   font-family: Arial, sans-serif;
-  background-color: rgb(245, 240, 255);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; /* Ensure the background spans at least the viewport height */
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  background-color: rgb(245, 240, 255); /* Ensure the background color continues during scrolling */
 }
 
 .header {
@@ -90,22 +89,56 @@
   box-sizing: border-box;
 }
 
+/* Section container to handle spacing between the sections */
 .section {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 30px; /* More space between each section */
+  min-height: auto; /* Allow the section to grow based on content */
 }
 
+/* Section title styling */
 .sectionTitle {
   font-weight: bold;
-  font-size: 30px;
-  margin-bottom: 5px;
+  font-size: 30px; /* Slightly smaller than before for better balance */
+  color: #4e397b; /* Dark purple color for section titles */
+  margin-bottom: 15px; /* Increased margin between title and content */
+  text-transform: uppercase; /* Make section titles uppercase for consistency */
+  letter-spacing: 1px; /* Added spacing between letters for better readability */
 }
 
+/* Section content styling */
 .sectionContent {
-  color: black;
-  font-size: 20px;
-  display: flex;
+  font-size: 18px; /* Slightly smaller font size for better readability */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #333; /* Darker text color for content */
+  line-height: 1.6; /* Increased line height for better text readability */
+  padding-left: 10px; /* Indentation for better structure */
+  margin-left: 20px; /* Add left margin to create indentation */
+  border-left: 3px solid #5f4b8b; /* Add a subtle left border for visual appeal */
+  word-wrap: break-word; /* Ensure long words break and wrap properly */
+  white-space: normal; /* Ensure text wraps if it's too long */
+}
+
+.sectionContent:hover {
+  color: #6a4ebc; /* Change text color to purple on hover */
+  cursor: pointer; /* Add cursor pointer to indicate it's interactive */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Styling for the contact info section */
+.sectionContent div {
+  font-size: 18px;
+  color: #4e4e4e; /* A soft gray color for the contact info */
+  margin-bottom: 8px; /* Space between each contact item */
+  line-height: 1.6; /* Ensure readability by improving line height */
+  word-wrap: break-word; /* Ensure wrapping in case of long contact details */
+  white-space: normal; /* Allow text wrapping */
+}
+
+/* Add hover effect for contact info text to highlight interaction */
+.sectionContent div:hover {
+  color: #6a4ebc; /* Change text color to purple on hover */
+  cursor: pointer; /* Add cursor pointer to indicate it's interactive */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
 /* Active Tab Style */
