@@ -1,5 +1,6 @@
 .upload-banner-form {
-    font-family: Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
     color: #333;
     background-color: transparent;
   }
@@ -7,7 +8,7 @@
   .upload-banner-form h3 {
     color: #333;
     margin-bottom: 15px;
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .upload-banner-form input[type='file'] {
