@@ -50,6 +50,10 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
     string,
     string
   > | null>(null); // Map to hold contact info
+  const [necessaryDescription, setnecessaryDescription] = useState<Map<
+  string,
+  string
+> | null>(null); // Map to hold contact info
   const [activeTab, setActiveTab] = useState<string>("Basics"); // State to track active tab
   const [message, setMessage] = useState<string>(
     "You do not have a shop right now. Click add your business button to add your business."
@@ -79,6 +83,15 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
               )
             );
             setContactInformation(contactInfoMap);
+
+            const necessaryDescript = new Map<string, string>(
+              Object.entries(res.shop.necessaryDescription || {}).map(
+                ([key, value]) => [key, String(value)] // Ensure value is cast to a string
+              )
+            );
+            setnecessaryDescription(necessaryDescript);
+
+            console.log(res.shop);
           }
         } catch (error: any) {
           // Check if error is a 404 (no shop found)
@@ -139,7 +152,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
     contactInformation: ContactInformation;
     userIdUsers: number;
     categories: string[];
-    necessaryDescription?: Record<string, string>;
+    necessaryDescription?: any;
   }
 
   return (
@@ -243,6 +256,12 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                             )
                           )
                         : "No contact information available."}
+                    </div>
+                  </div>
+                  <div className={classes.section}>
+                  <div className={classes.sectionTitle}> Pick Up Option:</div>
+                  <div className={classes.sectionContent}>
+                      {necessaryDescription || "No description available."}
                     </div>
                   </div>
                 </>
