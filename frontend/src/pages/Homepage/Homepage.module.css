@@ -7,7 +7,7 @@
   background-size: cover; /* Ensures the background covers the container without overflowing */
   overflow-x: hidden; /* Prevents any horizontal scrolling if overflow occurs */
   margin: 0; /* Reset default margins */
-  padding: 0; /* Reset default padding */
+  padding-bottom: 30px; /* Reset default padding */
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
 }
@@ -17,7 +17,7 @@
   width: 100%; /* Ensure it spans the full width if desired */
   z-index: 1000; /* Make sure it appears on top of other elements */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: add a subtle shadow */
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(255,255,255,1);
   padding-bottom: 10px;
   padding-top: 20px;
 }
@@ -48,7 +48,7 @@
 
 .card {
   width: 250px;
-  height: 400px;
+  height: 370px;
   overflow: hidden;
   flex-direction: column;
   align-items: flex-start;
@@ -78,9 +78,9 @@
   color: #000;
   font-size: 20px;
   font-weight: 300;
-  height: min-content;
   align-self: stretch;
   flex-direction: column;
+  height: auto;
 }
 
 .cardLink {
@@ -91,9 +91,9 @@
   color: #000;
   font-size: 30px;
   font-weight: bold;
-  height: min-content;
   align-self: stretch;
   flex-direction: column;
+  display: inline-block;
 }
 
 .description {
