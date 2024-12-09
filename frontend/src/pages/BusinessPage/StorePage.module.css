@@ -16,14 +16,11 @@
 }
 
 .shopName {
-  width: fit-content;
-  font-size: 40px;
+  font-size: 36px; /* Adjusted font size */
   font-weight: bold;
-  color: black;
-  white-space: normal; /* Allow wrapping of the text */
-  word-wrap: break-word; /* Break words if necessary */
-  text-align: left; /* Ensures text stays left aligned */
-  margin-top: 5px; /* Adjusts for better spacing if wrapping occurs */
+  color: #4b2e83; /* Husky purple for branding */
+  text-transform: capitalize;
+  margin: 0;
 }
 
 /* Store Header Image */
@@ -140,4 +137,26 @@
   color: #6a4ebc; /* Change text color to purple on hover */
   cursor: pointer; /* Add cursor pointer to indicate it's interactive */
   transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+.businessNameContainer {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.shopName {
+  font-size: 36px; /* Adjusted font size */
+  font-weight: bold;
+  color: #4b2e83; /* Husky purple for branding */
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.businessName {
+  font-size: 48px; /* Larger font size for emphasis */
+  font-weight: bold;
+  color: #4b2e83; /* Husky purple for branding */
+  text-transform: capitalize;
+  margin: 0;
 }

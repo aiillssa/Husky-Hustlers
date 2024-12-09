@@ -69,8 +69,8 @@ function StorePage() {
     <div className={classes.pageContainer}>
 
       {/* Header Section */}
-      <div className={classes.header}>
-        <div className={classes.shopName}>{shopName}</div>
+      <div className={classes.businessNameContainer}>
+        <h1 className={classes.shopName}>{shopName}</h1>
       </div>
 
       {/** BANNER */}
