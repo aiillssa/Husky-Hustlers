@@ -158,8 +158,6 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
 
         {/* Display the names of the selected files with captions and prices */}
         <div>
-          <h4>Selected Files:</h4>
-
           <button onClick={addNewFileField} type='button'>Add another image</button>
 
           <ul>
