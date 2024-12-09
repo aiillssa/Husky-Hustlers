@@ -1,10 +1,11 @@
 .root {
   position: relative;
-  width: 88px;
-  height: 35px;
-  flex-direction: column;
-  align-items: flex-start;
-  cursor: pointer; /* Ensure the cursor changes to a pointer on hover */
+  width: 120px;
+  height: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
 }
 
 .rectangle1 {
@@ -13,50 +14,88 @@
   right: 0;
   top: 0;
   bottom: 0;
-  border-radius: 30px;
-  background-color: #ece6f0;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 18px;
+  background-color: #f5f5f5;
+  transition: all 0.2s ease;
 }
 
 .root:hover .rectangle1 {
-  transform: translateY(-4px); /* Lift effect */
+  background-color: #e0e0e0;
 }
 
 .text {
-  /* Existing styles */
   position: absolute;
-  left: -1px;
-  top: 1px;
-  width: 89px;
-  height: 34px;
-  text-align: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a4a;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
 }
-
 
 /* Color styles for each type */
-.food {
-  background-color: #ffcccc;
+.food .rectangle1 {
+  background-color: #ffe6e6;
 }
 
-.artwork {
-  background-color: #ccffcc;
+.artwork .rectangle1 {
+  background-color: #e6ffe6;
 }
 
-.service {
-  background-color: #ccccff;
+.service .rectangle1 {
+  background-color: #e6e6ff;
 }
 
-.craft {
-  background-color: #fff0b3;
+.craft .rectangle1 {
+  background-color: #fff2e6;
 }
 
-.resell {
-  background-color: #ffccff;
+.resell .rectangle1 {
+  background-color: #ffe6ff;
 }
 
-.selected {
-  font-weight: 1000;
+.all .rectangle1 {
+  background-color: #f0f0f0;
+}
+
+.food .text {
+  color: #d32f2f;
+}
+
+.artwork .text {
+  color: #388e3c;
+}
+
+.service .text {
+  color: #1976d2;
+}
+
+.craft .text {
+  color: #f57c00;
+}
+
+.resell .text {
+  color: #7b1fa2;
+}
+
+.all .text {
+  color: #424242;
+}
+
+.selected .rectangle1 {
+  background-color: #d0d0d0;
+}
+
+.selected .text {
+  font-weight: 700;
+}
+
+.root:active .rectangle1 {
+  transform: translateY(1px);
 }
