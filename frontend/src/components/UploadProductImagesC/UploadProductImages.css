@@ -145,3 +145,11 @@
 .upload-product-images input[type="text"]:valid {
   border-color: #4b2e83ff;
 }
+
+.upload-product-images div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
