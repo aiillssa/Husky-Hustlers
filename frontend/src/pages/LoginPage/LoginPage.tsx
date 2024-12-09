@@ -71,11 +71,19 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
     <div className={`${classes.root}`}>
       {/* Navigation bar with brand and prompt */}
       <div className={classes.navBar}>
-        <span>Husky Hustler</span>
+        <span>Husky Hustlers</span>
         <span>Log In / Sign Up First to See All Student Business</span>
-      </div>
+  </div>
 
       <div className={classes.content_wrapper}>
+        {/* Logo */}
+        <div className={classes.logoWrapper}>
+          <img
+            src="https://hustlers.blob.core.windows.net/images/defaultLogo.png"
+            alt="Husky Hustlers Logo"
+            className={classes.logo}
+          />
+        </div>
         {/* Caption describing the platform */}
         <div className={classes.caption}>
           A platform that fosters student businesses and UW community!
@@ -84,7 +92,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
           <div className={classes.loginComponent}>
             <div className={classes.title}>
               <div className={classes.helloWelcome}>
-                Welcome to Husky Hustler!
+                Welcome to Husky Hustlers!
               </div>
               <div className={classes.join}>Join Our Community</div>
             </div>
