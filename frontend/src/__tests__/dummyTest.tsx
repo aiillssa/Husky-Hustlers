@@ -23,7 +23,7 @@ test('displays new test', async () => {
 
 describe('BusinessPage', () => {
   beforeEach(() => {
-    // Clear mocks before each test
+    
     jest.clearAllMocks();
     // Mock localStorage to simulate a user ID
     Storage.prototype.getItem = jest.fn(() => '1'); // Simulates `localStorage.getItem('userID')` returning "1"
