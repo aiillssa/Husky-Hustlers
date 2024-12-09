@@ -65,7 +65,7 @@ describe('BusinessPage', () => {
       },
     };
 
-    // Mock API call to return the shop data
+    // Mock API call to return shop data
     (getShopWithUserID as jest.Mock).mockResolvedValue(mockShopData);
 
     render(

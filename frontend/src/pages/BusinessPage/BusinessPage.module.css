@@ -23,17 +23,23 @@
 
 .pageContainer {
   font-family: Arial, sans-serif;
-  width: 100%;
-  height: 100%;
+  background-color: rgb(245, 240, 255);
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column; /* Align children in a column */
+  flex-direction: column;
   box-sizing: border-box;
 }
 
 .header {
   display: flex;
-  align-items: right;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffffff; /* White background for header */
+  border-radius: 20px; /* Rounded edges for header */
+  padding: 15px 30px; /* Space inside the header */
   margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
 }
 
 .profilePic {
@@ -54,25 +60,36 @@
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 200px;
+  gap: 20px; /* Space between the tabs */
+  background-color: white; /* Light background for the tab container */
+  border-radius: 20px; /* Rounded edges for tabs container */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: fit-content;
+  margin: 0 auto; /* This centers the tabs container horizontally */
+  margin-top: 20px; /* Added top margin to ensure padding between the image and tabs */
 }
 
+
 .tab {
-  font-size: 18px;
+  font-size: 24px;
+  padding: 10px 20px;
   cursor: pointer;
   color: black;
+  background-color: transparent; /* Transparent background by default */
+  border: 2px solid transparent; /* Invisible border by default */
+  border-radius: 15px; /* Rounded edges for tabs */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .tab:hover {
   font-weight: bold;
 }
 
-/*Divider Line in between Tab and shop */
-.divider {
-  height: 1px;
-  background-color: #ddd;
-  margin-bottom: 20px;
-}
 
 .content {
   max-width: 90%; /* Makes it responsive */
@@ -104,9 +121,13 @@
   display: flex;
 }
 
-/* Active tab styling */
+/* Active Tab Style */
 .activeTab {
-  font-weight: bold;
+  background-color: rgb(136, 77, 255); /* Blue background for selected tab */
+  color: white; /* White text when active */
+  font-weight: bold; /* Bold text for active tab */
+  border-radius: 15px; /* Rounded edges */
+  border: 2px solid rgb(136, 77, 255); /* Blue border for active tab */
 }
 
 
