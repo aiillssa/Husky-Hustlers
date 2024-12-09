@@ -40,48 +40,29 @@
 }
 
 /* Color styles for each type */
-.food .rectangle1 {
-  background-color: #ffe6e6;
-}
-
-.artwork .rectangle1 {
-  background-color: #e6ffe6;
-}
-
-.service .rectangle1 {
-  background-color: #e6e6ff;
-}
-
-.craft .rectangle1 {
-  background-color: #fff2e6;
-}
-
-.resell .rectangle1 {
-  background-color: #ffe6ff;
-}
-
-.all .rectangle1 {
-  background-color: #f0f0f0;
-}
-
 .food .text {
-  color: #d32f2f;
+  background-color: #d32f2f;
+  color: white;
 }
 
 .artwork .text {
-  color: #388e3c;
+  background-color: #388e3c;
+  color: white;
 }
 
 .service .text {
-  color: #1976d2;
+  background-color: #1976d2;
+  color:white;
 }
 
 .craft .text {
-  color: #f57c00;
+  background-color: #f57c00;
+  color:white;
 }
 
 .resell .text {
-  color: #7b1fa2;
+  background-color: #7b1fa2;
+  color:white;
 }
 
 .all .text {

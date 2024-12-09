@@ -43,7 +43,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
-  padding: 120px 5% 50px;
+  padding: 50px 5% 50px;
   justify-content: center;
 }
 
