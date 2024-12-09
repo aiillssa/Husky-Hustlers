@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { getShop } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import classes from "./StorePage.module.css";
+import ProductsGrid from "../../components/ProductsGridC/ProductsGrid";
+import { checkImageExistence } from "./BusinessPage";
 
-const DEBUG : boolean = true;
+const DEBUG: boolean = false;
 
 function StorePage() {
-  const { shopId } = useParams<{ shopId: string }>(); /*Gets ShopID */
+  const { shopId, userId } = useParams<{ shopId: string, userId: string }>(); /*Gets ShopID */
   const [contactInformation, setContactInformation] = useState<Map<string, string> | null>(null);
   const [shopName, setShopName] = useState<string>("");
   const [shopDescription, setShopDescription] = useState<string>("");
@@ -26,28 +28,38 @@ function StorePage() {
           setContactInformation(contactInfoMap);
           setShopName(shop.shopName);
           setShopDescription(shop.shopDescription);
+          console.log(shop.userID)
         } catch (err) {
           console.error("Error fetching data:", err);
         }
       };
 
       const fetchBanner = async () => {
-        if(DEBUG) console.log("inside fetchBanner")
-        
+        if (DEBUG) console.log("inside fetchBanner")
+
         //const id = 'testID';
         const id = Number(localStorage.getItem("userID"));
         //const id = 'userIDtest';
-        const bannerURLtest = `http://localhost:8088/blob/${id}/banner`;
-  
-        if(DEBUG) console.log(bannerURLtest);
-        if(DEBUG) console.log(id);
-        setBannerURL(bannerURLtest);
-  
-        if(DEBUG) console.log("banner URL", bannerURL)
-        
+        if (userId === undefined) {
+          console.error("userID is undefined");
+        }
+
+        if (await checkImageExistence(Number(userId), "banner")) {
+          const bannerURLtest = `http://localhost:8088/blob/${userId}/banner`;
+
+          if (DEBUG) console.log(bannerURLtest);
+          if (DEBUG) console.log(id);
+          setBannerURL(bannerURLtest);
+
+          if (DEBUG) console.log("banner URL", bannerURL)
+
+        } else {
+          setBannerURL("https://hustlers.blob.core.windows.net/images/defaultbanner.jpg");
+        }
+
       };
 
-      
+
       fetchData();
       fetchBanner();
     }
@@ -58,12 +70,11 @@ function StorePage() {
 
       {/* Header Section */}
       <div className={classes.header}>
-        <div className={classes.profilePic}></div>
         <div className={classes.shopName}>{shopName}</div>
       </div>
 
       {/** BANNER */}
-      <img src={bannerURL} style={{width: "100%", height:"200px", objectFit:"cover"}}/>
+      <img  src={bannerURL} className="store-header-img" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
 
       {/* Tabs Section */}
       <div className={classes.tabs}>
@@ -72,12 +83,6 @@ function StorePage() {
           onClick={() => setActiveTab("Basics")}
         >
           Basics
-        </div>
-        <div
-          className={`${classes.tab} ${activeTab === "Other" ? classes.activeTab : ""}`}
-          onClick={() => setActiveTab("Other")}
-        >
-          Other
         </div>
         <div
           className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""}`}
@@ -101,31 +106,22 @@ function StorePage() {
             <div className={classes.section}>
               <div className={classes.sectionTitle}>Contact Info:</div>
               <div className={classes.sectionContent}>
-                {contactInformation}
+              {contactInformation && 
+                Array.from(contactInformation.entries()).map(([key, value]) => (
+                  <div key={key}>
+                    {key}: {value}
+                  </div>
+                ))
+              }
               </div>
             </div>
           </>
         )}
         {activeTab === "Pictures" && (
-          <div className={classes.picturesSection}>
-            <div className={classes.pictureRow}>
-              <div className={classes.pictureCard}>
-                <div className={classes.imagePlaceholder}></div>
-                <div className={classes.caption}>Caption</div>
-                <div className={classes.pricing}>Pricing</div>
-              </div>
-              <div className={classes.pictureCard}>
-                <div className={classes.imagePlaceholder}></div>
-                <div className={classes.caption}>Caption</div>
-                <div className={classes.pricing}>Pricing</div>
-              </div>
-              <div className={classes.pictureCard}>
-                <div className={classes.imagePlaceholder}></div>
-                <div className={classes.caption}>Caption</div>
-                <div className={classes.pricing}>Pricing</div>
-              </div>
-            </div>
+          <div>
+            <ProductsGrid userId={userId} />
           </div>
+
         )}
       </div>
     </div>

@@ -1,0 +1,77 @@
+/* General reset to ensure no background behind the grid */
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+    background: transparent; /* Ensuring no background behind the entire grid */
+}
+/* Styling for each image container and card */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.image-card {
+    display: flex;
+    flex-direction: column; /* Stack image, caption, and price vertically */
+    align-items: center;
+    background-color: white; /* Clear white background for card */
+    border: 2px solid #4b2e83ff; /* Border with the accent color */
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center; /* Center text under each image */
+    /* Remove fixed height so card grows with content */
+    height: auto;
+    min-height: 300px; /* Set a minimum height to maintain consistent card size */
+}
+
+.image-card:hover {
+    transform: translateY(-5px); /* Hover effect for card */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Image styling inside each card */
+.image-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px; /* Space between image and text */
+}
+
+/* Styling for the caption and price */
+.image-card figcaption {
+    font-family: Arial, Helvetica, sans-serif; /* Using custom font */
+    color: #333;
+    margin-top: 8px;
+}
+
+figcaption .label {
+    font-weight: bold; /* Bold only the label text */
+}
+
+/* Price styling */
+figcaption.price {
+    color: #4b2e83ff; /* Accent color for price */
+    font-size: 24px; /* Custom font size for price */
+    font-weight: normal; /* Ensure price itself is not bold */
+}
+figcaption.caption {
+    color: #4b2e83ff; /* Accent color for caption */
+    font-size: 24px; /* Custom font size for caption */
+    font-weight: normal; /* Ensure caption itself is not bold */
+}
+/* Loading/Error message styling */
+.loading, .error {
+    font-size: 18px;
+    color: #4b2e83ff;
+    text-align: center;
+    padding: 20px;
+}

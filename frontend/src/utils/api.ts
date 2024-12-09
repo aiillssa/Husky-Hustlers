@@ -34,10 +34,10 @@ export const googleSignUp = async (
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // Send code to the backend to get appJwt
-    const response = await axios.post("/google/signUp", {code});
+    const response = await axios.post("/google/signUp", { code });
     return { success: true };
-    
-  }catch (error) {
+
+  } catch (error) {
     console.error("Signup failed:", error);
     return { success: false, error: "Sign up failed. Please try again." };
   }
@@ -73,14 +73,14 @@ export const createShop = async (businessData: string): Promise<ShopResponse> =>
 
 export const updateShop = async (updatedDescription: string, updatedContactInfo: Map<string, string>, shopID: number): Promise<ShopResponse> => {
   try {
-    const info = {instagram: updatedContactInfo.get("instagram")}
+    const info = { instagram: updatedContactInfo.get("instagram") }
     console.log("Shop description: ", updatedDescription);
     console.log("Shop info: ", info);
 
     //const response  = fetch(`http://localhost:8088/shops/${shopID}`, {method: "PATCH"})
     const response = await axios.patch(`/shops/${shopID}`, {
-        shopDescription: updatedDescription, 
-        contactInformation: info
+      shopDescription: updatedDescription,
+      contactInformation: info
     });
     console.log("Shop edited successfully:", response.data);
     return { status: response.status, data: response.data };
@@ -99,7 +99,7 @@ export const updateShop = async (updatedDescription: string, updatedContactInfo:
 };
 
 export const getShops = async (type: string): Promise<any> => {
-  
+
 
   try {
     // Send GET request to /shops endpoint
@@ -107,20 +107,19 @@ export const getShops = async (type: string): Promise<any> => {
     if (type !== "all") {
       url += `/categories/${type}`;
     }
-    
+
     const response = await axios.get(url);
 
-    
-    
+
+
     // Extract shops array from the response
     const shops = response.data.shops;
     console.log("Shops:", shops);
-   
+
     return shops;
   } catch (error: any) {
     console.error(
-      `Failed to get shops: ${
-        error.response ? error.response.data : error.message
+      `Failed to get shops: ${error.response ? error.response.data : error.message
       }`
     );
     console.error("Failed to fetch shops:", error);
@@ -137,8 +136,7 @@ export const getShop = async (shopId: number): Promise<any> => {
     return shopInfo;
   } catch (error: any) {
     console.error(
-      `Failed to get shops: ${
-        error.response ? error.response.data : error.message
+      `Failed to get shops: ${error.response ? error.response.data : error.message
       }`
     );
     console.error("Failed to fetch shops:", error);
@@ -153,8 +151,7 @@ export const getShopWithUserID = async (userID: number): Promise<any> => {
     return shopInfo;
   } catch (error: any) {
     console.error(
-      `Failed to get shops: ${
-        error.response ? error.response.data : error.message
+      `Failed to get shops: ${error.response ? error.response.data : error.message
       }`
     );
     console.error("Failed to fetch shops:", error);
@@ -165,7 +162,7 @@ export const getShopWithUserID = async (userID: number): Promise<any> => {
 export const logOut = async (): Promise<void> => {
   try {
     const response = await axios.post(`/google/logOut`);
-  } catch (error: any){
+  } catch (error: any) {
     console.log("Error in signing out: ", error);
   }
 }
@@ -182,5 +179,16 @@ export const deleteShop = async (idshops: number): Promise<any> => {
   }
 };
 
+export const deleteShopImages = async (userID: number): Promise<any> => {
+  try {
+    const response = await axios.delete(`/blob/${userID}`);
+    console.log(response.data);
+    return response;
+  } catch (error: any) {
+    console.error("failed to delete shop images: ", error);
+    return undefined
+  }
+}
 
-export {};
+
+export { };

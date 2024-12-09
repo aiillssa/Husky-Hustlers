@@ -129,4 +129,3 @@ describe('BusinessPage', () => {
       expect(banner).toHaveAttribute('src', 'http://localhost:8088/blob/1/banner');
     });
   });
-});

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom
 import Navbar from './components/NavBar';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Homepage from './pages/Homepage/Homepage';
-import Profile from './pages/ProfilePage/Profile';
 import BusinessPage from './pages/BusinessPage/BusinessPage';
 import AddBusinessPage from './pages/AddBusinessPage/AddBusinessPage';
 import StorePage from './pages/BusinessPage/StorePage';
@@ -45,10 +44,9 @@ export class App extends Component<{}, AppState> {
             <Routes>
               {/* Routes with the Navbar */}
               <Route element={<this.NavbarLayout />}>
-                <Route path="/pages/Profile" element={<Profile />} />
                 <Route path="/pages/Homepage" element={<Homepage />} />
                 <Route path="/pages/BusinessPage" element={<BusinessPage />} />
-                <Route path="/pages/StorePage/:shopId" element={<StorePage />} />
+                <Route path="/pages/StorePage/:shopId/:userId" element={<StorePage />} />
                 <Route path="/pages/AddBusinessPage" element={<AddBusinessPage />} />
               </Route>
 

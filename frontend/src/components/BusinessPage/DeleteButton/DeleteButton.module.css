@@ -1,10 +1,10 @@
 /* DeleteButton.module.css */
 
 .container {
-    position: absolute;
-    right: 80px;
-    margin-top: 40px;
-  }
+  display: flex; /* Use flexbox for alignment */
+  padding: 10px; /* Optional: Add some padding */
+}
+
   
   .deleteButton {
     background-color: #ff4d4f; /* Red color for delete action */
@@ -37,4 +37,73 @@
     color: red;
     font-size: 14px;
   }
+
+  .container {
+    position: relative;
+  }
+  
+  .deleteButton {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .modalActions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .confirmButton {
+    background-color: green;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cancelButton {
+    background-color: red;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .successMessage,
+  .errorMessage {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .successMessage {
+    color: green;
+  }
+  
+  .errorMessage {
+    color: red;
+  }
+  
   

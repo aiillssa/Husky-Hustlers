@@ -1,88 +1,87 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%; /* Ensures consistent vertical sizing */
-}
-
-.navButton {
-  position: relative;
-  top: 40px;
-  right: 180px;
-  background-color: #4B2E83;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 16px;
-  }
 
 .root {
   background-color: #f8ebeb;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column; /* Align children in a column */
   box-sizing: border-box;
+  position: relative;
+  width: 100vw; /* Ensures it spans the full viewport width */
+  height: 100vh; /* Optional: Ensures it spans the full viewport height */
+  box-sizing: border-box; /* Prevents horizontal scrolling due to padding*/
+  background-size: cover; /* Ensures the background covers the container without overflowing */
+  overflow-x: hidden; /* Prevents any horizontal scrolling if overflow occurs */
+  margin: 0; /* Reset default margins */
+  padding: 0; /* Reset default padding */
 }
 
 .pageContainer {
   font-family: Arial, sans-serif;
-  width: 100%;
-  height: 100%;
+  background-color: rgb(245, 240, 255);
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column; /* Align children in a column */
+  flex-direction: column;
   box-sizing: border-box;
-  
 }
 
 .header {
   display: flex;
-  align-items: right;
-  margin-bottom: 20px;
-}
-
-.profilePic {
-  width: 50px;
-  height: 50px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-  margin-right: 15px;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffffff; /* White background for header */
+  padding: 15px 30px; /* Space inside the header */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
+  gap: 15px; /* Space between profile picture and shop name */
 }
 
 .shopName {
-  font-size: 24px;
+  width: fit-content;
+  font-size: 40px;
   font-weight: bold;
   color: black;
+  white-space: normal; /* Allow wrapping of the text */
+  word-wrap: break-word; /* Break words if necessary */
+  text-align: left; /* Ensures text stays left aligned */
+  margin-top: 5px; /* Adjusts for better spacing if wrapping occurs */
+  
 }
-
 /*Spacing the tabs */
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 200px;
+  gap: 20px; /* Space between the tabs */
+  background-color: white; /* Light background for the tab container */
+  border-radius: 20px; /* Rounded edges for tabs container */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: fit-content;
+  margin: 0 auto; /* This centers the tabs container horizontally */
+  margin-top: 20px; /* Added top margin to ensure padding between the image and tabs */
 }
 
+
 .tab {
-  font-size: 18px;
+  font-size: 24px;
+  padding: 10px 20px;
   cursor: pointer;
   color: black;
+  background-color: transparent; /* Transparent background by default */
+  border: 2px solid transparent; /* Invisible border by default */
+  border-radius: 15px; /* Rounded edges for tabs */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .tab:hover {
   font-weight: bold;
 }
 
-/*Divider Line in between Tab and shop */
-.divider {
-  height: 1px;
-  background-color: #ddd;
-  margin-bottom: 20px;
-}
 
 .content {
   max-width: 90%; /* Makes it responsive */
   width: 100%; /* Ensures it doesn’t exceed the viewport */
-  height: 700px; /* Adjust height to fit content */
+  height: 100%; /* Adjust height to fit content */
   margin: 20px auto; /* Adds vertical spacing and centers */
   background-color: white;
   border-radius: 10px;
@@ -109,51 +108,25 @@ html, body {
   display: flex;
 }
 
-/* Active tab styling */
+/* Active Tab Style */
 .activeTab {
-  font-weight: bold;
+  background-color: rgb(136, 77, 255); /* Blue background for selected tab */
+  color: white; /* White text when active */
+  font-weight: bold; /* Bold text for active tab */
+  border-radius: 15px; /* Rounded edges */
+  border: 2px solid rgb(136, 77, 255); /* Blue border for active tab */
 }
 
-.picturesSection {
+.actionButtons {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: flex-end; /* Align the button to the right */
+  padding: 10px; /* Optional: Add some padding */
+  right: 80px;
+}
+
+.addBusinessContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.pictureRow {
-  display: flex;
-  gap: 20px;
-}
-
-.pictureCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 200px; /* Adjust as needed */
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.imagePlaceholder {
-  width: 100%;
-  height: 150px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-.caption {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.pricing {
-  margin-top: 5px;
-  font-size: 12px;
-  color: #555;
-  text-align: center;
+  justify-content: center; /* Horizontally centers the button */
+  align-items: center; /* Vertically centers the button */
+  height: 100vh; /* Full height of the viewport to center the button vertically */
 }

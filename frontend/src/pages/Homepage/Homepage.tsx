@@ -42,18 +42,20 @@ type HomepageState = {
   imageList: string[];
 };
 
-
 export class Homepage extends Component<{}, HomepageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { listOfSellers: [], selectedType: "all", searchTerm: "", imageList: [] };
+    this.state = {
+      listOfSellers: [],
+      selectedType: "all",
+      searchTerm: "",
+      imageList: [],
+    };
   }
 
   componentDidMount() {
     this.fetchData("all");
   }
-
-
 
   async fetchData(type: string) {
     try {
@@ -61,52 +63,51 @@ export class Homepage extends Component<{}, HomepageState> {
 
       // retrieves all the images saved within the database
       try {
-        const res = await axios.get('http://localhost:8088/blob/');
+        const res = await axios.get("http://localhost:8088/blob/");
         if (DEBUG) console.log("blob list:", res.data.blobs);
-        this.setImageList(res.data.blobs);  // Assuming 'this' context is correct here
+        this.setImageList(res.data.blobs); // Assuming 'this' context is correct here
       } catch (err) {
-        console.error('Error in getting list of blobs', err);
+        console.error("Error in getting list of blobs", err);
       }
-      
 
       const sellers = shops.map((shop: SellerData) => {
         const types = shop.categories.map((category) =>
           category.categoryName.toLowerCase()
         ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
-        
+
         const userID = shop.user.idUsers;
-        if (DEBUG) console.log("current user ID: ", userID)
-        const image = `http://localhost:8088/blob/${Number(userID)}/homepage`
-        
+        if (DEBUG) console.log("current user ID: ", userID);
+        const image = `http://localhost:8088/blob/${Number(userID)}/homepage`;
+
         let imageExists = false;
 
         // verifies that the user has an icon image
         const checkImageExistence = () => {
           this.state.imageList.forEach((str) => {
-            const [id, source] = str.split('-');
-
+            const [id, source] = str.split("-");
 
             if (DEBUG) console.log("id: ", id);
             if (DEBUG) console.log("source: ", source);
-            if (DEBUG) console.log("return: ", id === userID.toString() && source === 'homepage');
+            if (DEBUG)
+              console.log(
+                "return: ",
+                id === userID.toString() && source === "homepage"
+              );
 
-
-            if(id === userID.toString() && source === 'homepage') {
+            if (id === userID.toString() && source === "homepage") {
               imageExists = true;
             }
-          })
-        }
+          });
+        };
 
-        
         checkImageExistence();
-        console.log(imageExists)
-        if(imageExists) {
+        console.log(imageExists);
+        if (imageExists) {
           return { ...shop, types, image };
         } else {
-          return { ...shop, types};
+          const imgURL = `https://hustlers.blob.core.windows.net/images/HHLogo.png`;
+          return { ...shop, types, imgURL };
         }
-        
-               
       });
       this.setState({ listOfSellers: sellers });
     } catch (err) {
@@ -114,11 +115,10 @@ export class Homepage extends Component<{}, HomepageState> {
     }
   }
 
-
   setImageList = (list: string[]) => {
     if (DEBUG) console.log("entered setImageList", list);
-    this.setState({imageList: list});
-  }
+    this.setState({ imageList: list });
+  };
 
   // add click behavior for each type on homepage
   handleTypeClick = (
@@ -146,87 +146,95 @@ export class Homepage extends Component<{}, HomepageState> {
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
 
+      if (seller.image == undefined) {
+        seller.image = `https://hustlers.blob.core.windows.net/images/HHLogo.png`;
+      }
       return matchesType && matchesSearch;
     });
 
     return (
       <div className={classes.root}>
-        
-        <SearchBar
-          className={classes.searchBar}
-          onSearchChange={this.handleSearchChange}
-          value={this.state.searchTerm}
-        />
+        <div className={classes.search}>
+          <SearchBar
+            className={classes.searchBar}
+            onSearchChange={this.handleSearchChange}
+            value={this.state.searchTerm}
+          />
 
-        <div className={classes.type}>
-          {/* 'All' button to reset the filter */}
-          <div
-            onClick={() => this.handleTypeClick("all")}
-            style={{
-              cursor: "pointer",
-              fontWeight: this.state.selectedType === "all" ? 1000 : "normal",
-            }}
-          >
-            Show All
+          <div className={classes.type}>
+            {/* 'All' button to reset the filter */}
+            <div
+              onClick={() => this.handleTypeClick("all")}
+              style={{
+                cursor: "pointer",
+                fontWeight: this.state.selectedType === "all" ? 1000 : "normal",
+              }}
+            >
+              Show All
+            </div>
+            {/* Categories */}
+            <CategoryButton
+              type="food"
+              onClick={() => this.handleTypeClick("food")}
+              selected={selectedType === "food"}
+            />
+            <CategoryButton
+              type="artwork"
+              onClick={() => this.handleTypeClick("artwork")}
+              selected={selectedType === "artwork"}
+            />
+            <CategoryButton
+              type="service"
+              onClick={() => this.handleTypeClick("service")}
+              selected={selectedType === "service"}
+            />
+            <CategoryButton
+              type="craft"
+              onClick={() => this.handleTypeClick("craft")}
+              selected={selectedType === "craft"}
+            />
+            <CategoryButton
+              type="resell"
+              onClick={() => this.handleTypeClick("resell")}
+              selected={selectedType === "resell"}
+            />
           </div>
-          {/* Categories */}
-          <CategoryButton
-            type="food"
-            onClick={() => this.handleTypeClick("food")}
-            selected={selectedType === "food"}
-          />
-          <CategoryButton
-            type="artwork"
-            onClick={() => this.handleTypeClick("artwork")}
-            selected={selectedType === "artwork"}
-          />
-          <CategoryButton
-            type="service"
-            onClick={() => this.handleTypeClick("service")}
-            selected={selectedType === "service"}
-          />
-          <CategoryButton
-            type="craft"
-            onClick={() => this.handleTypeClick("craft")}
-            selected={selectedType === "craft"}
-          />
-          <CategoryButton
-            type="resell"
-            onClick={() => this.handleTypeClick("resell")}
-            selected={selectedType === "resell"}
-          />
         </div>
+
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
             <Link
-            key={index}
-            to={`/pages/StorePage/${seller.idshops}`}
-            className={classes.cardLink}
-          >
+              key={index}
+              // will send the shop id and the user id (used to display images)
+              to={`/pages/StorePage/${seller.idshops}/${seller.user.idUsers}`}
+              className={classes.cardLink}
+            >
               <div className={classes.card}>
-
-
                 {/** STORE ICON IMAGE DISPLAY */}
                 {seller.image ? (
-                  <img
-                    src={seller.image}
-                    alt={`${seller.shopName} image`}
-                    width="400px" 
-                    height="400px"
-                  />
+                  <img src={seller.image} alt={`${seller.shopName} image`} />
                 ) : (
                   <></>
                 )}
 
-
                 <div className={classes.cardHeading}>
-                  <div className={classes.name}>{seller.ownerName}</div>
-                  <div className={classes.businessName}>{seller.shopName}</div>
+                  <div className={classes.name}>
+                    {seller.ownerName.length > 25
+                      ? seller.ownerName.substring(0, 25) + "..."
+                      : seller.ownerName}
+                  </div>
+                  <div className={classes.businessName}>
+                    {seller.shopName.length > 40
+                      ? seller.shopName.substring(0, 15) + "..."
+                      : seller.shopName}
+                  </div>
+                  <div className={classes.description}>
+                    {seller.shopDescription.length > 165
+                      ? seller.shopDescription.substring(0, 165) + "..."
+                      : seller.shopDescription}
+                  </div>
+                  <CategoryButton type={seller.types[0]} />
                 </div>
-                <div className={classes.description}>
-                  {seller.shopDescription}
-                </div>
-                <CategoryButton type={seller.types[0]} />
               </div>
             </Link>
           ))}

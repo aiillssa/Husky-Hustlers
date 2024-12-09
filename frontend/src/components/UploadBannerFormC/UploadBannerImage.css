@@ -1,0 +1,66 @@
+.upload-banner-form {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+    color: #333;
+    background-color: transparent;
+  }
+  
+  .upload-banner-form h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .upload-banner-form input[type='file'] {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .upload-banner-form button {
+    background-color: #4b2e83ff; /* Accent color - purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-banner-form button:hover {
+    background-color: rgb(136, 77, 255); /* Darker purple on hover */
+  }
+  
+  .upload-banner-form span {
+    display: block;
+    margin-top: 10px;
+    color: blue;
+  }
+  
+  .upload-banner-form progress {
+    width: 100%;
+    margin-top: 10px;
+    height: 20px;
+    border-radius: 10px;
+    appearance: none;
+  }
+  
+  .upload-banner-form progress::-webkit-progress-bar {
+    background-color: #ddd;
+    border-radius: 10px;
+  }
+  
+  .upload-banner-form progress::-webkit-progress-value {
+    background-color: rgb(181, 144, 255); /* Accent color - purple */
+    border-radius: 10px;
+  }
+  
+  .upload-banner-form progress::-moz-progress-bar {
+    background-color: rgb(181, 144, 255); /* Accent color - purple */
+    border-radius: 10px;
+  }
+  
