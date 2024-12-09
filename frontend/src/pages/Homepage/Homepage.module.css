@@ -58,7 +58,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  height: 100%; /* Ensure all cards have the same height */
+  height: 400px;
 }
 
 .card:hover {
