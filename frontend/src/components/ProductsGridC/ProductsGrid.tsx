@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import './ProductsGrid.css';
 import { checkImageExistence } from '../../pages/BusinessPage/BusinessPage';
+import { getShopWithUserID } from '../../utils/api';
 
 
 const DEBUG = false;
@@ -26,6 +27,9 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
         loading: true,
         error: null,
     });
+
+    const [caption, setCaption] = useState("");
+    const [price, setPrice] = useState("");
 
     // Get the userID from localStorage
     useEffect(() => {
@@ -81,38 +85,22 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                 console.error('Error in getting list of blobs', err);
             }
 
-            // Try to load images until an error occurs (assuming missing image if 404) 
-
-            // const imageUrl = `http://localhost:8088/blob/${userId}/products0`;
-            // imageUrls.push(imageUrl)
-
-            // while (imageExists) {
-
-            //     try {
-            //         // Check if the image exists using axios (you can use fetch, but axios handles errors better)
-            //         imageExists = checkImageExistence(Number(userId), "products" + index)
-            //         if (!imageExists) {
-            //             break;
-            //         }
-            //         const imageUrl = `http://localhost:8088/blob/${userId}/products${index}`;
-            //         await axios.get(imageUrl);
-            //         imageUrls.push(imageUrl);
-            //         index += 1;
-            //     } catch (error) {
-            //         // If we hit an error, we assume we've loaded all available images
-            //         if (DEBUG) console.log("no more image products for userID", userId);
-            //         break;
-            //     }
-            // }
-
-            // Update state with the fetched image URLs
-
         };
 
+        const fetchCapAndPrices = async () => {
+            const res = await getShopWithUserID(Number(userId));
+            const products = res.shop.products;
+            for (const prod of products) {
+                setCaption(prod.caption)
+                setPrice(prod.price)
+            }
+            console.log(products[0].caption);
+            console.log("req", res);
+        }
+
         fetchImages();
+        fetchCapAndPrices();
     }, [userId]);
-
-
 
 
     const { images, loading, error } = state;
@@ -130,7 +118,9 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
             {state.images.length > 0 ? (
                 <div className="image-gallery">
                     {state.images.map((image, index) => (
-                        <img key={index} src={image} alt={`product ${index}`} />
+                        <><img key={index} src={image} alt={`product ${index}`} />
+                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Caption: {caption}</figcaption>
+                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Price: ${price}</figcaption></>
                     ))}
                 </div>
             ) : (
