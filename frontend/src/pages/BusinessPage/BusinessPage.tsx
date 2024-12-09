@@ -142,9 +142,8 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         {!hasBusiness ? (
           // If no business is associated, display a prompt to add a business
           <div className={classes.addBusinessContainer}>
-            <h1 className={classes.heading}>BusinessPage</h1>
             {/* Link to the Add Business Page */}
-            <Link to="/pages/AddBusinessPage" className={classes.navButton}>
+            <Link to="/pages/AddBusinessPage">
               Add my business
             </Link>
             <div>
@@ -157,9 +156,9 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
 
             {/* Header Section */}
             <div className={classes.header}>
-              <div className={classes.shopName}>
+              <h1 className={classes.shopName}>
                 {shopData?.shopName || "Unnamed Shop"}
-              </div>
+              </h1>
             </div>
 
             {/** BANNER */}
