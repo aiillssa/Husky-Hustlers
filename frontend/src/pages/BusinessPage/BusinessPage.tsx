@@ -132,9 +132,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
     necessaryDescription?: Record<string, string>;
   }
 
-
-
-
   return (
     <div className={classes.root}>
       {/* Main container for the business information */}
@@ -143,9 +140,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
           // If no business is associated, display a prompt to add a business
           <div className={classes.addBusinessContainer}>
             {/* Link to the Add Business Page */}
-            <Link to="/pages/AddBusinessPage">
-              Add my business
-            </Link>
+            <Link to="/pages/AddBusinessPage" className={classes.AddBusinessButton}> Add my business</Link>
             <div>
               <h2> {message}</h2>
             </div>
