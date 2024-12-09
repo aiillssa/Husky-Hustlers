@@ -182,6 +182,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 />
                 <DeleteButton
                   idshops={shopData?.idshops || 0}
+                  iduser={Number(userIDString)}
                   onDelete={handleBusinessDeletion}
                 />
               </div>
