@@ -224,7 +224,7 @@ export class Homepage extends Component<{}, HomepageState> {
                       : seller.ownerName}
                   </div>
                   <div className={classes.businessName}>
-                    {seller.shopName.length > 20
+                    {seller.shopName.length > 40
                       ? seller.shopName.substring(0, 15) + "..."
                       : seller.shopName}
                   </div>
