@@ -90,12 +90,16 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
         const fetchCapAndPrices = async () => {
             const res = await getShopWithUserID(Number(userId));
             const products = res.shop.products;
-            for (const prod of products) {
-                setCaption(prod.caption)
-                setPrice(prod.price)
+            if (products.length > 0) {
+                for (const prod of products) {
+                    setCaption(prod.caption)
+                    setPrice(prod.price)
+                }
+                console.log(products[0].caption);
+                console.log("req", res);
+
             }
-            console.log(products[0].caption);
-            console.log("req", res);
+
         }
 
         fetchImages();
