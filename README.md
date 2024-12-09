@@ -17,12 +17,3 @@ Library for making HTTP requests to Google: npm install axios
 1. `npm run start`
 2. navigate to http://localhost:3000/
 Developer's Documentation & User Manual can be found in the "Wiki" tab.
-
-Set up:
-
-Download Node.js v20.18.0
-clone Husky-Hustlers-Frontend repo
-make sure to run npm install within the /frontend file
-
-
-to run: npm run start
