@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './UploadBannerImage.css';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
@@ -17,7 +18,11 @@ const UploadBannerImage = () => {
             return;
         }
 
-
+        // Check if the file is a JPEG
+        if (!file.type || !file.type.startsWith('image/')) {
+            setMsg("Only images are allowed!");
+            return;
+        }
 
         const formData = new FormData();
         const userID = localStorage.getItem("userID");
@@ -61,16 +66,16 @@ const UploadBannerImage = () => {
 
     return (
         <>
-            <div>
+            <div className="upload-banner-form">
                 <h3>Upload your business page banner here (Dimensions 1200px by 400px):</h3>
-                <input onChange={ (event) => {
-                        if(!event.target.files) {
-                            return;
-                        }
-                        setFile(event.target.files[0])
-                    }} type='file'/>
-                <button onClick={ handleUpload } type='button'>Upload</button>
-                {msg && <span>{msg}</span>}
+                <input onChange={(event) => {
+                    if (!event.target.files) {
+                        return;
+                    }
+                    setFile(event.target.files[0])
+                }} type='file' />
+                <button onClick={handleUpload} type='button'>Upload</button>
+                {msg && <span style={{ color: 'blue' }}>{msg}</span>}
                 <br />
                 {progress.started && <progress max="100" value={progress.prcnt}></progress>}
 

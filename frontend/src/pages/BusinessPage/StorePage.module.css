@@ -1,15 +1,8 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%; /* Ensures consistent vertical sizing */
-}
-
 .pageContainer {
   font-family: Arial, sans-serif;
   background-color: #f8ebeb;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column; /* Align children in a column */
   box-sizing: border-box;

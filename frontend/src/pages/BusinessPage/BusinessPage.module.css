@@ -1,12 +1,4 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%; /* Ensures consistent vertical sizing */
-}
-
 .navButton {
-  position: relative;
   top: 40px;
   right: 180px;
   background-color: #4B2E83;
@@ -18,11 +10,15 @@ html, body {
 
 .root {
   background-color: #f8ebeb;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column; /* Align children in a column */
   box-sizing: border-box;
+  position: relative;
+  width: 100vw; /* Ensures it spans the full viewport width */
+  height: 100vh; /* Optional: Ensures it spans the full viewport height */
+  box-sizing: border-box; /* Prevents horizontal scrolling due to padding*/
+  background-size: cover; /* Ensures the background covers the container without overflowing */
+  overflow-x: hidden; /* Prevents any horizontal scrolling if overflow occurs */
+  margin: 0; /* Reset default margins */
+  padding: 0; /* Reset default padding */
 }
 
 .pageContainer {
@@ -32,7 +28,6 @@ html, body {
   display: flex;
   flex-direction: column; /* Align children in a column */
   box-sizing: border-box;
-  
 }
 
 .header {
@@ -82,7 +77,7 @@ html, body {
 .content {
   max-width: 90%; /* Makes it responsive */
   width: 100%; /* Ensures it doesn’t exceed the viewport */
-  height: 700px; /* Adjust height to fit content */
+  height: 100%; /* Adjust height to fit content */
   margin: 20px auto; /* Adds vertical spacing and centers */
   background-color: white;
   border-radius: 10px;
@@ -156,4 +151,11 @@ html, body {
   font-size: 12px;
   color: #555;
   text-align: center;
+}
+
+.actionButtons {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: flex-end; /* Align the button to the right */
+  padding: 10px; /* Optional: Add some padding */
+  right: 80px;
 }
