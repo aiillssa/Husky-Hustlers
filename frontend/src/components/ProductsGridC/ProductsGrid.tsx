@@ -128,9 +128,14 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                     {state.images.map((image, index) => (
                         <div className='image-card'>
                             <img key={index} src={image} alt={`product ${index}`} />
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Caption: {caption[index]}</figcaption>
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Price: ${price[index]}</figcaption>
+                            <figcaption className='caption'>
+                                <span className='label'>Caption: </span>{caption[index]}
+                            </figcaption>
+                            <figcaption className='price'>
+                                <span className='label'>Price: </span>${price[index]}
+                            </figcaption>
                         </div>
+                    
                     ))}
                 </div>
             ) : (
