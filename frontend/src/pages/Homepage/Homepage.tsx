@@ -105,7 +105,7 @@ export class Homepage extends Component<{}, HomepageState> {
         if (imageExists) {
           return { ...shop, types, image };
         } else {
-          const imgURL = `https://hustlers.blob.core.windows.net/images/HHLogo.png`
+          const imgURL = `https://hustlers.blob.core.windows.net/images/HHLogo.png`;
           return { ...shop, types, imgURL };
         }
       });
@@ -147,7 +147,7 @@ export class Homepage extends Component<{}, HomepageState> {
         .includes(searchTerm.toLowerCase());
 
       if (seller.image == undefined) {
-        seller.image = `https://hustlers.blob.core.windows.net/images/HHLogo.png`
+        seller.image = `https://hustlers.blob.core.windows.net/images/HHLogo.png`;
       }
       return matchesType && matchesSearch;
     });
@@ -220,9 +220,9 @@ export class Homepage extends Component<{}, HomepageState> {
                 <div className={classes.cardHeading}>
                   <div className={classes.name}>{seller.ownerName}</div>
                   <div className={classes.businessName}>{seller.shopName}</div>
-                </div>
-                <div className={classes.description}>
-                  {seller.shopDescription}
+                  <div className={classes.description}>
+                    {seller.shopDescription}
+                  </div>
                 </div>
                 <CategoryButton type={seller.types[0]} />
               </div>
