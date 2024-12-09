@@ -6,7 +6,7 @@ import InputField from "../../components/AddBusinessPageC/InputField/InputField"
 import { Navigate } from "react-router-dom";
 import UploadBannerImage from "../../components/UploadBannerFormC/UploadBannerForm";
 import { createShop } from "../../utils/api";
-import { UploadProductImages } from "../../components/UploadMultiProductImgGridC/UploadMultiProductImgGrid";
+import { UploadProductImages } from "../../components/UploadProductImagesC/UploadProductImages";
 import UploadHomepageIcon from "../../components/UploadHomepageIconC/UploadHomepageIcon";
 
 interface ContactInformation {

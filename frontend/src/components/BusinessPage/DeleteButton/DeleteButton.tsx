@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import classes from "./DeleteButton.module.css";
-import { deleteShop } from "../../../utils/api";
+import { deleteShop, deleteShopImages } from "../../../utils/api";
 interface DeleteButtonProps {
   idshops: number;
+  iduser: number
   onDelete: () => void;
 }
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({ idshops, onDelete }) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ idshops, onDelete, iduser }) => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState<"success" | "error">(
     "success"
@@ -28,6 +29,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ idshops, onDelete }) => {
 
     try {
       const response = await deleteShop(idshops);
+      const deleteResp = await deleteShopImages(iduser)
       if (response.status === 200) {
         // handle success
         setMessageType("success");

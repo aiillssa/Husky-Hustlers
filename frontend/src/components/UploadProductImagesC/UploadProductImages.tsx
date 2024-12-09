@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import axios from 'axios';
 import { Product } from '../../pages/AddBusinessPage/AddBusinessPage';
+import './UploadProductImages.css';
+
 
 interface UploadProductImagesProps {
   productsCB: (products: Product[]) => void;
@@ -143,7 +145,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
 
   return (
     <>
-      <div>
+      <div className="upload-product-images">
         <h3>Upload your product images with captions and prices:</h3>
         <input
           id="fileInput"
@@ -180,7 +182,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
                 </div>
 
                 {/* Price input */}
-                <div>
+                <div className="upload-product-images">
                   <label>Price ($):</label>
                   <input
                     type="text"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './HomepageIcon.css';
 
 // https://www.youtube.com/watch?v=ijx0Uqlo3NA << to transition to multiple file uploads at once later
 
@@ -64,7 +65,7 @@ const UploadHomepageIcon = () => {
 
     return (
         <>
-            <div>
+            <div className="upload-homepage-icon">
                 <h3>Upload your store homepage icon here:</h3>
                 <input onChange={(event) => {
                     if (!event.target.files) {
