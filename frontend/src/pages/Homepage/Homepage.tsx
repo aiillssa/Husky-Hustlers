@@ -105,7 +105,8 @@ export class Homepage extends Component<{}, HomepageState> {
         if (imageExists) {
           return { ...shop, types, image };
         } else {
-          return { ...shop, types };
+          const imgURL = `https://hustlers.blob.core.windows.net/images/HHLogo.png`
+          return { ...shop, types, imgURL };
         }
       });
       this.setState({ listOfSellers: sellers });
@@ -145,6 +146,9 @@ export class Homepage extends Component<{}, HomepageState> {
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
 
+      if (seller.image == undefined) {
+        seller.image = `https://hustlers.blob.core.windows.net/images/HHLogo.png`
+      }
       return matchesType && matchesSearch;
     });
 
