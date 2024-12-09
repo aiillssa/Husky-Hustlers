@@ -41,27 +41,27 @@
 
 /* Color styles for each type */
 .food {
-  background-color: #d32f2f;
+  background-color: #d58383;
   color: white;
 }
 
 .artwork {
-  background-color: #388e3c;
+  background-color: #67b76b;
   color: white;
 }
 
 .service {
-  background-color: #1976d2;
+  background-color: #9fbddb;
   color:white;
 }
 
 .craft {
-  background-color: #f57c00;
+  background-color: #f2cba3;
   color:white;
 }
 
 .resell {
-  background-color: #7b1fa2;
+  background-color: #d5a4ea;
   color:white;
 }
 
