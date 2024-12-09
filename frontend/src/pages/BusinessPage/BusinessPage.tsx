@@ -185,7 +185,6 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                   onDelete={handleBusinessDeletion}
                 />
               </div>
-              <div className={classes.profilePic}></div>
               <div className={classes.shopName}>
                 {shopData?.shopName || "Unnamed Shop"}
               </div>
