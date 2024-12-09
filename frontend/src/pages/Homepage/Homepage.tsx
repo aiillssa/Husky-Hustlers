@@ -42,18 +42,20 @@ type HomepageState = {
   imageList: string[];
 };
 
-
 export class Homepage extends Component<{}, HomepageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { listOfSellers: [], selectedType: "all", searchTerm: "", imageList: [] };
+    this.state = {
+      listOfSellers: [],
+      selectedType: "all",
+      searchTerm: "",
+      imageList: [],
+    };
   }
 
   componentDidMount() {
     this.fetchData("all");
   }
-
-
 
   async fetchData(type: string) {
     try {
@@ -61,13 +63,12 @@ export class Homepage extends Component<{}, HomepageState> {
 
       // retrieves all the images saved within the database
       try {
-        const res = await axios.get('http://localhost:8088/blob/');
+        const res = await axios.get("http://localhost:8088/blob/");
         if (DEBUG) console.log("blob list:", res.data.blobs);
-        this.setImageList(res.data.blobs);  // Assuming 'this' context is correct here
+        this.setImageList(res.data.blobs); // Assuming 'this' context is correct here
       } catch (err) {
-        console.error('Error in getting list of blobs', err);
+        console.error("Error in getting list of blobs", err);
       }
-
 
       const sellers = shops.map((shop: SellerData) => {
         const types = shop.categories.map((category) =>
@@ -75,38 +76,37 @@ export class Homepage extends Component<{}, HomepageState> {
         ) as ("food" | "artwork" | "service" | "craft" | "resell")[];
 
         const userID = shop.user.idUsers;
-        if (DEBUG) console.log("current user ID: ", userID)
-        const image = `http://localhost:8088/blob/${Number(userID)}/homepage`
+        if (DEBUG) console.log("current user ID: ", userID);
+        const image = `http://localhost:8088/blob/${Number(userID)}/homepage`;
 
         let imageExists = false;
 
         // verifies that the user has an icon image
         const checkImageExistence = () => {
           this.state.imageList.forEach((str) => {
-            const [id, source] = str.split('-');
-
+            const [id, source] = str.split("-");
 
             if (DEBUG) console.log("id: ", id);
             if (DEBUG) console.log("source: ", source);
-            if (DEBUG) console.log("return: ", id === userID.toString() && source === 'homepage');
+            if (DEBUG)
+              console.log(
+                "return: ",
+                id === userID.toString() && source === "homepage"
+              );
 
-
-            if (id === userID.toString() && source === 'homepage') {
+            if (id === userID.toString() && source === "homepage") {
               imageExists = true;
             }
-          })
-        }
-
+          });
+        };
 
         checkImageExistence();
-        console.log(imageExists)
+        console.log(imageExists);
         if (imageExists) {
           return { ...shop, types, image };
         } else {
           return { ...shop, types };
         }
-
-
       });
       this.setState({ listOfSellers: sellers });
     } catch (err) {
@@ -114,11 +114,10 @@ export class Homepage extends Component<{}, HomepageState> {
     }
   }
 
-
   setImageList = (list: string[]) => {
     if (DEBUG) console.log("entered setImageList", list);
     this.setState({ imageList: list });
-  }
+  };
 
   // add click behavior for each type on homepage
   handleTypeClick = (
@@ -151,51 +150,53 @@ export class Homepage extends Component<{}, HomepageState> {
 
     return (
       <div className={classes.root}>
+        <div className={classes.search}>
+          <SearchBar
+            className={classes.searchBar}
+            onSearchChange={this.handleSearchChange}
+            value={this.state.searchTerm}
+          />
 
-        <SearchBar
-          className={classes.searchBar}
-          onSearchChange={this.handleSearchChange}
-          value={this.state.searchTerm}
-        />
-
-        <div className={classes.type}>
-          {/* 'All' button to reset the filter */}
-          <div
-            onClick={() => this.handleTypeClick("all")}
-            style={{
-              cursor: "pointer",
-              fontWeight: this.state.selectedType === "all" ? 1000 : "normal",
-            }}
-          >
-            Show All
+          <div className={classes.type}>
+            {/* 'All' button to reset the filter */}
+            <div
+              onClick={() => this.handleTypeClick("all")}
+              style={{
+                cursor: "pointer",
+                fontWeight: this.state.selectedType === "all" ? 1000 : "normal",
+              }}
+            >
+              Show All
+            </div>
+            {/* Categories */}
+            <CategoryButton
+              type="food"
+              onClick={() => this.handleTypeClick("food")}
+              selected={selectedType === "food"}
+            />
+            <CategoryButton
+              type="artwork"
+              onClick={() => this.handleTypeClick("artwork")}
+              selected={selectedType === "artwork"}
+            />
+            <CategoryButton
+              type="service"
+              onClick={() => this.handleTypeClick("service")}
+              selected={selectedType === "service"}
+            />
+            <CategoryButton
+              type="craft"
+              onClick={() => this.handleTypeClick("craft")}
+              selected={selectedType === "craft"}
+            />
+            <CategoryButton
+              type="resell"
+              onClick={() => this.handleTypeClick("resell")}
+              selected={selectedType === "resell"}
+            />
           </div>
-          {/* Categories */}
-          <CategoryButton
-            type="food"
-            onClick={() => this.handleTypeClick("food")}
-            selected={selectedType === "food"}
-          />
-          <CategoryButton
-            type="artwork"
-            onClick={() => this.handleTypeClick("artwork")}
-            selected={selectedType === "artwork"}
-          />
-          <CategoryButton
-            type="service"
-            onClick={() => this.handleTypeClick("service")}
-            selected={selectedType === "service"}
-          />
-          <CategoryButton
-            type="craft"
-            onClick={() => this.handleTypeClick("craft")}
-            selected={selectedType === "craft"}
-          />
-          <CategoryButton
-            type="resell"
-            onClick={() => this.handleTypeClick("resell")}
-            selected={selectedType === "resell"}
-          />
         </div>
+
         <div className={classes.cardGrid}>
           {filteredSellers.map((seller, index) => (
             <Link
@@ -205,18 +206,12 @@ export class Homepage extends Component<{}, HomepageState> {
               className={classes.cardLink}
             >
               <div className={classes.card}>
-
-
                 {/** STORE ICON IMAGE DISPLAY */}
                 {seller.image ? (
-                  <img
-                    src={seller.image}
-                    alt={`${seller.shopName} image`}
-                  />
+                  <img src={seller.image} alt={`${seller.shopName} image`} />
                 ) : (
                   <></>
                 )}
-
 
                 <div className={classes.cardHeading}>
                   <div className={classes.name}>{seller.ownerName}</div>
