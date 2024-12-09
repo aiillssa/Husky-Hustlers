@@ -1,11 +1,11 @@
-import { memo } from 'react';
-import type { FC, MouseEventHandler } from 'react';
+import { memo } from "react";
+import type { FC, MouseEventHandler } from "react";
 
-import resets from '../../_resets.module.css';
-import classes from './CategoryButton.module.css';
+import resets from "../../_resets.module.css";
+import classes from "./CategoryButton.module.css";
 
 interface Props {
-  type: 'food' | 'artwork' | 'service' | 'craft' | 'resell' | 'all';
+  type: "food" | "artwork" | "service" | "craft" | "resell" | "all";
   onClick?: MouseEventHandler<HTMLDivElement>;
   selected?: boolean;
 }
@@ -16,12 +16,12 @@ export const CategoryButton: FC<Props> = memo(function CategoryButton({
   selected = false,
 }) {
   const textMap = {
-    food: 'Food',
-    artwork: 'Artwork',
-    service: 'Service',
-    craft: 'Craft',
-    resell: 'Resell',
-    all: 'All',
+    food: "Food",
+    artwork: "Artwork",
+    service: "Service",
+    craft: "Craft",
+    resell: "Resell",
+    all: "All",
   };
 
   const colorClassMap = {
@@ -35,10 +35,12 @@ export const CategoryButton: FC<Props> = memo(function CategoryButton({
 
   return (
     <div
-      className={`${resets.clapyResets} ${classes.root} ${selected ? classes.selected : ''}`}
+      className={`${resets.clapyResets} ${classes.root} ${
+        selected ? classes.selected : ""
+      }`}
       onClick={onClick}
-      style={{ cursor: 'pointer' }}
     >
+      
       <div className={`${classes.rectangle1} ${colorClassMap[type]} ${classes.text}`}>{textMap[type]}</div>
     </div>
   );
