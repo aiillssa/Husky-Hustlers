@@ -75,6 +75,7 @@
 
 .selected .text {
   font-weight: 700 !important;
+  color: black;
 }
 
 .root:active .rectangle1 {
