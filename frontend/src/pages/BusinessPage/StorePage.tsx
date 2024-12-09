@@ -119,7 +119,7 @@ function StorePage() {
           </>
         )}
         {activeTab === "Pictures" && (
-          <div className={classes.picturesSection}>
+          <div>
             <ProductsGrid userId={userId} />
           </div>
 

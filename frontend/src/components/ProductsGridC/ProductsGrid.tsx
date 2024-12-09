@@ -48,11 +48,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                 // verifies that the user has an icon image
 
                 const checkImageExistence = () => {
-                    console.log("in check image existence products grid");
-                    console.log("imgeList", imageList)
+                    if (DEBUG) console.log("in check image existence products grid");
+                    if (DEBUG) console.log("imgeList", imageList)
                     imageList.forEach((str: { split: (arg0: string) => [any, any]; }) => {
                         const [id, source] = str.split('-');
-                        console.log("in loop");
+                        if (DEBUG) console.log("in loop");
                         if (DEBUG) console.log("id: ", id);
                         if (DEBUG) console.log("source: ", source);
                         console.log("return for product grid: ", id === userId.toString() && source.includes('product'));
@@ -95,8 +95,8 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
                     setCaption(prod.caption)
                     setPrice(prod.price)
                 }
-                console.log(products[0].caption);
-                console.log("req", res);
+                if (DEBUG) console.log(products[0].caption);
+                if (DEBUG) console.log("req", res);
 
             }
 
@@ -122,9 +122,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ userId }) => {
             {state.images.length > 0 ? (
                 <div className="image-gallery">
                     {state.images.map((image, index) => (
-                        <><img key={index} src={image} alt={`product ${index}`} />
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Caption: {caption}</figcaption>
-                            <figcaption style={{ fontStyle: 'italic', marginTop: '8px' }}>Price: ${price}</figcaption></>
+                        <div className="image-card">
+                            <img key={index} src={image} alt={`product ${index}`} />
+                            <p className='caption' >Caption: {caption}</p>
+                            <p className='price' >Price: ${price}</p>
+                        </div>
                     ))}
                 </div>
             ) : (
