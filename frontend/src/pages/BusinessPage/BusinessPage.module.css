@@ -152,3 +152,10 @@
   color: #555;
   text-align: center;
 }
+
+.actionButtons {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: flex-end; /* Align the button to the right */
+  padding: 10px; /* Optional: Add some padding */
+  right: 80px;
+}

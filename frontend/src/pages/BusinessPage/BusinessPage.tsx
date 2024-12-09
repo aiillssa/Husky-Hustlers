@@ -157,10 +157,15 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
 
             {/* Header Section */}
             <div className={classes.header}>
+              <div className={classes.shopName}>
+                {shopData?.shopName || "Unnamed Shop"}
+              </div>
+            </div>
 
+            {/** BANNER */}
+            <img src={bannerURL} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
 
-
-              <div className={classes.actionButtons}>
+            <div className={classes.actionButtons}>
                 <EditButton
                   idshops={shopData?.idshops || 0}
                   description={shopData?.shopDescription || ""}
@@ -176,22 +181,17 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                   onSave={() => {
                     setShopDescription("hello world");
                   }}
-
-
                 />
-                <DeleteButton
+
+              <DeleteButton
                   idshops={shopData?.idshops || 0}
                   iduser={Number(userIDString)}
                   onDelete={handleBusinessDeletion}
-                />
+              />
+                
               </div>
-              <div className={classes.shopName}>
-                {shopData?.shopName || "Unnamed Shop"}
-              </div>
-            </div>
 
-            {/** BANNER */}
-            <img src={bannerURL} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+              
 
             {/* Tabs Section */}
             <div className={classes.tabs}>
@@ -203,6 +203,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 Basics
               </div>
               <div
+
                 className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""
                   }`}
                 onClick={() => setActiveTab("Pictures")}
@@ -213,6 +214,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
 
             {/* Divider Line */}
             <div className={classes.divider}></div>
+            
 
             {/* Content Section */}
             <div className={classes.content}>

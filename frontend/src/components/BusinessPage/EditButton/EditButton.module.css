@@ -1,7 +1,6 @@
 .container {
-  position: absolute;
-  right: 220px;
-  padding: 5px 10px;
+  display: flex; /* Use flexbox for alignment */
+  padding: 10px; /* Optional: Add some padding */
 }
 
 .editButton {

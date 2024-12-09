@@ -1,11 +1,10 @@
 /* DeleteButton.module.css */
 
 .container {
-    position: absolute;
-    position: absolute;
-    right: 10px;
-    padding: 5px 10px;
-  }
+  display: flex; /* Use flexbox for alignment */
+  padding: 10px; /* Optional: Add some padding */
+}
+
   
   .deleteButton {
     background-color: #ff4d4f; /* Red color for delete action */
