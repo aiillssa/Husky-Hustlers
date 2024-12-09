@@ -72,7 +72,7 @@ const LoginPageContent: FC<Props> = ({ setSignedIn }) => {
       {/* Navigation bar with brand and prompt */}
       <div className={classes.navBar}>
         <span>Husky Hustlers</span>
-        <span>Log In / Sign Up First to See All Student Business</span>
+        <span>Log In / Sign Up First to See All Student Businesses</span>
   </div>
 
       <div className={classes.content_wrapper}>
