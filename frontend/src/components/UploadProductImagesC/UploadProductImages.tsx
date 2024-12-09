@@ -158,14 +158,14 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
 
         {/* Display the names of the selected files with captions and prices */}
         <div>
-          <h4>Selected Files:</h4>
 
           <button onClick={addNewFileField} type='button'>Add another image</button>
 
           <ul>
             {files.map((file, index) => (
               <li key={index}>
-                <div>{file.name}</div>
+                {/* Truncate file name if it exceeds 15 characters */}
+                <div>{file.name.length > 15 ? `${file.name.substring(0, 15)}...` : file.name}</div>
 
                 {/* Caption input */}
                 <div>
@@ -197,6 +197,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
               </li>
             ))}
           </ul>
+
         </div>
 
 
