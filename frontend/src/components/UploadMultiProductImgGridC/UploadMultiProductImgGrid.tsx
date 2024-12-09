@@ -52,6 +52,12 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
       return;
     }
 
+    // Check if any price is missing
+    if (prices.some(price => price === "")) {
+      setMsg("All prices must be set");
+      return;
+    }
+
     const formData = new FormData();
     const userID = localStorage.getItem("userID");
 
@@ -116,7 +122,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
   const handleCaptionChange = (index: number, value: string) => {
     const wordCount = value.split(/\s+/).length;
 
-    if (wordCount <= 25 || wordCount >= 0) {
+    if (wordCount <= 25) {
       const newCaptions = [...captions];
       newCaptions[index] = value;
       setCaptions(newCaptions);
@@ -128,7 +134,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
     // Allow only valid decimal numbers with up to 2 decimal places
     const validPrice = /^[0-9]+(\.[0-9]{0,2})?$/.test(value);
 
-    if (validPrice) {
+    if (validPrice || value === "") { // Allow deletion (empty value)
       const newPrices = [...prices];
       newPrices[index] = value;
       setPrices(newPrices);
@@ -182,7 +188,7 @@ export const UploadProductImages: FC<UploadProductImagesProps> = ({ productsCB }
                     onChange={(e) => handlePriceChange(index, e.target.value)}
                     placeholder="e.g. 12.34"
                   />
-                  {!/^[0-9]+(\.[0-9]{0,2})?$/.test(prices[index]) && (
+                  {(prices[index] === "" || !/^[0-9]*\.?[0-9]{0,2}$/.test(prices[index])) && (
                     <span style={{ color: 'red' }}>Pricing must be valid</span>
                   )}
                 </div>
