@@ -7,7 +7,6 @@
     padding: 20px;
     background: transparent; /* Ensuring no background behind the entire grid */
 }
-
 /* Styling for each image container and card */
 .image-gallery {
     display: flex;
@@ -48,23 +47,27 @@
 }
 
 /* Styling for the caption and price */
-.image-card p {
+.image-card figcaption {
     font-family: Arial, Helvetica, sans-serif; /* Using custom font */
     color: #333;
     margin-top: 8px;
 }
 
+figcaption .label {
+    font-weight: bold; /* Bold only the label text */
+}
+
 /* Price styling */
-p.price {
+figcaption.price {
+    color: #4b2e83ff; /* Accent color for price */
+    font-size: 24px; /* Custom font size for price */
+    font-weight: normal; /* Ensure price itself is not bold */
+}
+figcaption.caption {
     color: #4b2e83ff; /* Accent color for caption */
     font-size: 24px; /* Custom font size for caption */
+    font-weight: normal; /* Ensure caption itself is not bold */
 }
-
-p.caption {
-    color: #4b2e83ff; /* Accent color for caption */
-    font-size: 24px; /* Custom font size for caption */
-}
-
 /* Loading/Error message styling */
 .loading, .error {
     font-size: 18px;
