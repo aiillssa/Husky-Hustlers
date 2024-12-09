@@ -119,7 +119,7 @@ describe('BusinessPage', () => {
       </MemoryRouter>
     );
 
-    // Check if the shop banner is displayed
+    // Check if shop banner is displayed
     await waitFor(() => {
       const banner = screen.getByRole('img');
       expect(banner).toHaveAttribute('src', 'http://localhost:8088/blob/1/banner');
