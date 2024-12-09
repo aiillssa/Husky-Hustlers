@@ -2,13 +2,11 @@
 .upload-product-images {
   font-family: Arial, sans-serif;
   color: #333;
-  margin: 20px;
-  padding: 20px;
   background-color: transparent;
 }
 
 .upload-product-images h3 {
-  font-size: 24px;
+  font-size: 20px;
   color: #444;
   margin-bottom: 15px;
 }
@@ -73,16 +71,19 @@
 
 .upload-product-images li div {
   flex-grow: 1;
+  display: flex;
+  gap: 10px; /* Add space between inputs */
 }
 
 .upload-product-images li input[type="text"] {
   width: 100%;
   padding: 8px;
-  margin: 5px 0;
+  margin: 0; /* Remove margin to prevent overlap */
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.3s;
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .upload-product-images li input[type="text"]:focus {
@@ -90,9 +91,9 @@
 }
 
 .upload-product-images li label {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
-  margin-right: 10px;
+  margin: 10px;
   color: #555;
 }
 
