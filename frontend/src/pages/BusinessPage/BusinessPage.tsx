@@ -203,6 +203,13 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
                 Basics
               </div>
               <div
+                className={`${classes.tab} ${activeTab === "Other" ? classes.activeTab : ""
+                  }`}
+                onClick={() => setActiveTab("Other")}
+              >
+                Other
+              </div>
+              <div
                 className={`${classes.tab} ${activeTab === "Pictures" ? classes.activeTab : ""
                   }`}
                 onClick={() => setActiveTab("Pictures")}
