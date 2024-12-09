@@ -1,22 +1,23 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import './NavBarStyle.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./NavBarStyle.css";
+import { handleSignOut } from "../utils/axios";
 
 const Navbar = () => {
   return (
     <>
-    <nav>
-        <Link to='/pages/Homepage' className='nav-button'>
-            Homepage
+      <nav>
+        <Link to="/pages/Homepage" className="nav-button">
+          Homepage
         </Link>
-        <Link to='/pages/Profile' className='nav-button'>
-            Profile
+        <Link to="/pages/BusinessPage" className="nav-button">
+          My Business
         </Link>
-        <Link to='/pages/BusinessPage' className='nav-button'>
-            My Business
+        <Link to="/" className="nav-button" onClick={handleSignOut}>
+          Log Out
         </Link>
-    </nav>
+      </nav>
     </>
-);
-}
-export default Navbar
+  );
+};
+export default Navbar;
