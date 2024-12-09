@@ -49,8 +49,8 @@ const EditButton: React.FC<EditButtonProps> = ({ idshops, description, contactIn
         <div className={classes.editForm}>
           <div className={classes.field}>
             <label>Description:</label>
-            <input
-              className={classes.input}
+            <textarea
+              className={classes.textarea}
               value={updatedDescription}
               onChange={(e) => setUpdatedDescription(e.target.value)}
             />
