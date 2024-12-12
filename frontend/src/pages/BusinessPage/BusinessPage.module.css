@@ -248,3 +248,18 @@
   color: #4b2e82;
   margin-bottom: 20px;
 }
+
+.businessNameContainer {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.shopName {
+  font-size: 36px; /* Adjusted font size */
+  font-weight: bold;
+  color: #4b2e83; /* Husky purple for branding */
+  text-transform: capitalize;
+  margin: 0;
+}

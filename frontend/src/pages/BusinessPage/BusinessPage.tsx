@@ -176,7 +176,7 @@ export const BusinessPage: FC<Props> = memo(function BusinessPage(props = {}) {
         ) : (
           <div className={classes.pageContainer}>
             {/* Header Section */}
-            <div className={classes.header}>
+            <div className={classes.businessNameContainer}>
               <h1 className={classes.shopName}>
                 {shopData?.shopName || "Unnamed Shop"}
               </h1>
