@@ -229,8 +229,8 @@ export class Homepage extends Component<{}, HomepageState> {
                       : seller.shopName}
                   </div>
                   <div className={classes.description}>
-                    {seller.shopDescription.length > 165
-                      ? seller.shopDescription.substring(0, 165) + "..."
+                    {seller.shopDescription.length > 115
+                      ? seller.shopDescription.substring(0, 115) + "..."
                       : seller.shopDescription}
                   </div>
                   <CategoryButton type={seller.types[0]} />
