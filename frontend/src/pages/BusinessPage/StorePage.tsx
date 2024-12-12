@@ -124,10 +124,18 @@ function StorePage() {
             </div>
 
             <div className={classes.section}>
-              <div className={classes.sectionTitle}> Pick Up Option:</div>
-                <div className={classes.sectionContent}>{necessaryDescription || "No description available."}</div>
-              </div>
-           </>
+                  {necessaryDescription && Array.from(necessaryDescription.entries()).length > 0 ? (
+                    Array.from(necessaryDescription.entries()).map(([key, value]) => (
+                      <div key={key}>
+                        <div className={classes.sectionTitle}>{key}:</div>
+                        <div className={classes.sectionContent}>{value}</div>
+                      </div>
+                    ))
+                  ) : (
+                    "No Description Available"
+                  )}
+                </div>
+              </>
         )}
         {activeTab === "Pictures" && (
           <div>
